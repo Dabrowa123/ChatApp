@@ -15,11 +15,16 @@ function App() {
   const users = useSelector((state) => state.users);
   console.log(users);
   let isAdmin = false;
+  let isLogged = false;
 
   if (userId !== 0) {
     const filteredUser = users.filter((user) => user.userId == userId);
+    if (filteredUser.length !== 0) {
+      isLogged = true;
+    }
     isAdmin = filteredUser[0].isAdmin;
-    console.log(isAdmin);
+    console.log("Is Logged? " + isLogged);
+    console.log("Is Admin? " + isAdmin);
   }
 
   return (
@@ -31,7 +36,7 @@ function App() {
             exact
             path="/adminPanel"
             element={
-              <Protected isLoggedIn={true}>
+              <Protected isLoggedIn={isAdmin && isLogged}>
                 <AdminPanel />
               </Protected>
             }
@@ -40,7 +45,7 @@ function App() {
             exact
             path="/userPanel"
             element={
-              <Protected isLoggedIn={true}>
+              <Protected isLoggedIn={isLogged}>
                 <UserPanel />
               </Protected>
             }

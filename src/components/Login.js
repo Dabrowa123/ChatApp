@@ -36,6 +36,7 @@ const Login = () => {
       } else {
         alert("Niepoprawny login lub hasło!");
       }
+      dispatch(logInUser(filteredUser[0].userId));
     } else {
       alert("Nie znaleziono takiego użytkownika!");
     }
