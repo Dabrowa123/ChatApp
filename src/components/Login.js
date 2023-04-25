@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const Login = () => {
   const displayUsers = useSelector((state) => state.users);
@@ -12,10 +12,14 @@ const Login = () => {
     </ul>
   ));
 
+  const dispatch = useDispatch();
+
   console.log(displayUsers);
   return (<div>
             <div>{users}</div>
             <div>{displayIsLogged.userId}</div>
+            {/* below login button */}
+            {/* <button onClick={() => dispatch()}>login admin01</button> */}
           </div>);
 };
 
