@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 import Login from "./components/Login";
 import AdminPanel from "./components/AdminPanel";
 import Protected from "./components/Protected";
+import UserPanel from "./components/UserPanel";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -32,6 +33,15 @@ function App() {
             element={
               <Protected isLoggedIn={true}>
                 <AdminPanel />
+              </Protected>
+            }
+          ></Route>
+          <Route
+            exact
+            path="/userPanel"
+            element={
+              <Protected isLoggedIn={true}>
+                <UserPanel />
               </Protected>
             }
           ></Route>

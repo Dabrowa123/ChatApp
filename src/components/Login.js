@@ -16,7 +16,30 @@ const Login = () => {
   const displayIsLogged = useSelector((state) => state.isLogged);
   const users = useSelector((state) => state.users);
   console.log("Komponent Login: " + displayIsLogged);
-  let isAdmin = false;
+
+  const authenticate = () => {
+    const filteredUser = users.filter((user) => user.userName == usernameValue);
+
+    if (filteredUser.length !== 0) {
+      if (
+        usernameValue === filteredUser[0].userName &&
+        passwordValue === filteredUser[0].password &&
+        filteredUser[0].isAdmin
+      ) {
+        navigate("/adminPanel");
+      } else if (
+        usernameValue === filteredUser[0].userName &&
+        passwordValue === filteredUser[0].password &&
+        !filteredUser[0].isAdmin
+      ) {
+        navigate("/userPanel");
+      } else {
+        alert("Niepoprawny login lub hasło!");
+      }
+    } else {
+      alert("Nie znaleziono takiego użytkownika!");
+    }
+  };
 
   const onEditHandle = (e) => {
     let name = e.target.name;
@@ -31,13 +54,7 @@ const Login = () => {
 
   const onHandleSubmit = (e) => {
     e.preventDefault();
-    const filteredUser = users.filter((user) => user.userName == usernameValue);
-    // if(filteredUser !== null){
-    // isAdmin = filteredUser[0].isAdmin;
-    // }
-    console.log(
-      "Login Component filteredUser isAdmin: " + filteredUser[0].isAdmin
-    );
+    authenticate();
   };
 
   //
@@ -47,8 +64,6 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     dispatch(logInUser(1));
-    // console.log(displayIsLogged);
-    // if (displayIsLogged.userId === 1) {
     navigate("/adminPanel");
   };
 
