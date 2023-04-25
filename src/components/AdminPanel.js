@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 
 const AdminPanel = () => {
-  const displayUsers = useSelector((state) => state);
+  const displayUsers = useSelector((state) => state.users);
 
   const users = displayUsers.map((user) => (
     <ul>

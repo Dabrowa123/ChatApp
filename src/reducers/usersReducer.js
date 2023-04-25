@@ -1,14 +1,16 @@
 export const usersReducer = (
   state = [
     {
+      userId: 1,
       userName: "admin01",
       password: "admin",
-      role: "ADMIN",
+      isAdmin: true,
     },
     {
+      userId: 2,
       userName: "user01",
       password: "user",
-      role: "USER",
+      isAdmin: false,
     },
   ],
   action

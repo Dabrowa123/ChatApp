@@ -1,16 +1,18 @@
 import React, { useState, useSyncExternalStore } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { Container } from "@mui/material";
 import FormControl from "@mui/material/FormControl";
 import { InputLabel, Input, Button } from "@mui/material";
+import { logInUser } from "../actions/logInUser";
+import { useEffect } from "react";
 
 const Login = () => {
   const [usernameValue, setUsernameValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
   const displayIsLogged = useSelector((state) => state.isLogged);
-  console.log(displayIsLogged);
+  console.log("Komponent Login: " + displayIsLogged);
 
   const onEditHandle = (e) => {
     let name = e.target.name;
@@ -23,13 +25,22 @@ const Login = () => {
     }
   };
 
-  const onHandleSubmit = (e) => {
-    e.preventDefault();
-    if (usernameValue === "admin01" || passwordValue === "admin") {
-      window.location.replace("http://localhost:3000/adminPanel");
-    }
+  const onHandleSubmit = () => {
     console.log("zalogowano albo nie");
   };
+
+  //
+
+  const dispatch = useDispatch();
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    dispatch(logInUser(1));
+    // console.log(displayIsLogged);
+    // if (displayIsLogged.userId === 1) {
+  };
+
+  useEffect(() => {}, [displayIsLogged]);
 
   return (
     <div>
@@ -58,6 +69,8 @@ const Login = () => {
         </div>
         <button>Zaloguj się</button>
       </form>
+      <br />
+      <button onClick={handleLogin}>Login Admin01</button>
     </div>
   );
 };
