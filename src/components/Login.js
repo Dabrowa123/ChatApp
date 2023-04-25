@@ -9,13 +9,8 @@ import { InputLabel, Input, Button } from "@mui/material";
 const Login = () => {
   const [usernameValue, setUsernameValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
-  const displayUsers = useSelector((state) => state);
-
-  const users = displayUsers.map((user) => (
-    <ul>
-      <li>{user.userName}</li>
-    </ul>
-  ));
+  const displayIsLogged = useSelector((state) => state.isLogged);
+  console.log(displayIsLogged);
 
   const onEditHandle = (e) => {
     let name = e.target.name;

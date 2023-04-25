@@ -15,7 +15,7 @@ function App() {
           <Route exact path="/" Component={Login}></Route>
           <Route
             exact
-            path="/adminpanel"
+            path="/adminPanel"
             element={
               <Protected isLoggedIn={isLoggedIn}>
                 <AdminPanel />

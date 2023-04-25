@@ -3,12 +3,12 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { usersReducer } from "./reducers/usersReducer";
+import { rootReducer } from "./reducers/rootReducer";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 
 let store = createStore(
-  usersReducer,
+  rootReducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
