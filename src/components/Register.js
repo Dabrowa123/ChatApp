@@ -5,7 +5,7 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
-import { registerUser } from "../actions/registerUser";
+import { registerUser } from "../actions/userActions/registerUser";
 import { Container } from "@mui/material";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router";
