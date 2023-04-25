@@ -4,18 +4,19 @@ import Login from "./components/Login";
 import AdminPanel from "./components/AdminPanel";
 import Protected from "./components/Protected";
 import UserPanel from "./components/UserPanel";
+import Register from "./components/Register";
 import { useSelector } from "react-redux";
 
 function App() {
   const userId = useSelector((state) => state.isLogged.userId);
-  console.log(userId);
+  // console.log(userId);
   const users = useSelector((state) => state.users);
-  console.log(users);
+  // console.log(users.length);
   let isAdmin = false;
   let isLogged = false;
 
   if (userId !== 0) {
-    const filteredUser = users.filter((user) => user.userId == userId);
+    const filteredUser = users.filter((user) => user.userId === userId);
     if (filteredUser.length !== 0) {
       isLogged = true;
     }
@@ -47,6 +48,7 @@ function App() {
               </Protected>
             }
           ></Route>
+          <Route exact path="/register" Component={Register}></Route>
         </Routes>
       </Router>
     </div>

@@ -1,17 +1,27 @@
 import { useSelector } from "react-redux";
+import User from "./User";
+import { useNavigate } from "react-router";
 
 const AdminPanel = () => {
+  const navigate = useNavigate();
   const displayUsers = useSelector((state) => state.users);
-
+  console.log(displayUsers);
   const users = displayUsers.map((user) => (
-    <ul>
-      <li>Username: {user.userName}</li>
-      <li>Password: {user.password}</li>
-      <li>Is admin: {user.isAdmin ? <p>YES</p> : <p>NO</p>}</li>
-    </ul>
+    <User key={user.userId} {...user} />
   ));
 
-  return <div>{users}</div>;
+  return (
+    <div>
+      {users}
+      <button
+        onClick={() => {
+          navigate("/");
+        }}
+      >
+        Przejdź do logowania
+      </button>
+    </div>
+  );
 };
 
 export default AdminPanel;

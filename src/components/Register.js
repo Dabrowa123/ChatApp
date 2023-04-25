@@ -1,55 +1,43 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import Stack from "@mui/material/Stack";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
-import { logInUser } from "../actions/logInUser";
+import { registerUser } from "../actions/registerUser";
 import { Container } from "@mui/material";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router";
 
-const Login = () => {
+const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [usernameValue, setUsernameValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
-  const users = useSelector((state) => state.users);
+  const [password2Value, setPassword2Value] = useState("");
 
-  const authenticate = () => {
-    const filteredUser = users.filter(
-      (user) => user.userName === usernameValue
-    );
-
-    if (filteredUser.length !== 0) {
-      if (
-        usernameValue === filteredUser[0].userName &&
-        passwordValue === filteredUser[0].password &&
-        filteredUser[0].isAdmin
-      ) {
-        navigate("/adminPanel");
-      } else if (
-        usernameValue === filteredUser[0].userName &&
-        passwordValue === filteredUser[0].password &&
-        !filteredUser[0].isAdmin
-      ) {
-        navigate("/userPanel");
-      } else {
-        alert("Niepoprawny login lub hasło!");
-      }
-      dispatch(logInUser(filteredUser[0].userId));
+  const register = () => {
+    if (
+      usernameValue !== "" &&
+      passwordValue !== "" &&
+      password2Value !== "" &&
+      passwordValue === password2Value
+    ) {
+      const userObject = {
+        userName: usernameValue,
+        password: passwordValue,
+      };
+      dispatch(registerUser(userObject));
+      navigate("/");
+      alert("Thank you for registration!");
     } else {
-      alert("Nie znaleziono takiego użytkownika!");
+      alert(
+        "Coś jest nie tak ale nie wiem co. Nie chciało mi sie na razie tworzyć obsługi błędów :C"
+      );
     }
   };
 
-  const toRegister = () => {
-    navigate("/register");
-  };
   const onEditHandle = (e) => {
     let name = e.target.name;
     let value = e.target.value;
@@ -58,12 +46,14 @@ const Login = () => {
       setUsernameValue(value);
     } else if (name === "password") {
       setPasswordValue(value);
+    } else if (name === "password2") {
+      setPassword2Value(value);
     }
   };
 
   const onHandleSubmit = (e) => {
     e.preventDefault();
-    authenticate();
+    register();
   };
 
   return (
@@ -81,7 +71,7 @@ const Login = () => {
         }}
       >
         <Typography component="h1" variant="h5">
-          Sign in
+          Register
         </Typography>
         <Box
           component="form"
@@ -113,12 +103,18 @@ const Login = () => {
             value={passwordValue}
             onChange={onEditHandle}
           />
-          <Stack>
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
-          </Stack>
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            name="password2"
+            label="Repeat Password"
+            type="password"
+            id="password"
+            autoComplete="current-password"
+            value={password2Value}
+            onChange={onEditHandle}
+          />
           <Button
             type="submit"
             fullWidth
@@ -128,21 +124,13 @@ const Login = () => {
             Sign In
           </Button>
           <Grid container>
-            <Grid item xs={6} sx={{ textAlign: "left" }}>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
-            <Grid item xs={4.5} sx={{ textAlign: "right" }}>
-              Don't have an account?
+            <Grid item xs={10.5} sx={{ textAlign: "right" }}>
+              Do you already have an account?
             </Grid>
             <Grid item xs={1.5} sx={{ textAlign: "right" }}>
-              <Link onClick={toRegister} variant="body2">
-                {"Sign Up"}
+              <Link href="http://localhost:3000/" variant="body2">
+                {"Sign in"}
               </Link>
-              {/* <Link href="http://localhost:3000/register" variant="body2">
-                {"Sign Up"}
-              </Link> */}
             </Grid>
           </Grid>
         </Box>
@@ -151,4 +139,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
