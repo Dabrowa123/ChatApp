@@ -5,7 +5,9 @@ const AdminPanel = () => {
 
   const users = displayUsers.map((user) => (
     <ul>
-      <li>{user.userName}</li>
+      <li>Username: {user.userName}</li>
+      <li>Password: {user.password}</li>
+      <li>Is admin: {user.isAdmin ? <p>YES</p> : <p>NO</p>}</li>
     </ul>
   ));
 
