@@ -30,7 +30,7 @@ function App() {
             exact
             path="/adminPanel"
             element={
-              <Protected isLoggedIn={isAdmin}>
+              <Protected isLoggedIn={true}>
                 <AdminPanel />
               </Protected>
             }

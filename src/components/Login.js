@@ -7,12 +7,16 @@ import FormControl from "@mui/material/FormControl";
 import { InputLabel, Input, Button } from "@mui/material";
 import { logInUser } from "../actions/logInUser";
 import { useEffect } from "react";
+import { useNavigate } from "react-router";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [usernameValue, setUsernameValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
   const displayIsLogged = useSelector((state) => state.isLogged);
+  const users = useSelector((state) => state.users);
   console.log("Komponent Login: " + displayIsLogged);
+  let isAdmin = false;
 
   const onEditHandle = (e) => {
     let name = e.target.name;
@@ -25,8 +29,15 @@ const Login = () => {
     }
   };
 
-  const onHandleSubmit = () => {
-    console.log("zalogowano albo nie");
+  const onHandleSubmit = (e) => {
+    e.preventDefault();
+    const filteredUser = users.filter((user) => user.userName == usernameValue);
+    // if(filteredUser !== null){
+    // isAdmin = filteredUser[0].isAdmin;
+    // }
+    console.log(
+      "Login Component filteredUser isAdmin: " + filteredUser[0].isAdmin
+    );
   };
 
   //
@@ -38,9 +49,8 @@ const Login = () => {
     dispatch(logInUser(1));
     // console.log(displayIsLogged);
     // if (displayIsLogged.userId === 1) {
+    navigate("/adminPanel");
   };
-
-  useEffect(() => {}, [displayIsLogged]);
 
   return (
     <div>
