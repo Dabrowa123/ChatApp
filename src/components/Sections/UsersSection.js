@@ -4,9 +4,9 @@ const UsersSection = () => {
   return (
     <Box
       sx={{
-        // background: "linear-gradient(to right bottom, #36EAEF, #6B0AC9)",
+        // background: "linear-gradient(to top bottom, #36EAEF, #6B0AC9)",
         height: "100vh",
-        width: "25vw",
+        width: "15vw",
       }}
     />
   );

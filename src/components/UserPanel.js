@@ -6,13 +6,13 @@ import Stack from "@mui/material/Stack";
 
 const UserPanel = () => {
   return (
-    <Container maxWidth="false">
-      <Stack direction="row">
-        <RoomsSection></RoomsSection>
-        <ChatSection></ChatSection>
-        <UsersSection></UsersSection>
-      </Stack>
-    </Container>
+    // <Container maxWidth="false">
+    <Stack direction="row">
+      <RoomsSection></RoomsSection>
+      <ChatSection></ChatSection>
+      <UsersSection></UsersSection>
+    </Stack>
+    // </Container>
   );
 };
 
