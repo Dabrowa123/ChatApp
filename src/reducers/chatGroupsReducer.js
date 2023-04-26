@@ -11,6 +11,12 @@ export const chatGroupsReducer = (
           time: "19:00",
           content: "Siema",
         },
+        {
+          id: 1,
+          author: "user1",
+          time: "19:00",
+          content: "elo",
+        },
       ],
     },
     {
@@ -49,31 +55,26 @@ export const chatGroupsReducer = (
           };
         }),
       ];
-    case "SEND_MESSAGE":
-      return [
-        state.map((group) => {
-          if (group.groupId !== action.payload.groupId) {
-            return group;
-          }
+    case "SEND_MESSAGE": {
+      const { groupId, id, author, time, content } = action.payload;
+      const message = {
+        id,
+        author,
+        time,
+        content,
+      };
+      return state.map((group) => {
+        if (group.groupId !== groupId) {
+          return group;
+        }
 
-          const { id, author, time, content } = action.payload;
+        return {
+          ...group,
+          messages: [...group.messages, message],
+        };
+      });
+    }
 
-          return {
-            groupId: group.groupId,
-            groupName: group.groupName,
-            userIdList: group.userIdList,
-            messages: [
-              ...group.messages,
-              {
-                id,
-                author,
-                time,
-                content,
-              },
-            ],
-          };
-        }),
-      ];
     default:
       return state;
   }

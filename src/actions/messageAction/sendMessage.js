@@ -1,4 +1,4 @@
-export const createGroup = ({ groupId, author, time, content }) => {
+export const sendMessage = ({ groupId, author, time, content }) => {
   return {
     type: "SEND_MESSAGE",
     payload: {
