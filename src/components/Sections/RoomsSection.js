@@ -1,4 +1,5 @@
 import Box from "@mui/material/Box";
+import Room from "./Room";
 
 const RoomsSection = () => {
   return (
@@ -8,7 +9,13 @@ const RoomsSection = () => {
         height: "100vh",
         width: "25vw",
       }}
-    />
+    >
+      <Room/>
+      <Room/>
+      <Room/>
+      <Room/>
+      <Room/>
+    </Box>
   );
 };
 
