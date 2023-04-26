@@ -6,14 +6,14 @@ import Stack from "@mui/material/Stack";
 import { useNavigate } from "react-router";
 
 const UserPanel = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   return (
     // <Container maxWidth="false">
     <Stack direction="row">
       <RoomsSection></RoomsSection>
       <ChatSection></ChatSection>
       <UsersSection></UsersSection>
-      <div>
+      {/* <div>
         <button
           onClick={() => {
             navigate("/");
@@ -21,7 +21,7 @@ const UserPanel = () => {
         >
           Log Out
         </button>
-      </div>
+      </div> */}
     </Stack>
     // </Container>
   );
