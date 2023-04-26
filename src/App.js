@@ -21,8 +21,6 @@ function App() {
       isLogged = true;
     }
     isAdmin = filteredUser[0].isAdmin;
-    console.log("Is Logged? " + isLogged);
-    console.log("Is Admin? " + isAdmin);
   }
 
   return (

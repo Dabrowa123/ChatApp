@@ -68,6 +68,7 @@ const Register = () => {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          backgroundColor: "white",
         }}
       >
         <Typography component="h1" variant="h5">
@@ -110,7 +111,7 @@ const Register = () => {
             name="password2"
             label="Repeat Password"
             type="password"
-            id="password"
+            id="password2"
             autoComplete="current-password"
             value={password2Value}
             onChange={onEditHandle}
