@@ -26,6 +26,23 @@ export const usersReducer = (
       return [...state, action.payload];
     case "DELETE_USER":
       return state.filter((user) => user.userId !== action.payload);
+    case "EDIT_USER":
+      return [
+        state.map((user) => {
+          if (user.id !== action.payload.id) {
+            return user;
+          }
+
+          const { userName, password, isAdmin } = action.payload;
+
+          return {
+            userId: user.userId,
+            userName,
+            password,
+            isAdmin,
+          };
+        }),
+      ];
     default:
       return state;
   }

@@ -9,6 +9,7 @@ import Divider from "@mui/material/Divider";
 import Grid from "@mui/material/Grid";
 import { Typography } from "@mui/material";
 import ChatGroupList from "../ChatGroupList";
+import ChatGroupCreator from "../ChatGroupCreator";
 
 const RoomsSection = () => {
   return (
@@ -40,6 +41,7 @@ const RoomsSection = () => {
             ROOMS
           </Typography>
           <ChatGroupList />
+          <ChatGroupCreator />
         </Stack>
       </Stack>
     </Box>

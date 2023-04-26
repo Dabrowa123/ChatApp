@@ -5,6 +5,7 @@ import GroupsRoundedIcon from "@mui/icons-material/GroupsRounded";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Typography from "@mui/material/Typography";
+import JoinGroupButton from "./JoinGroupButton";
 
 const ChatGroup = ({ groupId, groupName, userIdList, messages }) => {
   // Tutaj jest przygotowana metoda wyświetlająca wiadomości. Po ukończeniu ChatSection, zostanie tam przeniesiona :).
@@ -39,6 +40,7 @@ const ChatGroup = ({ groupId, groupName, userIdList, messages }) => {
           />
         </ListItemIcon>
         <ListItemText primary={groupName} />
+        <JoinGroupButton />
       </ListItemButton>
     </Typography>
   );

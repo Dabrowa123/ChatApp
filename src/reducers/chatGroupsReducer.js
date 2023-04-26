@@ -32,6 +32,48 @@ export const chatGroupsReducer = (
   switch (action.type) {
     case "CREATE_GROUP":
       return [...state, action.payload];
+    case "JOIN_GROUP":
+      return [
+        state.map((group) => {
+          if (group.groupId !== action.payload.groupId) {
+            return group;
+          }
+
+          const { userIdList } = action.payload;
+
+          return {
+            groupId: group.groupId,
+            groupName: group.groupName,
+            userIdList,
+            messages: group.messages,
+          };
+        }),
+      ];
+    case "SEND_MESSAGE":
+      return [
+        state.map((group) => {
+          if (group.groupId !== action.payload.groupId) {
+            return group;
+          }
+
+          const { id, author, time, content } = action.payload;
+
+          return {
+            groupId: group.groupId,
+            groupName: group.groupName,
+            userIdList: group.userIdList,
+            messages: [
+              ...group.messages,
+              {
+                id,
+                author,
+                time,
+                content,
+              },
+            ],
+          };
+        }),
+      ];
     default:
       return state;
   }
