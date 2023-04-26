@@ -8,6 +8,7 @@ import ChatIcon from "@mui/icons-material/Chat";
 import Divider from "@mui/material/Divider";
 import Grid from "@mui/material/Grid";
 import { Typography } from "@mui/material";
+import ChatGroupList from "../ChatGroupList";
 
 const RoomsSection = () => {
   return (
@@ -38,10 +39,7 @@ const RoomsSection = () => {
           <Typography variant="h6" textAlign={"left"} mt={2} mb={2} ml={5}>
             ROOMS
           </Typography>
-          <Room />
-          <Room />
-          <Room />
-          <Room />
+          <ChatGroupList />
         </Stack>
       </Stack>
     </Box>
