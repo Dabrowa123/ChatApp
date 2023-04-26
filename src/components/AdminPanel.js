@@ -1,13 +1,7 @@
-import { useSelector } from "react-redux";
-import User from "./User";
 import { useNavigate } from "react-router";
-import ChatGroupList from "./ChatGroupList";
-import UserList from "./UserList";
-import ChatGroupCreator from "./ChatGroupCreator";
-import Container from "@mui/material/Container";
-import RoomsSection from "./Sections/RoomsSection";
-import ChatSection from "./Sections/ChatSection";
-import UsersSection from "./Sections/UsersSection";
+import RoomsSection from "./Sections/ChatGroupsSection/RoomsSection";
+import ChatSection from "./Sections/ChatSection/ChatSection";
+import UsersSection from "./Sections/UserSection/UsersSection";
 import Stack from "@mui/material/Stack";
 
 // const AdminPanel = () => {

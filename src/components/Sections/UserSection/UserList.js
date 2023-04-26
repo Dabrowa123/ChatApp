@@ -1,7 +1,5 @@
 import { useSelector } from "react-redux";
 import User from "./User";
-import { useNavigate } from "react-router";
-import ChatGroupList from "./ChatGroupList";
 
 const UserList = () => {
   const displayUsers = useSelector((state) => state.users);

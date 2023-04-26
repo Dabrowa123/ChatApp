@@ -4,10 +4,21 @@ import Fab from "@mui/material/Fab";
 import SendIcon from "@mui/icons-material/Send";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { sendMessage } from "../actions/messageAction/sendMessage";
+import { sendMessage } from "../../../actions/messageAction/sendMessage";
 
 const MessageSender = () => {
-  const displayGroups = useSelector((state) => state.chatGroups);
+  const userId = useSelector((state) => state.isLogged.userId);
+  // console.log(userId);
+  const users = useSelector((state) => state.users);
+  // console.log(users.length);
+  let loggedUser;
+
+  if (userId !== 0) {
+    const filteredUser = users.filter((user) => user.userId === userId);
+    if (filteredUser.length !== 0) {
+      loggedUser = filteredUser[0].userName;
+    }
+  }
   let today = new Date();
   const currentTime = () => {
     let hours = () => {
@@ -47,14 +58,13 @@ const MessageSender = () => {
   const send = () => {
     const messageObject = {
       groupId: 1,
-      author: "Dominik",
+      author: loggedUser,
       time: currentTime(),
       content: messageContent,
     };
 
     console.log("sended");
     dispatch(sendMessage(messageObject));
-    console.log(displayGroups);
     setMessageContent("");
   };
   return (

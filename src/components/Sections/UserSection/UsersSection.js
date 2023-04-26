@@ -5,13 +5,25 @@ import Divider from "@mui/material/Divider";
 import Avatar from "@mui/material/Avatar";
 import Badge from "@mui/material/Badge";
 import Button from "@mui/material/Button";
-import AppBar from "@mui/material/AppBar";
-import User from "./User";
 import { useNavigate } from "react-router";
-import { deepOrange, lightBlue, lightGreen } from "@mui/material/colors";
+import { lightBlue } from "@mui/material/colors";
+import { useSelector } from "react-redux";
+import UserList from "./UserList";
 
 const UsersSection = () => {
   const navigate = useNavigate();
+  const userId = useSelector((state) => state.isLogged.userId);
+  // console.log(userId);
+  const users = useSelector((state) => state.users);
+  // console.log(users.length);
+  let loggedUser;
+
+  if (userId !== 0) {
+    const filteredUser = users.filter((user) => user.userId === userId);
+    if (filteredUser.length !== 0) {
+      loggedUser = filteredUser[0].userName;
+    }
+  }
   return (
     <Box
       sx={{
@@ -55,7 +67,7 @@ const UsersSection = () => {
             OP
           </Avatar>
         </Badge>
-        <Typography variant="h5">USER01</Typography>
+        <Typography variant="h5">{loggedUser}</Typography>
       </Stack>
       <Divider />
       <Stack sx={{ padding: "10px" }}>
@@ -64,11 +76,7 @@ const UsersSection = () => {
             USERS
           </Typography>
         </Stack>
-        <User />
-        <User />
-        <User />
-        <User />
-        <User />
+        <UserList />
       </Stack>
     </Box>
   );

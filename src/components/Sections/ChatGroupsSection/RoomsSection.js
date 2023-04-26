@@ -1,14 +1,9 @@
 import Box from "@mui/material/Box";
-import ListItemText from "@mui/material/ListItemText";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
 import Stack from "@mui/material/Stack";
 import ChatIcon from "@mui/icons-material/Chat";
 import Divider from "@mui/material/Divider";
-import Grid from "@mui/material/Grid";
 import { Typography } from "@mui/material";
-import ChatGroupList from "../ChatGroupList";
-import ChatGroupCreator from "../ChatGroupCreator";
+import ChatGroupList from "./ChatGroupList";
 
 const RoomsSection = () => {
   return (

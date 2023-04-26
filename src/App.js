@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from "./components/Login";
 import AdminPanel from "./components/AdminPanel";
 import Protected from "./components/Protected";
-import UserPanel from "./components/UserPanel";
+import UserPanel from "./components/Sections/UserSection/UserPanel";
 import Register from "./components/Register";
 import { useSelector } from "react-redux";
 

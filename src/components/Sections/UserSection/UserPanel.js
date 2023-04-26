@@ -1,9 +1,7 @@
-import Container from "@mui/material/Container";
-import RoomsSection from "./Sections/RoomsSection";
-import ChatSection from "./Sections/ChatSection";
-import UsersSection from "./Sections/UsersSection";
+import RoomsSection from "../ChatGroupsSection/RoomsSection";
+import ChatSection from "../ChatSection/ChatSection";
+import UsersSection from "./UsersSection";
 import Stack from "@mui/material/Stack";
-import { useNavigate } from "react-router";
 
 const UserPanel = () => {
   // const navigate = useNavigate();

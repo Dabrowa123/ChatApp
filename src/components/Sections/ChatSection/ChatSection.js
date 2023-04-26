@@ -1,17 +1,11 @@
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import TextField from "@mui/material/TextField";
-import Fab from "@mui/material/Fab";
-import ListItemText from "@mui/material/ListItemText";
-import ListItem from "@mui/material/ListItem";
 import List from "@mui/material/List";
-import Chip from "@mui/material/Chip";
 import Divider from "@mui/material/Divider";
-import SendIcon from "@mui/icons-material/Send";
-import MessageSender from "../MessageSender";
+import MessageSender from "./MessageSender";
 import { useSelector } from "react-redux";
 
-import Message from "../Message";
+import Message from "./Message";
 
 const ChatSection = () => {
   const groupId = 1;

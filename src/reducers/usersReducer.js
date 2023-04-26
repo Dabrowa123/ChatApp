@@ -14,7 +14,7 @@ export const usersReducer = (
     },
     {
       userId: 3,
-      userName: "user01",
+      userName: "user02",
       password: "user",
       isAdmin: false,
     },
