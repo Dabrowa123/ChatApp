@@ -8,7 +8,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
-import { logInUser } from "../actions/logInUser";
+import { logInUser } from "../actions/userActions/logInUser";
 import { Container } from "@mui/material";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router";
