@@ -1,28 +1,27 @@
-import Box from "@mui/material/Box";
-import GroupsRoundedIcon from '@mui/icons-material/GroupsRounded';
+import ListItemButton from "@mui/material/ListItemButton";
+import GroupsRoundedIcon from "@mui/icons-material/GroupsRounded";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
 import Typography from "@mui/material/Typography";
-import Stack from "@mui/material/Stack";
 
 const Room = () => {
   return (
-    <Box
-      sx={{
-        // background: "linear-gradient(to bottom, #36EAEF, #1565c0)",
-        height: "100px",
-        width: "100%",
-        // border: "solid"
-      }}
-    >
-      <Stack direction={"row"}>
-        <GroupsRoundedIcon 
-            fontSize="large" 
-            color="info"
-            sx={{background: "InfoBackground", padding: "5px"}}
-            
-        />
-        <Typography>Room Name</Typography>
-      </Stack>
-    </Box>
+    <Typography variant="h1" fontSize="large">
+      <ListItemButton>
+        <ListItemIcon>
+          <GroupsRoundedIcon
+            // fontSize="large"
+            color="primary"
+            sx={{
+              background: "InfoBackground",
+              padding: "5px",
+              borderRadius: "12px",
+            }}
+          />
+        </ListItemIcon>
+        <ListItemText primary="Room Name" />
+      </ListItemButton>
+    </Typography>
   );
 };
 
