@@ -4,6 +4,7 @@ import ChatIcon from "@mui/icons-material/Chat";
 import Divider from "@mui/material/Divider";
 import { Typography } from "@mui/material";
 import ChatGroupList from "./ChatGroupList";
+import ChatGroupCreator from "./ChatGroupCreator";
 
 const RoomsSection = () => {
   return (
@@ -28,14 +29,13 @@ const RoomsSection = () => {
           />
           <Typography variant="h4">LOGO</Typography>
         </Stack>
-
         <Divider orientation="vertical" />
         <Stack mb={2} ml={3}>
+          <ChatGroupCreator />
           <Typography variant="h6" textAlign={"left"} mt={2} mb={2} ml={5}>
             ROOMS
           </Typography>
           <ChatGroupList />
-          {/* <ChatGroupCreator /> */}
         </Stack>
       </Stack>
     </Box>
