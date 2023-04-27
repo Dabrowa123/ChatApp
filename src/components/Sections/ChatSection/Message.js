@@ -2,6 +2,7 @@ import Grid from "@mui/material/Grid";
 import ListItemText from "@mui/material/ListItemText";
 import ListItem from "@mui/material/ListItem";
 import Chip from "@mui/material/Chip";
+import Typography from "@mui/material/Typography";
 import { useSelector } from "react-redux";
 
 const Message = ({ author, time, content }) => {
@@ -32,10 +33,23 @@ const Message = ({ author, time, content }) => {
             }}
           >
             <Chip
-              label={content}
+              // label={content}
+              label={
+                <Typography style={{ whiteSpace: "normal" }}>
+                  {content}
+                </Typography>
+              }
               variant="filled"
               color="primary"
-              sx={{ fontSize: "16px" }}
+              sx={{
+                height: "auto",
+                maxWidth: "60%",
+                fontSize: "16px",
+                "& .MuiChip-label": {
+                  display: "block",
+                  whiteSpace: "normal",
+                },
+              }}
             />
           </Grid>
           <Grid item xs={12}>
@@ -59,10 +73,22 @@ const Message = ({ author, time, content }) => {
             }}
           >
             <Chip
-              label={content}
+              label={
+                <Typography style={{ whiteSpace: "normal" }}>
+                  {content}
+                </Typography>
+              }
               variant="outlined"
               color="primary"
-              sx={{ fontSize: "16px" }}
+              sx={{
+                height: "auto",
+                maxWidth: "60%",
+                fontSize: "16px",
+                "& .MuiChip-label": {
+                  display: "block",
+                  whiteSpace: "normal",
+                },
+              }}
             />
           </Grid>
           <Grid item xs={12}>
