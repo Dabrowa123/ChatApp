@@ -10,7 +10,7 @@ const RoomsSection = () => {
     <Box
       sx={{
         background: "linear-gradient(to bottom, #36EAEF, #1565c0)",
-        height: "150vh",
+        height: "100vh",
         width: "25vw",
         maxWidth: "400px",
       }}
