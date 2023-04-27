@@ -1,6 +1,6 @@
-import RoomsSection from "../ChatGroupsSection/RoomsSection";
-import ChatSection from "../ChatSection/ChatSection";
-import UsersSection from "./UsersSection";
+import RoomsSection from "./ChatGroupsSection/RoomsSection";
+import ChatSection from "./ChatSection/ChatSection";
+import UsersSection from "./UserSection/UsersSection";
 import Stack from "@mui/material/Stack";
 
 const UserPanel = () => {
