@@ -31,11 +31,11 @@ const RoomsSection = () => {
         </Stack>
         <Divider orientation="vertical" />
         <Stack mb={2} ml={3}>
-          <ChatGroupCreator />
           <Typography variant="h6" textAlign={"left"} mt={2} mb={2} ml={5}>
-            ROOMS
+            GROUPS
           </Typography>
           <ChatGroupList />
+          <ChatGroupCreator />
         </Stack>
       </Stack>
     </Box>

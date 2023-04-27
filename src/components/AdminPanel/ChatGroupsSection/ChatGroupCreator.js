@@ -4,7 +4,10 @@ import { createGroup } from "../../../actions/groupActions/createGroup";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
+import Paper from "@mui/material/Paper";
+import InputBase from "@mui/material/InputBase";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 
 const ChatGroupCreator = () => {
@@ -26,44 +29,28 @@ const ChatGroupCreator = () => {
     setGroupNameValue("");
   };
   return (
-    <Box>
-      {/* <Box sx={{ minWidth: "100%", bgcolor: "white" }}> */}
-      <Box onSubmit={createRoom} component="form" display={"flex"}>
-        {/* Name
-        <TextField
-          margin="normal"
-          required
-          fullWidth
-          id="email"
-          label="Username"
-          name="username"
-          autoComplete="Name"
-          autoFocus
-          value={usernameValue}
-          onChange={onEditHandle}
-        /> */}
-        <Typography variant="h6" textAlign={"left"} mt={2} mb={2} ml={0}>
-          CREATE ROOM
-        </Typography>
-        {/* <Typography variant="h6">Create Chat Group</Typography> */}
-        <TextField
-          margin="normal"
-          autoFocus
-          required
-          type="text"
+    <Box mt={3}>
+    <form onSubmit={createRoom}>
+      <Box component="div" display={"flex"}>
+        <Paper
+          sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: "90%" }}
+        >
+          <InputBase
           name="groupName"
-          label="Group Name"
-          value={groupNameValue}
-          onChange={onEditHandle}
-          // sx={{ bgcolor: "white" }}
-        ></TextField>
-        <IconButton color="primary" aria-label="add to shopping cart">
-          <AddCircleIcon />
-        </IconButton>
-        {/* <button>
-          <AddCircleIcon />
-        </button> */}
+            sx={{ ml: 1, flex: 1 }}
+            placeholder="Add a group"
+            inputProps={{ 'aria-label': 'Add a group' }}
+            value={groupNameValue}
+            onChange={onEditHandle}
+          />
+          <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
+          <IconButton type="submit" color="primary" sx={{ p: '10px' }} aria-label="directions">
+            <AddCircleIcon />
+          </IconButton>
+        </Paper>
       </Box>
+    </form>
+      
     </Box>
   );
 };
