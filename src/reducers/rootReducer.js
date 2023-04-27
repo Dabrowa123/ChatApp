@@ -3,9 +3,11 @@ import { usersReducer } from "./usersReducer";
 import { isLoggedReducer } from "./isLoggedReducer";
 import { chatGroupsReducer } from "./chatGroupsReducer";
 import { currentGroupReducer } from "./currentGroupReducer";
+import { currentPickedUserReducer } from "./currentPickedUserReducer";
 export const rootReducer = combineReducers({
   users: usersReducer,
   chatGroups: chatGroupsReducer,
   isLogged: isLoggedReducer,
   currentGroup: currentGroupReducer,
+  currentPickedUser: currentPickedUserReducer,
 });

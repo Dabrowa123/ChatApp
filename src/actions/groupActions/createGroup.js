@@ -6,6 +6,7 @@ export const createGroup = (groupName) => {
       groupName,
       userIdList: [],
       messages: [],
+      isPriv: false,
     },
   };
 };

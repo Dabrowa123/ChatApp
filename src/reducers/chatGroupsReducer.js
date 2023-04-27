@@ -3,7 +3,7 @@ export const chatGroupsReducer = (
     {
       groupId: 1,
       groupName: "Group1",
-      userIdList: [1, 2],
+      userIdList: [],
       messages: [
         {
           id: 1,
@@ -18,11 +18,12 @@ export const chatGroupsReducer = (
           content: "elo",
         },
       ],
+      isPriv: false,
     },
     {
       groupId: 2,
       groupName: "Group2",
-      userIdList: [1, 2],
+      userIdList: [],
       messages: [
         {
           id: 1,
@@ -31,12 +32,15 @@ export const chatGroupsReducer = (
           content: "Siema",
         },
       ],
+      isPriv: false,
     },
   ],
   action
 ) => {
   switch (action.type) {
     case "CREATE_GROUP":
+      return [...state, action.payload];
+    case "CREATE_PRIV_GROUP":
       return [...state, action.payload];
     case "JOIN_GROUP":
       return [
@@ -52,6 +56,7 @@ export const chatGroupsReducer = (
             groupName: group.groupName,
             userIdList,
             messages: group.messages,
+            isPriv: group.isPriv,
           };
         }),
       ];
