@@ -7,20 +7,29 @@ import Badge from "@mui/material/Badge";
 import { deepOrange } from "@mui/material/colors";
 import { useDispatch, useSelector } from "react-redux";
 import { createPrivGroup } from "../../../actions/groupActions/createPrivGroup";
+import { pickGroup } from "../../../actions/groupActions/pickGroup";
 
 const User = ({ userId, userName }) => {
   const dispatch = useDispatch();
   const loggedUser = useSelector((state) => state.isLogged.userId);
   const currentPickedUser = userId;
   const displayGroups = useSelector((state) => state.chatGroups);
-  const filteredGroup = displayGroups.filter((group) =>
-    group.userIdList.includes(loggedUser, currentPickedUser)
+  const filteredGroup = displayGroups.filter(
+    (group) =>
+      group.userIdList.includes(loggedUser) &&
+      group.userIdList.includes(currentPickedUser)
   );
 
   const createOrSelectPrivChat = () => {
-    console.log(filteredGroup.length);
-    const userIdList = [loggedUser, currentPickedUser];
-    dispatch(createPrivGroup(userIdList));
+    if (filteredGroup.length === 0) {
+      const userIdList = [loggedUser, currentPickedUser];
+      dispatch(createPrivGroup(userIdList));
+    } else if (currentPickedUser === loggedUser) {
+      alert("Nie możesz pisać z samym sobą :(");
+    } else {
+      console.log(filteredGroup[0].groupId);
+      dispatch(pickGroup(filteredGroup[0].groupId));
+    }
   };
 
   return (

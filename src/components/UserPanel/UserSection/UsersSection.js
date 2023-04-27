@@ -7,10 +7,12 @@ import Badge from "@mui/material/Badge";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router";
 import { lightBlue } from "@mui/material/colors";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import UserList from "./UserList";
+import { pickGroup } from "../../../actions/groupActions/pickGroup";
 
 const UsersSection = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const userId = useSelector((state) => state.isLogged.userId);
   const users = useSelector((state) => state.users);
@@ -43,6 +45,7 @@ const UsersSection = () => {
           variant="outlined"
           onClick={() => {
             navigate("/");
+            dispatch(pickGroup(1));
           }}
           sx={{ marginRight: "25px" }}
         >

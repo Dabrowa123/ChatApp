@@ -14,7 +14,6 @@ const User = ({ userId, userName }) => {
   const loggedUser = useSelector((state) => state.isLogged.userId);
   const currentPickedUser = userId;
   const displayGroups = useSelector((state) => state.chatGroups);
-  const currentGroupId = useSelector((state) => state.currentGroup.groupId);
   const filteredGroup = displayGroups.filter(
     (group) =>
       group.userIdList.includes(loggedUser) &&
@@ -25,12 +24,11 @@ const User = ({ userId, userName }) => {
     if (filteredGroup.length === 0) {
       const userIdList = [loggedUser, currentPickedUser];
       dispatch(createPrivGroup(userIdList));
+    } else if (currentPickedUser === loggedUser) {
+      alert("Nie możesz pisać z samym sobą :(");
     } else {
       console.log(filteredGroup[0].groupId);
-      // alert("Istnieje już taka konwersacja!");
       dispatch(pickGroup(filteredGroup[0].groupId));
-      console.log(currentGroupId);
-      console.log(filteredGroup);
     }
   };
 
