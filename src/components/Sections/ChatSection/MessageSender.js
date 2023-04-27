@@ -7,6 +7,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { sendMessage } from "../../../actions/messageAction/sendMessage";
 
 const MessageSender = () => {
+  const dispatch = useDispatch();
+  const [messageContent, setMessageContent] = useState("");
+  const currentGroupId = useSelector((state) => state.currentGroup.groupId);
   const userId = useSelector((state) => state.isLogged.userId);
   // console.log(userId);
   const users = useSelector((state) => state.users);
@@ -48,25 +51,27 @@ const MessageSender = () => {
     return hours() + ":" + minutes() + ":" + seconds();
   };
 
-  const dispatch = useDispatch();
-  const [messageContent, setMessageContent] = useState("");
-
   const onEditHandler = (e) => {
     setMessageContent(e.target.value);
   };
 
-  const send = () => {
-    const messageObject = {
-      groupId: 1,
-      author: loggedUser,
-      time: currentTime(),
-      content: messageContent,
-    };
+  const send = (e) => {
+    console.log(currentGroupId);
 
-    console.log("sended");
-    dispatch(sendMessage(messageObject));
-    setMessageContent("");
+    if (messageContent !== "") {
+      const messageObject = {
+        groupId: currentGroupId,
+        author: loggedUser,
+        time: currentTime(),
+        content: messageContent,
+      };
+
+      console.log("sended");
+      dispatch(sendMessage(messageObject));
+      setMessageContent("");
+    }
   };
+
   return (
     <Grid container style={{ padding: "20px" }}>
       <Grid item xs={11}>
@@ -75,6 +80,12 @@ const MessageSender = () => {
           label="Type something"
           value={messageContent}
           onChange={onEditHandler}
+          onKeyPress={(e) => {
+            if (e.key === "Enter") {
+              e.preventDefault();
+              send();
+            }
+          }}
           fullWidth
         />
       </Grid>
@@ -86,5 +97,4 @@ const MessageSender = () => {
     </Grid>
   );
 };
-
 export default MessageSender;

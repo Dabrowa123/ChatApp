@@ -8,10 +8,10 @@ import { useSelector } from "react-redux";
 import Message from "./Message";
 
 const ChatSection = () => {
-  const groupId = 1;
+  const currentGroupId = useSelector((state) => state.currentGroup.groupId);
   const displayGroups = useSelector((state) => state.chatGroups);
   const filteredGroup = displayGroups.filter(
-    (group) => group.groupId === groupId
+    (group) => group.groupId === currentGroupId
   );
   const messageList = filteredGroup[0].messages.map((message) => (
     <Message key={Math.floor(Math.random() * 1234)} {...message} />
