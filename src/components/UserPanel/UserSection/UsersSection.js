@@ -13,9 +13,7 @@ import UserList from "./UserList";
 const UsersSection = () => {
   const navigate = useNavigate();
   const userId = useSelector((state) => state.isLogged.userId);
-  // console.log(userId);
   const users = useSelector((state) => state.users);
-  // console.log(users.length);
   let loggedUser;
 
   if (userId !== 0) {

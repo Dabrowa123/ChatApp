@@ -7,18 +7,22 @@ import Badge from "@mui/material/Badge";
 import { deepOrange } from "@mui/material/colors";
 import { useDispatch, useSelector } from "react-redux";
 import { createPrivGroup } from "../../../actions/groupActions/createPrivGroup";
-import { pickUser } from "../../../actions/userActions/pickUser";
 
 const User = ({ userId, userName }) => {
   const dispatch = useDispatch();
-  const loggedUser = useSelector((state) => state.isLogged);
+  const loggedUser = useSelector((state) => state.isLogged.userId);
   const currentPickedUser = userId;
+  const displayGroups = useSelector((state) => state.chatGroups);
+  const filteredGroup = displayGroups.filter((group) =>
+    group.userIdList.includes(loggedUser, currentPickedUser)
+  );
 
   const createOrSelectPrivChat = () => {
-    console.log(userId);
+    console.log(filteredGroup.length);
     const userIdList = [loggedUser, currentPickedUser];
     dispatch(createPrivGroup(userIdList));
   };
+
   return (
     <Typography variant="h1" fontSize="large">
       <ListItemButton onClick={createOrSelectPrivChat}>

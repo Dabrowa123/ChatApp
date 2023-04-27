@@ -5,6 +5,8 @@ import { createGroup } from "../../../actions/groupActions/createGroup";
 const ChatGroupCreator = () => {
   const dispatch = useDispatch();
   const [groupNameValue, setGroupNameValue] = useState("");
+  const filteredGroup = users.filter((user) => user.userId === userId);
+
 
   const onEditHandle = (e) => {
     const name = e.target.name;
