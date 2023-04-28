@@ -10,6 +10,7 @@ import { createPrivGroup } from "../../../actions/groupActions/createPrivGroup";
 import { pickGroup } from "../../../actions/groupActions/pickGroup";
 import IconButton from "@mui/material/IconButton";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+import { deleteUser } from "../../../actions/userActions/deleteUser";
 
 const User = ({ userId, userName }) => {
   const dispatch = useDispatch();
@@ -67,6 +68,14 @@ const User = ({ userId, userName }) => {
           color="primary"
           sx={{ p: "10px" }}
           aria-label="directions"
+          onClick={() => {
+            if (loggedUser === userId) {
+              alert("Nie możesz usunąć samego siebie!");
+            } else {
+              console.log("USUWANIE");
+              dispatch(deleteUser(userId));
+            }
+          }}
         >
           <HighlightOffIcon />
         </IconButton>
