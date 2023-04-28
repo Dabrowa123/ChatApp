@@ -4,34 +4,14 @@ export const chatGroupsReducer = (
       groupId: 1,
       groupName: "Group1",
       userIdList: [],
-      messages: [
-        {
-          id: 1,
-          author: "user1",
-          time: "19:00",
-          content: "Siema",
-        },
-        {
-          id: 1,
-          author: "user1",
-          time: "19:00",
-          content: "elo",
-        },
-      ],
+      messages: [],
       isPriv: false,
     },
     {
       groupId: 2,
       groupName: "Group2",
       userIdList: [],
-      messages: [
-        {
-          id: 1,
-          author: "user1",
-          time: "19:00",
-          content: "Siema",
-        },
-      ],
+      messages: [],
       isPriv: false,
     },
   ],

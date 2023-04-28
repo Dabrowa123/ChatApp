@@ -19,11 +19,28 @@ const User = ({ userId, userName }) => {
       group.userIdList.includes(loggedUser) &&
       group.userIdList.includes(currentPickedUser)
   );
+  const users = useSelector((state) => state.users);
+
+  const currentPickedUserFilter = users.filter(
+    (user) => user.userId === currentPickedUser
+  );
+
+  const currentLoggedUserFilter = users.filter(
+    (user) => user.userId === loggedUser
+  );
 
   const createOrSelectPrivChat = () => {
+    console.log(userId === currentPickedUser);
     if (filteredGroup.length === 0) {
       const userIdList = [loggedUser, currentPickedUser];
-      dispatch(createPrivGroup(userIdList));
+      dispatch(
+        createPrivGroup(
+          userIdList,
+          currentLoggedUserFilter[0].userName,
+          currentPickedUserFilter[0].userName
+        )
+      );
+      dispatch(pickGroup(displayGroups[displayGroups.length - 1].groupId));
     } else if (currentPickedUser === loggedUser) {
       alert("Nie możesz pisać z samym sobą :(");
     } else {

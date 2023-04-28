@@ -4,8 +4,17 @@ import ChatIcon from "@mui/icons-material/Chat";
 import Divider from "@mui/material/Divider";
 import { Typography } from "@mui/material";
 import ChatGroupList from "./ChatGroupList";
+import { useSelector } from "react-redux";
 
 const RoomsSection = () => {
+  const displayCurrentPickedGroup = useSelector((state) => state.currentGroup);
+  const displayGroups = useSelector((state) => state.chatGroups);
+  const filteredGroup = displayGroups.filter(
+    (group) => group.groupId === displayCurrentPickedGroup.groupId
+  );
+  const currentPickedGroupName = filteredGroup[0].groupName;
+  console.log(currentPickedGroupName);
+
   return (
     <Box
       sx={{
@@ -35,7 +44,7 @@ const RoomsSection = () => {
             ROOMS
           </Typography>
           <ChatGroupList />
-          {/* <ChatGroupCreator /> */}
+          {currentPickedGroupName}
         </Stack>
       </Stack>
     </Box>
