@@ -6,11 +6,12 @@ import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import { registerUser } from "../actions/userActions/registerUser";
-import { Container } from "@mui/material";
+import { Container, Stack } from "@mui/material";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 
 const RegisterSchema = yup.object().shape({
   username: yup.string().required("Username is required"),
@@ -27,9 +28,7 @@ const RegisterSchema = yup.object().shape({
 const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [usernameValue, setUsernameValue] = useState("");
-  const [passwordValue, setPasswordValue] = useState("");
-  const [password2Value, setPassword2Value] = useState("");
+  const [isSubmited, setIsSubmited] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -44,49 +43,11 @@ const Register = () => {
         password: values.password,
       };
       dispatch(registerUser(userObject));
-      navigate("/");
-      alert("Thank you for registration!");
+      setIsSubmited(true);
+      setTimeout(() => navigate("/"), 2000)
+
     },
   });
-
-  const register = () => {
-    if (
-      usernameValue !== "" &&
-      passwordValue !== "" &&
-      password2Value !== "" &&
-      passwordValue === password2Value
-    ) {
-      const userObject = {
-        userName: usernameValue,
-        password: passwordValue,
-      };
-      dispatch(registerUser(userObject));
-      navigate("/");
-      alert("Thank you for registration!");
-    } else {
-      alert(
-        "Coś jest nie tak ale nie wiem co. Nie chciało mi sie na razie tworzyć obsługi błędów :C"
-      );
-    }
-  };
-
-  const onEditHandle = (e) => {
-    let name = e.target.name;
-    let value = e.target.value;
-
-    if (name === "username") {
-      setUsernameValue(value);
-    } else if (name === "password") {
-      setPasswordValue(value);
-    } else if (name === "password2") {
-      setPassword2Value(value);
-    }
-  };
-
-  const onHandleSubmit = (e) => {
-    e.preventDefault();
-    register();
-  };
 
   return (
     <Container component="main" maxWidth="sm">
@@ -103,7 +64,12 @@ const Register = () => {
           backgroundColor: "white",
         }}
       >
-        <Typography component="h1" variant="h5">
+        {isSubmited && 
+          <Stack alignItems="center" justifyContent={"center"} spacing={5}>
+            <VerifiedUserIcon color="success" fontSize="large"/>
+            <Typography variant="h5">Thank you for registration!</Typography>
+          </Stack>}
+        {!isSubmited && (<><Typography component="h1" variant="h5">
           Register
         </Typography>
         <Box
@@ -124,7 +90,6 @@ const Register = () => {
             value={formik.values.username}
             onChange={(e) => {
               formik.handleChange(e);
-              onEditHandle(e);
             }}
             error={formik.touched.username && Boolean(formik.errors.username)}
             helperText={formik.touched.username && formik.errors.username}
@@ -141,7 +106,6 @@ const Register = () => {
             value={formik.values.password}
             onChange={(e) => {
               formik.handleChange(e);
-              onEditHandle(e);
             }}
             error={formik.touched.password && Boolean(formik.errors.password)}
             helperText={formik.touched.password && formik.errors.password}
@@ -157,7 +121,6 @@ const Register = () => {
             autoComplete="current-password"
             onChange={(e) => {
               formik.handleChange(e);
-              onEditHandle(e);
             }}
             error={formik.touched.password2 && Boolean(formik.errors.password2)}
             helperText={formik.touched.password2 && formik.errors.password2}
@@ -180,7 +143,7 @@ const Register = () => {
               </Link>
             </Grid>
           </Grid>
-        </Box>
+        </Box></>)}
       </Box>
     </Container>
   );
