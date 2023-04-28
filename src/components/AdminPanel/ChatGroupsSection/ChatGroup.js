@@ -5,19 +5,18 @@ import ListItemText from "@mui/material/ListItemText";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { pickGroup } from "../../../actions/groupActions/pickGroup";
+import { deleteGroup } from "../../../actions/groupActions/deleteGroup";
 
 const ChatGroup = ({ groupId, groupName, userIdList, messages }) => {
+  const currentPickedGroup = useSelector((state) => state.currentGroup.groupId);
+  const displayGroups = useSelector((state) => state.chatGroups);
   const dispatch = useDispatch();
 
   return (
     <Typography variant="h1" fontSize="large">
-      <ListItemButton
-        onClick={() => {
-          dispatch(pickGroup(groupId));
-        }}
-      >
+      <ListItemButton>
         <ListItemIcon>
           <GroupsRoundedIcon
             // fontSize="large"
@@ -29,12 +28,33 @@ const ChatGroup = ({ groupId, groupName, userIdList, messages }) => {
             }}
           />
         </ListItemIcon>
-        <ListItemText primary={groupName} />
+        <ListItemText
+          primary={groupName}
+          onClick={() => {
+            dispatch(pickGroup(groupId));
+          }}
+        />
         <IconButton
           type="submit"
           color="primary"
           sx={{ p: "10px" }}
           aria-label="directions"
+          onClick={() => {
+            console.log(groupId);
+
+            if (groupId === 1) {
+              alert("Nie możesz usunąć głównej grupy!");
+            } else {
+              if (currentPickedGroup === groupId) {
+                dispatch(pickGroup(1));
+                dispatch(deleteGroup(groupId));
+              } else {
+                dispatch(deleteGroup(groupId));
+              }
+            }
+
+            console.log(displayGroups);
+          }}
         >
           <HighlightOffIcon />
         </IconButton>

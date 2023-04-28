@@ -4,7 +4,7 @@ import Grid from "@mui/material/Grid";
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import MessageSender from "./MessageSender";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import Message from "./Message";
 
@@ -14,10 +14,10 @@ const ChatSection = () => {
   const filteredGroup = displayGroups.filter(
     (group) => group.groupId === currentGroupId
   );
+  console.log(filteredGroup[0]);
   const messageList = filteredGroup[0].messages.map((message) => (
-    <Message key={Math.floor(Math.random() * 1234)} {...message} />
+    <Message key={message.id} groupId={currentGroupId} {...message} />
   ));
-
   // Scrollable container
   const container = useRef(null);
   const Scroll = () => {

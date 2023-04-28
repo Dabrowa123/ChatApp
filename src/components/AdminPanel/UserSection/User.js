@@ -56,13 +56,13 @@ const User = ({ userId, userName }) => {
 
   return (
     <Typography variant="h1" fontSize="large">
-      <ListItemButton onClick={createOrSelectPrivChat}>
+      <ListItemButton>
         <ListItemIcon>
           <Badge color="info" badgeContent=" " overlap="circular" variant="dot">
             <Avatar sx={{ bgcolor: deepOrange[500] }}>N</Avatar>
           </Badge>
         </ListItemIcon>
-        <ListItemText primary={userName} />
+        <ListItemText primary={userName} onClick={createOrSelectPrivChat} />
         <IconButton
           type="submit"
           color="primary"

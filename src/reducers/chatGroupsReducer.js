@@ -40,6 +40,8 @@ export const chatGroupsReducer = (
           };
         }),
       ];
+    case "DELETE_GROUP":
+      return state.filter((group) => group.groupId !== action.payload);
     case "SEND_MESSAGE": {
       const { groupId, id, author, time, content } = action.payload;
       const message = {
@@ -56,6 +58,20 @@ export const chatGroupsReducer = (
         return {
           ...group,
           messages: [...group.messages, message],
+        };
+      });
+    }
+    case "DELETE_MESSAGE": {
+      const { groupId, id } = action.payload;
+
+      return state.map((group) => {
+        if (group.groupId !== groupId) {
+          return group;
+        }
+
+        return {
+          ...group,
+          messages: group.messages.filter((message) => message.id !== id),
         };
       });
     }
