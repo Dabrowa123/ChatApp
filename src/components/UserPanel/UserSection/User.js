@@ -33,14 +33,16 @@ const User = ({ userId, userName }) => {
     console.log(userId === currentPickedUser);
     if (filteredGroup.length === 0) {
       const userIdList = [loggedUser, currentPickedUser];
+      const id = Math.floor(Math.random() * 1234);
       dispatch(
         createPrivGroup(
+          id,
           userIdList,
           currentLoggedUserFilter[0].userName,
           currentPickedUserFilter[0].userName
         )
       );
-      dispatch(pickGroup(displayGroups[displayGroups.length - 1].groupId));
+      dispatch(pickGroup(id));
     } else if (currentPickedUser === loggedUser) {
       alert("Nie możesz pisać z samym sobą :(");
     } else {

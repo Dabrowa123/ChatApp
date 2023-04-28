@@ -1,4 +1,5 @@
 export const createPrivGroup = (
+  id,
   userIdList,
   currentLoggedUserName,
   currentPickedUserName
@@ -6,7 +7,7 @@ export const createPrivGroup = (
   return {
     type: "CREATE_PRIV_GROUP",
     payload: {
-      groupId: Math.floor(Math.random() * 1234),
+      groupId: id,
       groupName: `Priv group of user ${currentLoggedUserName} and user ${currentPickedUserName}`,
       userIdList,
       messages: [],
