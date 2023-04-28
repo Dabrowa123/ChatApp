@@ -51,8 +51,15 @@ const Message = ({ author, time, content }) => {
               justifyContent: "right",
             }}
           >
+            <IconButton
+              color="primary"
+              aria-label="upload picture"
+              component="label"
+              sx={{ display: `${showRemoveIcon}`, padding: "0" }}
+            >
+              <HighlightOffIcon sx={{ width: "15px", height: "15px" }} />
+            </IconButton>
             <Chip
-              // label={content}
               label={
                 <Typography style={{ whiteSpace: "normal" }}>
                   {content}
@@ -64,11 +71,13 @@ const Message = ({ author, time, content }) => {
                 height: "auto",
                 maxWidth: "60%",
                 fontSize: "16px",
+                marginLeft: "5px",
                 "& .MuiChip-label": {
                   display: "block",
                   whiteSpace: "normal",
                 },
               }}
+              onClick={handleClickMessage}
             />
           </Grid>
           <Grid item xs={12}>
@@ -115,7 +124,6 @@ const Message = ({ author, time, content }) => {
               aria-label="upload picture"
               component="label"
               sx={{ display: `${showRemoveIcon}`, padding: "0" }}
-              // sx={{ visibility: "none" }}
             >
               <HighlightOffIcon sx={{ width: "15px", height: "15px" }} />
             </IconButton>
