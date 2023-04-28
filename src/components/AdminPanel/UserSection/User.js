@@ -8,8 +8,6 @@ import { deepOrange } from "@mui/material/colors";
 import { useDispatch, useSelector } from "react-redux";
 import { createPrivGroup } from "../../../actions/groupActions/createPrivGroup";
 import { pickGroup } from "../../../actions/groupActions/pickGroup";
-import IconButton from "@mui/material/IconButton";
-import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 
 const User = ({ userId, userName }) => {
   const dispatch = useDispatch();
@@ -21,11 +19,30 @@ const User = ({ userId, userName }) => {
       group.userIdList.includes(loggedUser) &&
       group.userIdList.includes(currentPickedUser)
   );
+  const users = useSelector((state) => state.users);
+
+  const currentPickedUserFilter = users.filter(
+    (user) => user.userId === currentPickedUser
+  );
+
+  const currentLoggedUserFilter = users.filter(
+    (user) => user.userId === loggedUser
+  );
 
   const createOrSelectPrivChat = () => {
+    console.log(userId === currentPickedUser);
     if (filteredGroup.length === 0) {
       const userIdList = [loggedUser, currentPickedUser];
-      dispatch(createPrivGroup(userIdList));
+      const id = Math.floor(Math.random() * 1234);
+      dispatch(
+        createPrivGroup(
+          id,
+          userIdList,
+          currentLoggedUserFilter[0].userName,
+          currentPickedUserFilter[0].userName
+        )
+      );
+      dispatch(pickGroup(id));
     } else if (currentPickedUser === loggedUser) {
       alert("Nie możesz pisać z samym sobą :(");
     } else {
@@ -43,9 +60,6 @@ const User = ({ userId, userName }) => {
           </Badge>
         </ListItemIcon>
         <ListItemText primary={userName} />
-        <IconButton type="submit" color="primary" sx={{ p: '10px' }} aria-label="directions">
-            <HighlightOffIcon />
-          </IconButton>
       </ListItemButton>
     </Typography>
   );
