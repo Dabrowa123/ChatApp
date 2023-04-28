@@ -1,9 +1,12 @@
+import * as React from "react";
 import Grid from "@mui/material/Grid";
 import ListItemText from "@mui/material/ListItemText";
 import ListItem from "@mui/material/ListItem";
 import Chip from "@mui/material/Chip";
 import Typography from "@mui/material/Typography";
+import IconButton from "@mui/material/IconButton";
 import { useSelector } from "react-redux";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
 const Message = ({ author, time, content }) => {
   const userId = useSelector((state) => state.isLogged.userId);
@@ -18,6 +21,22 @@ const Message = ({ author, time, content }) => {
       loggedUser = filteredUser[0].userName;
     }
   }
+
+  // Clicking the message to show 'remove'
+  const handleClickMessage = () => {
+    setIsmesageClicked(!isMessageClicked);
+  };
+
+  const [isMessageClicked, setIsmesageClicked] = React.useState(false);
+  const [showRemoveIcon, setShowRemoveIcon] = React.useState("none");
+
+  React.useEffect(() => {
+    if (isMessageClicked) {
+      setShowRemoveIcon("visible");
+    } else {
+      setShowRemoveIcon("none");
+    }
+  }, [isMessageClicked]);
 
   let message =
     loggedUser !== author ? (
@@ -89,7 +108,17 @@ const Message = ({ author, time, content }) => {
                   whiteSpace: "normal",
                 },
               }}
+              onClick={handleClickMessage}
             />
+            <IconButton
+              color="primary"
+              aria-label="upload picture"
+              component="label"
+              // sx={{ visibility: `${showRemoveIcon}` }}
+              sx={{ visibility: "none" }}
+            >
+              <HighlightOffIcon fontSize="small" />
+            </IconButton>
           </Grid>
           <Grid item xs={12}>
             <ListItemText align="left" secondary={`Me ${time}`}></ListItemText>
