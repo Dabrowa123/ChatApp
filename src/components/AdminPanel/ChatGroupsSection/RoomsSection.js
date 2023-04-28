@@ -29,8 +29,9 @@ const RoomsSection = () => {
           />
           <Typography variant="h4">LOGO</Typography>
         </Stack>
-        <Divider orientation="vertical" />
+        <Divider />
         <Stack mb={2} ml={3}>
+          
           <Typography variant="h6" textAlign={"left"} mt={2} mb={2} ml={5}>
             GROUPS
           </Typography>
