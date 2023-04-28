@@ -1,16 +1,19 @@
+import * as React from "react";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import Paper from "@mui/material/Paper";
 import Divider from "@mui/material/Divider";
 import Avatar from "@mui/material/Avatar";
 import Badge from "@mui/material/Badge";
 import Button from "@mui/material/Button";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 import { useNavigate } from "react-router";
 import { lightBlue } from "@mui/material/colors";
 import { useDispatch, useSelector } from "react-redux";
 import UserList from "./UserList";
 import { pickGroup } from "../../../actions/groupActions/pickGroup";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 const UsersSection = () => {
   const dispatch = useDispatch();
@@ -25,11 +28,21 @@ const UsersSection = () => {
       loggedUser = filteredUser[0].userName;
     }
   }
+
+  // Click user name to expand logout button
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   return (
     <Box
       sx={{
         height: "100vh",
-        width: "25vw",
+        minWidth: "25vw",
       }}
     >
       <Stack
@@ -37,46 +50,53 @@ const UsersSection = () => {
         alignItems={"center"}
         spacing={2}
         sx={{
-          minHeight: "190px",
+          minHeight: "150px",
+          maxHeight: "150px",
           background: "#eceff1",
         }}
       >
-        <Stack
-                justifyContent={"center"}
-                alignItems={"center"}
-                // direction={"row"}
-                spacing={1}
-        >
+        <Stack justifyContent={"center"} alignItems={"center"} pt={3}>
           <Badge color="success" badgeContent=" " overlap="circular">
             <Avatar sx={{ bgcolor: lightBlue[500], width: 56, height: 56 }}>
               OP
             </Avatar>
           </Badge>
-          <Typography variant="h5">{loggedUser}</Typography>
-        </Stack>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            width: "100%",
-            background: "#eceff1",
-          }}
-        >
-          <Paper>
-            <Button
-              color="primary"
-              variant="outlined"
-              size="small"
+          <Button
+            id="demo-customized-button"
+            aria-controls={open ? "demo-customized-menu" : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? "true" : undefined}
+            variant="text"
+            size="large"
+            disableElevation
+            onClick={handleClick}
+            endIcon={<KeyboardArrowDownIcon />}
+            sx={{ color: "black", textTransform: "none", fontSize: "22px" }}
+          >
+            {loggedUser}
+          </Button>
+          <Menu
+            id="demo-customized-menu"
+            MenuListProps={{
+              "aria-labelledby": "demo-customized-button",
+            }}
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+          >
+            <MenuItem disableRipple>Settings</MenuItem>
+            <MenuItem disableRipple>Calendar</MenuItem>
+            <MenuItem
               onClick={() => {
                 navigate("/");
                 dispatch(pickGroup(1));
               }}
+              disableRipple
             >
-              Log Out
-            </Button>
-          </Paper>
-        </Box>
+              Log out
+            </MenuItem>
+          </Menu>
+        </Stack>
       </Stack>
       <Divider />
       <Stack sx={{ padding: "10px" }}>
