@@ -102,7 +102,7 @@ const Message = ({ author, time, content }) => {
               sx={{
                 height: "auto",
                 maxWidth: "60%",
-                fontSize: "16px",
+                marginRight: "5px",
                 "& .MuiChip-label": {
                   display: "block",
                   whiteSpace: "normal",
@@ -114,10 +114,10 @@ const Message = ({ author, time, content }) => {
               color="primary"
               aria-label="upload picture"
               component="label"
-              // sx={{ visibility: `${showRemoveIcon}` }}
-              sx={{ visibility: "none" }}
+              sx={{ display: `${showRemoveIcon}`, padding: "0" }}
+              // sx={{ visibility: "none" }}
             >
-              <HighlightOffIcon fontSize="small" />
+              <HighlightOffIcon sx={{ width: "15px", height: "15px" }} />
             </IconButton>
           </Grid>
           <Grid item xs={12}>

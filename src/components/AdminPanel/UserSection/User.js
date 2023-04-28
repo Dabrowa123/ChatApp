@@ -8,6 +8,8 @@ import { deepOrange } from "@mui/material/colors";
 import { useDispatch, useSelector } from "react-redux";
 import { createPrivGroup } from "../../../actions/groupActions/createPrivGroup";
 import { pickGroup } from "../../../actions/groupActions/pickGroup";
+import IconButton from "@mui/material/IconButton";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
 const User = ({ userId, userName }) => {
   const dispatch = useDispatch();
@@ -60,6 +62,14 @@ const User = ({ userId, userName }) => {
           </Badge>
         </ListItemIcon>
         <ListItemText primary={userName} />
+        <IconButton
+          type="submit"
+          color="primary"
+          sx={{ p: "10px" }}
+          aria-label="directions"
+        >
+          <HighlightOffIcon />
+        </IconButton>
       </ListItemButton>
     </Typography>
   );
