@@ -8,7 +8,7 @@ export const createPrivGroup = (
     type: "CREATE_PRIV_GROUP",
     payload: {
       groupId: id,
-      groupName: `Priv group of user ${currentLoggedUserName} and user ${currentPickedUserName}`,
+      groupName: `Priv group of ${currentLoggedUserName} and ${currentPickedUserName}`,
       userIdList,
       messages: [],
       isPriv: true,
