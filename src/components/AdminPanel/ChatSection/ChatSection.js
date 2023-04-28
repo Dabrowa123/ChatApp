@@ -29,7 +29,7 @@ const ChatSection = () => {
   }, [messageList]);
 
   return (
-    <Box sx={{ bgcolor: "#f5f5f5", height: "100vh", width: "50vw" }}>
+    <Box sx={{ bgcolor: "#f5f5f5", height: "100vh", minWidth: "50vw" }}>
       <Grid item xs={9}>
         <List
           ref={container}

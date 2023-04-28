@@ -12,7 +12,7 @@ const RoomsSection = () => {
       sx={{
         background: "linear-gradient(to bottom, #36EAEF, #1565c0)",
         height: "100vh",
-        width: "25vw",
+        minWidth: "25vw",
         maxWidth: "400px",
       }}
     >
@@ -31,7 +31,6 @@ const RoomsSection = () => {
         </Stack>
         <Divider />
         <Stack mb={2} ml={3}>
-          
           <Typography variant="h6" textAlign={"left"} mt={2} mb={2} ml={5}>
             GROUPS
           </Typography>
