@@ -3,6 +3,8 @@ import GroupsRoundedIcon from "@mui/icons-material/GroupsRounded";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Typography from "@mui/material/Typography";
+import IconButton from "@mui/material/IconButton";
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { useDispatch } from "react-redux";
 import { pickGroup } from "../../../actions/groupActions/pickGroup";
 
@@ -28,6 +30,9 @@ const ChatGroup = ({ groupId, groupName, userIdList, messages }) => {
           />
         </ListItemIcon>
         <ListItemText primary={groupName} />
+        <IconButton type="submit" color="primary" sx={{ p: '10px' }} aria-label="directions">
+            <HighlightOffIcon />
+          </IconButton>
         {/* <JoinGroupButton /> */}
       </ListItemButton>
     </Typography>
