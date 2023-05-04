@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
@@ -13,8 +13,28 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 
+
 const RegisterSchema = yup.object().shape({
   username: yup.string().required("Username is required"),
+  // .test('Unique Name', 'Name already in use', 
+  // function (value) {
+  //   const existingUsers = useSelector((state) => state.users.userName);
+  //   const doesUserExist = existingUsers.some(userName => userName === value);
+  //   console.log(doesUserExist);
+  //   return !doesUserExist;
+    // return new Promise((resolve, reject) => {
+    //   axios.get(`http://localhost:8003/api/u/user/${value}/available`)
+    //               .then((res) => {
+    //                   resolve(true)
+    //               })
+    //               .catch((error) => {
+    //                   if (error.response.data.content === "Name has already been taken.") {
+    //                       resolve(false);
+    //                   }
+    //               })
+    //       })
+    //   }
+    // ),
   password: yup
     .string()
     .required("Password is required")
@@ -45,7 +65,6 @@ const Register = () => {
       dispatch(registerUser(userObject));
       setIsSubmited(true);
       setTimeout(() => navigate("/"), 2000)
-
     },
   });
 
@@ -70,7 +89,7 @@ const Register = () => {
             <Typography variant="h5">Thank you for registration!</Typography>
           </Stack>}
         {!isSubmited && (<><Typography component="h1" variant="h5">
-          Register
+          Registration
         </Typography>
         <Box
           component="form"
@@ -131,7 +150,7 @@ const Register = () => {
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
-            Sign In
+            Sign Up
           </Button>
           <Grid container>
             <Grid item xs={10.5} sx={{ textAlign: "right" }}>
