@@ -34,7 +34,6 @@ const ChatGroup = ({ groupId, groupName, userIdList, messages }) => {
         >
           <ListItemIcon>
             <GroupsRoundedIcon
-              // fontSize="large"
               color="primary"
               sx={{
                 background: "InfoBackground",
