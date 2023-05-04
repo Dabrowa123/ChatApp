@@ -9,7 +9,6 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { useNavigate } from "react-router";
-import { lightBlue } from "@mui/material/colors";
 import { useDispatch, useSelector } from "react-redux";
 import UserList from "./UserList";
 import { pickGroup } from "../../../actions/groupActions/pickGroup";
@@ -45,7 +44,6 @@ const UsersSection = () => {
 
   const displayFirstLetterOfUsername = () => {
     const charArr = [...loggedUser];
-    console.log(charArr);
     return charArr[0].toUpperCase();
   };
   return (

@@ -14,9 +14,7 @@ const MessageSender = () => {
   const [messageContent, setMessageContent] = useState("");
   const currentGroupId = useSelector((state) => state.currentGroup.groupId);
   const userId = useSelector((state) => state.isLogged.userId);
-  // console.log(userId);
   const users = useSelector((state) => state.users);
-  // console.log(users.length);
   let loggedUser;
   filter.addWords(...wulgaryzmy);
 
@@ -60,8 +58,6 @@ const MessageSender = () => {
   };
 
   const send = (e) => {
-    console.log(currentGroupId);
-
     if (messageContent !== "") {
       const messageObject = {
         groupId: currentGroupId,
@@ -70,7 +66,6 @@ const MessageSender = () => {
         content: filter.clean(messageContent),
       };
 
-      console.log("sended");
       dispatch(sendMessage(messageObject));
       setMessageContent("");
     }

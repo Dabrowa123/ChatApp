@@ -4,13 +4,11 @@ import Login from "./components/Login";
 import Protected from "./components/Protected";
 import Register from "./components/Register";
 import { useSelector } from "react-redux";
-import AppPanel from "./components/AppPanel/AdminPanel";
+import AppPanel from "./components/AppPanel/AppPanel";
 
 function App() {
   const userId = useSelector((state) => state.isLogged.userId);
-  // console.log(userId);
   const users = useSelector((state) => state.users);
-  // console.log(users.length);
   let isAdmin = false;
   let isLogged = false;
 

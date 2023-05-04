@@ -50,8 +50,6 @@ const ChatGroup = ({ groupId, groupName, userIdList, messages }) => {
             sx={{ p: "10px" }}
             aria-label="directions"
             onClick={() => {
-              console.log(groupId);
-
               if (groupId === 1) {
                 alert("Nie możesz usunąć głównej grupy!");
               } else {

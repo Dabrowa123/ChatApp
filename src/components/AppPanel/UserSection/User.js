@@ -5,7 +5,6 @@ import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
 import Badge from "@mui/material/Badge";
 import Stack from "@mui/material/Stack";
-import { deepOrange } from "@mui/material/colors";
 import { useDispatch, useSelector } from "react-redux";
 import { createPrivGroup } from "../../../actions/groupActions/createPrivGroup";
 import { pickGroup } from "../../../actions/groupActions/pickGroup";
@@ -13,6 +12,7 @@ import IconButton from "@mui/material/IconButton";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { deleteUser } from "../../../actions/userActions/deleteUser";
 import { pickUser } from "../../../actions/userActions/pickUser";
+
 const User = ({ userId, userName, avatarColor }) => {
   const dispatch = useDispatch();
   const displayUsers = useSelector((state) => state.users);
@@ -99,7 +99,6 @@ const User = ({ userId, userName, avatarColor }) => {
               if (loggedUser === userId) {
                 alert("Nie możesz usunąć samego siebie!");
               } else {
-                console.log("USUWANIE");
                 dispatch(deleteUser(userId));
               }
             }}

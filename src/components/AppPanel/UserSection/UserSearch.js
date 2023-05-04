@@ -1,14 +1,8 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { createGroup } from "../../../actions/groupActions/createGroup";
-import TextField from "@mui/material/TextField";
-import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import Paper from "@mui/material/Paper";
 import InputBase from "@mui/material/InputBase";
-import AddCircleIcon from "@mui/icons-material/AddCircle";
 import SearchIcon from "@mui/icons-material/Search";
 
 const UserSearch = () => {

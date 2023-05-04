@@ -1,14 +1,6 @@
-import { useEffect, useRef } from "react";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
-import MessageSender from "./MessageSender";
-import { useDispatch, useSelector } from "react-redux";
-import Message from "./Message";
+import { useSelector } from "react-redux";
 import Avatar from "@mui/material/Avatar";
 import Badge from "@mui/material/Badge";
-import { lightBlue } from "@mui/material/colors";
 import { Stack, Typography } from "@mui/material";
 import GroupsRoundedIcon from "@mui/icons-material/GroupsRounded";
 
@@ -20,7 +12,7 @@ const ChatWithDisplayer = () => {
   const filteredGroup = displayGroups.filter(
     (group) => group.groupId === displayCurrentPickedGroup.groupId
   );
-  console.log(currentPickedUser);
+
   const currentPickedGroupName = filteredGroup[0];
   const isPriv = filteredGroup[0].isPriv;
   const displayUsers = useSelector((state) => state.users);
@@ -35,9 +27,6 @@ const ChatWithDisplayer = () => {
   );
   if (currentPickedUser.userId !== null) {
     privGroupUsername = currentPickedUserFilter[0].userName;
-    console.log(users);
-    console.log(currentPickedUser);
-    console.log(privGroupUsername);
   }
 
   const displayFirstLetterOfUsername = () => {

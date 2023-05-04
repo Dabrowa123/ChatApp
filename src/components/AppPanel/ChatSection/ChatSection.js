@@ -14,10 +14,10 @@ const ChatSection = () => {
   const filteredGroup = displayGroups.filter(
     (group) => group.groupId === currentGroupId
   );
-  console.log(filteredGroup[0]);
   const messageList = filteredGroup[0].messages.map((message) => (
     <Message key={message.id} groupId={currentGroupId} {...message} />
   ));
+
   // Scrollable container
   const container = useRef(null);
   const Scroll = () => {
