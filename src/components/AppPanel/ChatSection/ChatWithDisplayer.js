@@ -15,32 +15,67 @@ import GroupsRoundedIcon from "@mui/icons-material/GroupsRounded";
 const ChatWithDisplayer = () => {
   const displayCurrentPickedGroup = useSelector((state) => state.currentGroup);
   const displayGroups = useSelector((state) => state.chatGroups);
+  const currentPickedUser = useSelector((state) => state.currentPickedUser);
+  const users = useSelector((state) => state.users);
   const filteredGroup = displayGroups.filter(
     (group) => group.groupId === displayCurrentPickedGroup.groupId
   );
+  console.log(currentPickedUser);
   const currentPickedGroupName = filteredGroup[0];
   const isPriv = filteredGroup[0].isPriv;
+  const displayUsers = useSelector((state) => state.users);
+  const loggedUser = useSelector((state) => state.isLogged.userId);
+  let privGroupUsername;
+  const filteredUser = displayUsers.filter(
+    (user) => user.userId === loggedUser
+  );
+  const isAdmin = filteredUser[0].isAdmin;
+  const currentPickedUserFilter = users.filter(
+    (user) => user.userId === currentPickedUser.userId
+  );
+  if (currentPickedUser.userId !== null) {
+    privGroupUsername = currentPickedUserFilter[0].userName;
+    console.log(users);
+    console.log(currentPickedUser);
+    console.log(privGroupUsername);
+  }
+
+  const displayFirstLetterOfUsername = () => {
+    const charArr = [...privGroupUsername];
+    return charArr[0].toUpperCase();
+  };
 
   return (
-    <Stack
-      direction={"row"}
-      display={"flex"}
-      justifyContent={"flex-start"}
-      alignItems={"center"}
-      p={3}
-    >
-      <Box>
-        {isPriv && (
+    <>
+      {isPriv && !isAdmin && (
+        <Stack
+          direction={"row"}
+          display={"flex"}
+          justifyContent={"flex-start"}
+          alignItems={"center"}
+          p={3}
+        >
           <Badge
             color="primary"
             badgeContent=" "
             overlap="circular"
             variant="dot"
           >
-            <Avatar sx={{ bgcolor: lightBlue[500] }}>OP</Avatar>
+            <Avatar sx={{ bgcolor: currentPickedUserFilter[0].avatarColor }}>
+              {displayFirstLetterOfUsername()}
+            </Avatar>
           </Badge>
-        )}
-        {!isPriv && (
+          <Typography ml={2}>{privGroupUsername}</Typography>
+        </Stack>
+      )}
+      {(!isPriv || (isAdmin && isPriv)) && (
+        <Stack
+          direction={"row"}
+          display={"flex"}
+          justifyContent={"flex-start"}
+          alignItems={"center"}
+          p={3}
+        >
           <GroupsRoundedIcon
             color="primary"
             sx={{
@@ -49,10 +84,10 @@ const ChatWithDisplayer = () => {
               borderRadius: "12px",
             }}
           />
-        )}
-      </Box>
-      <Typography ml={2}>{currentPickedGroupName.groupName}</Typography>
-    </Stack>
+          <Typography ml={2}>{currentPickedGroupName.groupName}</Typography>
+        </Stack>
+      )}
+    </>
   );
 };
 

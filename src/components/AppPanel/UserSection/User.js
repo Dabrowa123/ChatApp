@@ -12,22 +12,23 @@ import { pickGroup } from "../../../actions/groupActions/pickGroup";
 import IconButton from "@mui/material/IconButton";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { deleteUser } from "../../../actions/userActions/deleteUser";
-
+import { pickUser } from "../../../actions/userActions/pickUser";
 const User = ({ userId, userName, avatarColor }) => {
   const dispatch = useDispatch();
   const displayUsers = useSelector((state) => state.users);
   const loggedUser = useSelector((state) => state.isLogged.userId);
+  const currentPickedUser = userId;
   const filteredUser = displayUsers.filter(
     (user) => user.userId === loggedUser
   );
   const isAdmin = filteredUser[0].isAdmin;
-  const currentPickedUser = userId;
   const displayGroups = useSelector((state) => state.chatGroups);
   const filteredGroup = displayGroups.filter(
     (group) =>
       group.userIdList.includes(loggedUser) &&
       group.userIdList.includes(currentPickedUser)
   );
+
   const users = useSelector((state) => state.users);
 
   const currentPickedUserFilter = users.filter(
@@ -39,7 +40,6 @@ const User = ({ userId, userName, avatarColor }) => {
   );
 
   const createOrSelectPrivChat = () => {
-    console.log(userId === currentPickedUser);
     if (filteredGroup.length === 0) {
       const userIdList = [loggedUser, currentPickedUser];
       const id = Math.floor(Math.random() * 1234);
@@ -52,17 +52,17 @@ const User = ({ userId, userName, avatarColor }) => {
         )
       );
       dispatch(pickGroup(id));
+      dispatch(pickUser(userId));
     } else if (currentPickedUser === loggedUser) {
       alert("Nie możesz pisać z samym sobą :(");
     } else {
-      console.log(filteredGroup[0].groupId);
       dispatch(pickGroup(filteredGroup[0].groupId));
+      dispatch(pickUser(userId));
     }
   };
 
   const displayFirstLetterOfUsername = () => {
     const charArr = [...userName];
-    console.log(charArr);
     return charArr[0].toUpperCase();
   };
 
