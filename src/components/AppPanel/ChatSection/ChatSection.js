@@ -29,13 +29,13 @@ const ChatSection = () => {
   }, [messageList]);
 
   return (
-    <Box sx={{ bgcolor: "#f5f5f5", height: "100vh", minWidth: "50vw" }}>
+    <Box sx={{ bgcolor: "#f5f5f5", minHeight: "100vh", maxHeight: "100vh", minWidth: "50vw" }}>
       <Grid item xs={9}>
         <ChatWithDisplayer />
         <Divider />
         <List
           ref={container}
-          sx={{ minHeight: "77vh", maxHeight: "77vh", overflow: "auto" }}
+          sx={{ minHeight: "70vh", maxHeight: "70vh", overflow: "auto" }}
         >
           {messageList}
         </List>

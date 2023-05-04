@@ -43,7 +43,8 @@ const ChatWithDisplayer = () => {
           justifyContent={"flex-start"}
           alignItems={"center"}
           p={3}
-        >
+            sx={{maxHeight: "50px", minHeight: "50px"}}
+          >
           <Badge
             color="primary"
             badgeContent=" "
@@ -64,7 +65,8 @@ const ChatWithDisplayer = () => {
           justifyContent={"flex-start"}
           alignItems={"center"}
           p={3}
-        >
+          sx={{maxHeight: "50px", minHeight: "50px"}}
+          >
           <GroupsRoundedIcon
             color="primary"
             sx={{
@@ -72,7 +74,7 @@ const ChatWithDisplayer = () => {
               padding: "5px",
               borderRadius: "12px",
             }}
-          />
+            />
           <Typography ml={2}>{currentPickedGroupName.groupName}</Typography>
         </Stack>
       )}
