@@ -6,6 +6,7 @@ import { Typography } from "@mui/material";
 import ChatGroupList from "./ChatGroupList";
 import ChatGroupCreator from "./ChatGroupCreator";
 import { useSelector } from "react-redux";
+import ChatSearch from "./ChatSearch";
 
 const RoomsSection = () => {
   const displayUsers = useSelector((state) => state.users);
@@ -42,6 +43,7 @@ const RoomsSection = () => {
             GROUPS
           </Typography>
           <ChatGroupList />
+          <ChatSearch />
           {isAdmin && <ChatGroupCreator />}
         </Stack>
       </Stack>

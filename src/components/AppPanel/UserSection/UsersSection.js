@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import UserList from "./UserList";
 import { pickGroup } from "../../../actions/groupActions/pickGroup";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import UserSearch from "./UserSearch";
 
 const UsersSection = () => {
   const dispatch = useDispatch();
@@ -115,6 +116,7 @@ const UsersSection = () => {
           </Typography>
         </Stack>
         <UserList />
+        <UserSearch />
       </Stack>
     </Box>
   );

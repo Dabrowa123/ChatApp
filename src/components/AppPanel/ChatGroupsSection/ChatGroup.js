@@ -18,7 +18,6 @@ const ChatGroup = ({ groupId, groupName, userIdList, messages }) => {
     (user) => user.userId === loggedUser
   );
   const isAdmin = filteredUser[0].isAdmin;
-  const displayGroups = useSelector((state) => state.chatGroups);
   const dispatch = useDispatch();
 
   return (
@@ -34,7 +33,6 @@ const ChatGroup = ({ groupId, groupName, userIdList, messages }) => {
         >
           <ListItemIcon>
             <GroupsRoundedIcon
-              // fontSize="large"
               color="primary"
               sx={{
                 background: "InfoBackground",
@@ -64,15 +62,11 @@ const ChatGroup = ({ groupId, groupName, userIdList, messages }) => {
                   dispatch(deleteGroup(groupId));
                 }
               }
-
-              console.log(displayGroups);
             }}
           >
             <HighlightOffIcon />
           </IconButton>
         )}
-
-        {/* <JoinGroupButton /> */}
       </ListItemButton>
     </Typography>
   );
