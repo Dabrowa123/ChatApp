@@ -24,6 +24,12 @@ const UsersSection = () => {
       loggedUser = filteredUser[0].userName;
     }
   }
+
+  const displayFirstLetterOfUsername = () => {
+    const charArr = [...loggedUser];
+    console.log(charArr);
+    return charArr[0].toUpperCase();
+  };
   return (
     <Box
       sx={{
@@ -65,7 +71,7 @@ const UsersSection = () => {
       >
         <Badge color="success" badgeContent=" " overlap="circular">
           <Avatar sx={{ bgcolor: lightBlue[500], width: 56, height: 56 }}>
-            OP
+            {displayFirstLetterOfUsername()}
           </Avatar>
         </Badge>
         <Typography variant="h5">{loggedUser}</Typography>

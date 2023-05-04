@@ -38,6 +38,12 @@ const UsersSection = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const displayFirstLetterOfUsername = () => {
+    const charArr = [...loggedUser];
+    console.log(charArr);
+    return charArr[0].toUpperCase();
+  };
   return (
     <Box
       sx={{
@@ -58,7 +64,7 @@ const UsersSection = () => {
         <Stack justifyContent={"center"} alignItems={"center"} pt={3}>
           <Badge color="success" badgeContent=" " overlap="circular">
             <Avatar sx={{ bgcolor: lightBlue[500], width: 56, height: 56 }}>
-              OP
+              {displayFirstLetterOfUsername()}
             </Avatar>
           </Badge>
           <Button
