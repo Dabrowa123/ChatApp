@@ -3,6 +3,7 @@ import GroupsRoundedIcon from "@mui/icons-material/GroupsRounded";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Typography from "@mui/material/Typography";
+import Stack from "@mui/material/Stack";
 import IconButton from "@mui/material/IconButton";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,24 +18,27 @@ const ChatGroup = ({ groupId, groupName, userIdList, messages }) => {
   return (
     <Typography variant="h1" fontSize="large">
       <ListItemButton>
-        <ListItemIcon>
-          <GroupsRoundedIcon
-            // fontSize="large"
-            color="primary"
-            sx={{
-              background: "InfoBackground",
-              padding: "5px",
-              borderRadius: "12px",
-            }}
-          />
-        </ListItemIcon>
-        <ListItemText
-          primary={groupName}
+        <Stack
+          direction={"row"}
           onClick={() => {
             dispatch(pickGroup(groupId));
           }}
-          sx={{ padding: "11px" }}
-        />
+          width={"100%"}
+          alignItems={"center"}
+        >
+          <ListItemIcon>
+            <GroupsRoundedIcon
+              // fontSize="large"
+              color="primary"
+              sx={{
+                background: "InfoBackground",
+                padding: "5px",
+                borderRadius: "12px",
+              }}
+            />
+          </ListItemIcon>
+          <ListItemText primary={groupName} />
+        </Stack>
         <IconButton
           type="submit"
           color="primary"

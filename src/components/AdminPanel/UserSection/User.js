@@ -4,6 +4,7 @@ import ListItemText from "@mui/material/ListItemText";
 import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
 import Badge from "@mui/material/Badge";
+import Stack from "@mui/material/Stack";
 import { deepOrange } from "@mui/material/colors";
 import { useDispatch, useSelector } from "react-redux";
 import { createPrivGroup } from "../../../actions/groupActions/createPrivGroup";
@@ -84,14 +85,26 @@ const User = ({ userId, userName }) => {
   return (
     <Typography variant="h1" fontSize="large">
       <ListItemButton>
-        <ListItemIcon>
-          <Badge color="info" badgeContent=" " overlap="circular" variant="dot">
-            <Avatar sx={{ bgcolor: generateRandomColor() }}>
-              {displayFirstLetterOfUsername()}
-            </Avatar>
-          </Badge>
-        </ListItemIcon>
-        <ListItemText primary={userName} onClick={createOrSelectPrivChat} />
+        <Stack
+          direction={"row"}
+          onClick={createOrSelectPrivChat}
+          width={"100%"}
+          alignItems={"center"}
+        >
+          <ListItemIcon>
+            <Badge
+              color="info"
+              badgeContent=" "
+              overlap="circular"
+              variant="dot"
+            >
+              <Avatar sx={{ bgcolor: generateRandomColor() }}>
+                {displayFirstLetterOfUsername()}
+              </Avatar>
+            </Badge>
+          </ListItemIcon>
+          <ListItemText primary={userName} />
+        </Stack>
         <IconButton
           type="submit"
           color="primary"
