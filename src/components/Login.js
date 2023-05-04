@@ -35,7 +35,6 @@ const Login = () => {
         passwordValue === filteredUser[0].password &&
         filteredUser[0].isAdmin
       ) {
-        // navigate("/adminPanel");
         navigate("/appPanel");
       } else if (
         usernameValue === filteredUser[0].userName &&
@@ -159,13 +158,6 @@ const Login = () => {
           </Grid>
         </Box>
       </Box>
-      <button
-        onClick={() => {
-          navigate("/appPanel");
-        }}
-      >
-        To appPanel
-      </button>
     </Container>
   );
 };

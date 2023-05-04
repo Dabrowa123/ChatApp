@@ -1,9 +1,7 @@
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from "./components/Login";
-import AdminPanel from "./components/AdminPanel/AdminPanel";
 import Protected from "./components/Protected";
-import UserPanel from "./components/UserPanel/UserPanel";
 import Register from "./components/Register";
 import { useSelector } from "react-redux";
 import AppPanel from "./components/AppPanel/AdminPanel";
@@ -31,24 +29,14 @@ function App() {
           <Route exact path="/" Component={Login}></Route>
           <Route
             exact
-            path="/adminPanel"
-            element={
-              <Protected isLoggedIn={isAdmin && isLogged}>
-                <AdminPanel />
-              </Protected>
-            }
-          ></Route>
-          <Route
-            exact
-            path="/userPanel"
+            path="/appPanel"
             element={
               <Protected isLoggedIn={isLogged}>
-                <UserPanel />
+                <AppPanel />
               </Protected>
             }
           ></Route>
           <Route exact path="/register" Component={Register}></Route>
-          <Route exact path="/appPanel" Component={AppPanel}></Route>
         </Routes>
       </Router>
     </div>

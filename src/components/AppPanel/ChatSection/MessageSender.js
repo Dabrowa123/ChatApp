@@ -5,9 +5,12 @@ import SendIcon from "@mui/icons-material/Send";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { sendMessage } from "../../../actions/messageAction/sendMessage";
+import { wulgaryzmy } from "../../../wulgaryzmy";
+import Filter from "bad-words";
 
 const MessageSender = () => {
   const dispatch = useDispatch();
+  const filter = new Filter();
   const [messageContent, setMessageContent] = useState("");
   const currentGroupId = useSelector((state) => state.currentGroup.groupId);
   const userId = useSelector((state) => state.isLogged.userId);
@@ -15,6 +18,7 @@ const MessageSender = () => {
   const users = useSelector((state) => state.users);
   // console.log(users.length);
   let loggedUser;
+  filter.addWords(...wulgaryzmy);
 
   if (userId !== 0) {
     const filteredUser = users.filter((user) => user.userId === userId);
@@ -63,7 +67,7 @@ const MessageSender = () => {
         groupId: currentGroupId,
         author: loggedUser,
         time: currentTime(),
-        content: messageContent,
+        content: filter.clean(messageContent),
       };
 
       console.log("sended");
