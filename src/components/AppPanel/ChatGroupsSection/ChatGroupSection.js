@@ -19,7 +19,8 @@ const ChatGroupSection = () => {
     <Box
       sx={{
         background: "linear-gradient(to bottom, #36EAEF, #1565c0)",
-        height: "100vh",
+        minHeight: "100vh",
+        maxHeight: "100vh",
         minWidth: "25vw",
         maxWidth: "400px",
       }}
@@ -38,11 +39,13 @@ const ChatGroupSection = () => {
           <Typography variant="h4">LOGO</Typography>
         </Stack>
         <Divider />
-        <Stack mb={2} ml={3}>
+        <Stack mb={2} ml={3} display={"flex"} sx={{ maxHeight: "80vh" }}>
           <Typography variant="h6" textAlign={"left"} mt={2} mb={2} ml={5}>
             GROUPS
           </Typography>
-          <ChatGroupList />
+          <Box sx={{ flexGrow: "4", overflow: "auto" }}>
+            <ChatGroupList />
+          </Box>
           <ChatSearch />
           {isAdmin && <ChatGroupCreator />}
         </Stack>
