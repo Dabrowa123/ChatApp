@@ -7,6 +7,7 @@ export const sendMessage = ({ groupId, author, time, content }) => {
       author,
       time,
       content,
+      isDeleted: false,
     },
   };
 };
