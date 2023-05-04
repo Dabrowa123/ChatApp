@@ -103,7 +103,7 @@ const User = ({ userId, userName }) => {
               </Avatar>
             </Badge>
           </ListItemIcon>
-          <ListItemText primary={userName} onClick={createOrSelectPrivChat} />
+          <ListItemText primary={userName} />
         </Stack>
         <IconButton
           type="submit"
