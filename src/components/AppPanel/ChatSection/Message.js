@@ -82,24 +82,12 @@ const Message = ({ groupId, id, author, time, content, isDeleted }) => {
               }
               variant="filled"
               color="primary"
-              // {
-              //   color: "grey",
-              //   border: "1px solid grey",
-              //   fontStyle: "italic",
-              //   height: "auto",
-              //   maxWidth: "60%",
-              //   pointerEvents: "none",
-              //   fontSize: "16px",
-              //   "& .MuiChip-label": {
-              //     display: "block",
-              //     whiteSpace: "normal",
-              //   },
-              // }
               sx={
                 !isDeleted
                   ? {
                       height: "auto",
                       maxWidth: "60%",
+                      marginLeft: "5px",
                       fontSize: "16px",
                       pointerEvents: `${letUserClickMessage}`,
                       "& .MuiChip-label": {
@@ -153,20 +141,12 @@ const Message = ({ groupId, id, author, time, content, isDeleted }) => {
               }
               variant="outlined"
               color="primary"
-              // sx={{
-              //   height: "auto",
-              //   maxWidth: "60%",
-              //   marginRight: "5px",
-              //   "& .MuiChip-label": {
-              //     display: "block",
-              //     whiteSpace: "normal",
-              //   },
-              // }}
               sx={
                 !isDeleted
                   ? {
                       height: "auto",
                       maxWidth: "60%",
+                      marginRight: "5px",
                       fontSize: "16px",
                       "& .MuiChip-label": {
                         display: "block",
