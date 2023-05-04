@@ -15,7 +15,7 @@ const ChatSection = () => {
     (group) => group.groupId === currentGroupId
   );
   const messageList = filteredGroup[0].messages.map((message) => (
-    <Message key={Math.floor(Math.random() * 1234)} {...message} />
+    <Message key={message.id} groupId={currentGroupId} {...message} />
   ));
 
   // Scrollable container

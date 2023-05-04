@@ -12,9 +12,7 @@ import { deleteMessage } from "../../../actions/messageAction/deleteMessage";
 const Message = ({ groupId, id, author, time, content }) => {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.isLogged.userId);
-  // console.log(userId);
   const users = useSelector((state) => state.users);
-  // console.log(users.length);
   let loggedUser;
 
   if (userId !== 0) {

@@ -5,10 +5,12 @@ import ListItem from "@mui/material/ListItem";
 import Chip from "@mui/material/Chip";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+import { deleteMessage } from "../../../actions/messageAction/deleteMessage";
 
-const Message = ({ author, time, content }) => {
+const Message = ({ groupId, id, author, time, content, isDeleted }) => {
+  const dispatch = useDispatch();
   const userId = useSelector((state) => state.isLogged.userId);
   // console.log(userId);
   const users = useSelector((state) => state.users);
@@ -60,15 +62,28 @@ const Message = ({ author, time, content }) => {
               }
               variant="filled"
               color="primary"
-              sx={{
-                height: "auto",
-                maxWidth: "60%",
-                fontSize: "16px",
-                "& .MuiChip-label": {
-                  display: "block",
-                  whiteSpace: "normal",
-                },
-              }}
+              sx={
+                !isDeleted
+                  ? {
+                      height: "auto",
+                      maxWidth: "60%",
+                      fontSize: "16px",
+                      "& .MuiChip-label": {
+                        display: "block",
+                        whiteSpace: "normal",
+                      },
+                    }
+                  : {
+                      color: "grey",
+                      height: "auto",
+                      maxWidth: "60%",
+                      fontSize: "16px",
+                      "& .MuiChip-label": {
+                        display: "block",
+                        whiteSpace: "normal",
+                      },
+                    }
+              }
             />
           </Grid>
           <Grid item xs={12}>
@@ -99,15 +114,31 @@ const Message = ({ author, time, content }) => {
               }
               variant="outlined"
               color="primary"
-              sx={{
-                height: "auto",
-                maxWidth: "60%",
-                marginRight: "5px",
-                "& .MuiChip-label": {
-                  display: "block",
-                  whiteSpace: "normal",
-                },
-              }}
+              sx={
+                !isDeleted
+                  ? {
+                      height: "auto",
+                      maxWidth: "60%",
+                      fontSize: "16px",
+                      "& .MuiChip-label": {
+                        display: "block",
+                        whiteSpace: "normal",
+                      },
+                    }
+                  : {
+                      color: "grey",
+                      border: "1px solid grey",
+                      fontStyle: "italic",
+                      height: "auto",
+                      maxWidth: "60%",
+                      pointerEvents: "none",
+                      fontSize: "16px",
+                      "& .MuiChip-label": {
+                        display: "block",
+                        whiteSpace: "normal",
+                      },
+                    }
+              }
               onClick={handleClickMessage}
             />
             <IconButton
@@ -115,6 +146,10 @@ const Message = ({ author, time, content }) => {
               aria-label="upload picture"
               component="label"
               sx={{ display: `${showRemoveIcon}`, padding: "0" }}
+              onClick={() => {
+                dispatch(deleteMessage(groupId, id));
+                setShowRemoveIcon("none");
+              }}
               // sx={{ visibility: "none" }}
             >
               <HighlightOffIcon sx={{ width: "15px", height: "15px" }} />

@@ -25,32 +25,45 @@ const ChatGroupCreator = () => {
 
   const createRoom = (e) => {
     e.preventDefault();
-    dispatch(createGroup(groupNameValue));
-    setGroupNameValue("");
+    if (groupNameValue !== "") {
+      dispatch(createGroup(groupNameValue));
+      setGroupNameValue("");
+    } else {
+      alert("Nazwa grupy nie może być pusta!");
+    }
   };
   return (
     <Box mt={3}>
-    <form onSubmit={createRoom}>
-      <Box component="div" display={"flex"}>
-        <Paper
-          sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: "90%" }}
-        >
-          <InputBase
-          name="groupName"
-            sx={{ ml: 1, flex: 1 }}
-            placeholder="Add a group"
-            inputProps={{ 'aria-label': 'Add a group' }}
-            value={groupNameValue}
-            onChange={onEditHandle}
-          />
-          <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-          <IconButton type="submit" color="primary" sx={{ p: '10px' }} aria-label="directions">
-            <AddCircleIcon />
-          </IconButton>
-        </Paper>
-      </Box>
-    </form>
-      
+      <form onSubmit={createRoom}>
+        <Box component="div" display={"flex"}>
+          <Paper
+            sx={{
+              p: "2px 4px",
+              display: "flex",
+              alignItems: "center",
+              width: "90%",
+            }}
+          >
+            <InputBase
+              name="groupName"
+              sx={{ ml: 1, flex: 1 }}
+              placeholder="Add a group"
+              inputProps={{ "aria-label": "Add a group" }}
+              value={groupNameValue}
+              onChange={onEditHandle}
+            />
+            <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
+            <IconButton
+              type="submit"
+              color="primary"
+              sx={{ p: "10px" }}
+              aria-label="directions"
+            >
+              <AddCircleIcon />
+            </IconButton>
+          </Paper>
+        </Box>
+      </form>
     </Box>
   );
 };
