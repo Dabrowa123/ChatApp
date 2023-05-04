@@ -33,6 +33,7 @@ const ChatGroup = ({ groupId, groupName, userIdList, messages }) => {
           onClick={() => {
             dispatch(pickGroup(groupId));
           }}
+          sx={{ padding: "11px" }}
         />
         <IconButton
           type="submit"
