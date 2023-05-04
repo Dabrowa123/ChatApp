@@ -75,6 +75,9 @@ const Message = ({ groupId, id, author, time, content, isDeleted }) => {
                     }
                   : {
                       color: "grey",
+                      border: "1px solid grey",
+                      background: "transparent",
+                      fontStyle: "italic",
                       height: "auto",
                       maxWidth: "60%",
                       fontSize: "16px",
