@@ -18,6 +18,10 @@ const Login = () => {
   const navigate = useNavigate();
   const [usernameValue, setUsernameValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
+  const [loginDataCheck, setLoginDataCheck] = useState({
+    isWrong: false,
+    message: "",
+  });
   const users = useSelector((state) => state.users);
 
   const authenticate = () => {
@@ -39,11 +43,17 @@ const Login = () => {
       ) {
         navigate("/userPanel");
       } else {
-        alert("Niepoprawny login lub hasło!");
+        setLoginDataCheck({
+          isWrong: true,
+          message: "Wrong password",
+        });
       }
       dispatch(logInUser(filteredUser[0].userId));
     } else {
-      alert("Nie znaleziono takiego użytkownika!");
+      setLoginDataCheck({
+        isWrong: true,
+        message: "Wrong username",
+      });
     }
   };
 
@@ -101,6 +111,7 @@ const Login = () => {
             autoFocus
             value={usernameValue}
             onChange={onEditHandle}
+            error={loginDataCheck.isWrong}
           />
           <TextField
             margin="normal"
@@ -113,6 +124,8 @@ const Login = () => {
             autoComplete="current-password"
             value={passwordValue}
             onChange={onEditHandle}
+            error={loginDataCheck.isWrong}
+            helperText={loginDataCheck.message}
           />
           <Stack>
             <FormControlLabel
@@ -141,9 +154,6 @@ const Login = () => {
               <Link onClick={toRegister} variant="body2">
                 {"Sign Up"}
               </Link>
-              {/* <Link href="http://localhost:3000/register" variant="body2">
-                {"Sign Up"}
-              </Link> */}
             </Grid>
           </Grid>
         </Box>
