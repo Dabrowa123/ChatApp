@@ -6,6 +6,7 @@ import Protected from "./components/Protected";
 import UserPanel from "./components/UserPanel/UserPanel";
 import Register from "./components/Register";
 import { useSelector } from "react-redux";
+import AppPanel from "./components/AppPanel/AdminPanel";
 
 function App() {
   const userId = useSelector((state) => state.isLogged.userId);
@@ -47,6 +48,7 @@ function App() {
             }
           ></Route>
           <Route exact path="/register" Component={Register}></Route>
+          <Route exact path="/appPanel" Component={AppPanel}></Route>
         </Routes>
       </Router>
     </div>

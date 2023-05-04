@@ -35,13 +35,14 @@ const Login = () => {
         passwordValue === filteredUser[0].password &&
         filteredUser[0].isAdmin
       ) {
-        navigate("/adminPanel");
+        // navigate("/adminPanel");
+        navigate("/appPanel");
       } else if (
         usernameValue === filteredUser[0].userName &&
         passwordValue === filteredUser[0].password &&
         !filteredUser[0].isAdmin
       ) {
-        navigate("/userPanel");
+        navigate("/appPanel");
       } else {
         setLoginDataCheck({
           isWrong: true,
@@ -158,6 +159,13 @@ const Login = () => {
           </Grid>
         </Box>
       </Box>
+      <button
+        onClick={() => {
+          navigate("/appPanel");
+        }}
+      >
+        To appPanel
+      </button>
     </Container>
   );
 };
