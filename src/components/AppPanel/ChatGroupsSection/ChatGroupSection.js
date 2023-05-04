@@ -8,7 +8,7 @@ import ChatGroupCreator from "./ChatGroupCreator";
 import { useSelector } from "react-redux";
 import ChatSearch from "./ChatSearch";
 
-const RoomsSection = () => {
+const ChatGroupSection = () => {
   const displayUsers = useSelector((state) => state.users);
   const loggedUser = useSelector((state) => state.isLogged.userId);
   const filteredUser = displayUsers.filter(
@@ -51,4 +51,4 @@ const RoomsSection = () => {
   );
 };
 
-export default RoomsSection;
+export default ChatGroupSection;
