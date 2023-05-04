@@ -5,10 +5,12 @@ import ListItem from "@mui/material/ListItem";
 import Chip from "@mui/material/Chip";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+import { deleteMessage } from "../../../actions/messageAction/deleteMessage";
 
-const Message = ({ author, time, content }) => {
+const Message = ({ groupId, id, author, time, content }) => {
+  const dispatch = useDispatch();
   const userId = useSelector((state) => state.isLogged.userId);
   // console.log(userId);
   const users = useSelector((state) => state.users);
@@ -115,6 +117,9 @@ const Message = ({ author, time, content }) => {
               aria-label="upload picture"
               component="label"
               sx={{ display: `${showRemoveIcon}`, padding: "0" }}
+              onClick={() => {
+                dispatch(deleteMessage(groupId, id));
+              }}
               // sx={{ visibility: "none" }}
             >
               <HighlightOffIcon sx={{ width: "15px", height: "15px" }} />
