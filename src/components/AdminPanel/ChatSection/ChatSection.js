@@ -4,9 +4,9 @@ import Grid from "@mui/material/Grid";
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import MessageSender from "./MessageSender";
-import { useDispatch, useSelector } from "react-redux";
-
+import { useSelector } from "react-redux";
 import Message from "./Message";
+import ChatWithDisplayer from "./ChatWithDisplayer";
 
 const ChatSection = () => {
   const currentGroupId = useSelector((state) => state.currentGroup.groupId);
@@ -31,9 +31,11 @@ const ChatSection = () => {
   return (
     <Box sx={{ bgcolor: "#f5f5f5", height: "100vh", minWidth: "50vw" }}>
       <Grid item xs={9}>
+        <ChatWithDisplayer />
+        <Divider />
         <List
           ref={container}
-          sx={{ minHeight: "86vh", maxHeight: "86vh", overflow: "auto" }}
+          sx={{ minHeight: "77vh", maxHeight: "77vh", overflow: "auto" }}
         >
           {messageList}
         </List>
