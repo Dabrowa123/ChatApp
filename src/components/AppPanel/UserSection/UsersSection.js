@@ -21,12 +21,15 @@ const UsersSection = () => {
   const userId = useSelector((state) => state.isLogged.userId);
   const users = useSelector((state) => state.users);
   let loggedUser;
+  let userColor;
 
   if (userId !== 0) {
     const filteredUser = users.filter((user) => user.userId === userId);
     if (filteredUser.length !== 0) {
       loggedUser = filteredUser[0].userName;
     }
+
+    userColor = filteredUser[0].avatarColor;
   }
 
   // Click user name to expand logout button
@@ -62,8 +65,8 @@ const UsersSection = () => {
         }}
       >
         <Stack justifyContent={"center"} alignItems={"center"} pt={3}>
-          <Badge color="success" badgeContent=" " overlap="circular">
-            <Avatar sx={{ bgcolor: lightBlue[500], width: 56, height: 56 }}>
+          <Badge badgeContent=" " overlap="circular">
+            <Avatar sx={{ bgcolor: userColor, width: 56, height: 56 }}>
               {displayFirstLetterOfUsername()}
             </Avatar>
           </Badge>

@@ -4,18 +4,21 @@ export const usersReducer = (
       userId: 1,
       userName: "admin01",
       password: "admin",
+      avatarColor: "orange",
       isAdmin: true,
     },
     {
       userId: 2,
       userName: "user01",
       password: "user",
+      avatarColor: "blue",
       isAdmin: false,
     },
     {
       userId: 3,
       userName: "user02",
       password: "user",
+      avatarColor: "orange",
       isAdmin: false,
     },
   ],
@@ -40,6 +43,7 @@ export const usersReducer = (
             userName,
             password,
             isAdmin,
+            avatarColor: user.avatarColor,
           };
         }),
       ];
