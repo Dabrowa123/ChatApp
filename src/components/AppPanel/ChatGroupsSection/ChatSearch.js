@@ -6,7 +6,7 @@ import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { setSearchItem } from "../../../actions/searchGroupActions/setSearchItem";
+import { setSearchGroupItem } from "../../../actions/searchGroupActions/setSearchGroupItem";
 
 const ChatSearch = () => {
   const [groupNameValue, setGroupNameValue] = useState("");
@@ -15,7 +15,7 @@ const ChatSearch = () => {
 
   const onEditHandle = (e) => {
     setGroupNameValue(e.target.value);
-    dispatch(setSearchItem(e.target.value));
+    dispatch(setSearchGroupItem(e.target.value));
   };
 
   const handleSearch = (e) => {

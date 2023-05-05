@@ -1,6 +1,6 @@
-export const searchGroupReducer = (state = "", action) => {
+export const searchUserReducer = (state = "", action) => {
   switch (action.type) {
-    case "SET_SEARCH_GROUP_ITEM":
+    case "SET_SEARCH_USER_ITEM":
       return action.payload;
 
     default:
