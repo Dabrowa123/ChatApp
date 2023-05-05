@@ -15,6 +15,7 @@ const ChatGroupSection = () => {
     (user) => user.userId === loggedUser
   );
   const isAdmin = filteredUser[0].isAdmin;
+
   return (
     <Box
       sx={{
@@ -24,32 +25,31 @@ const ChatGroupSection = () => {
         minWidth: "25vw",
         maxWidth: "400px",
         display: "flex",
-        flexDirection: "column"
+        flexDirection: "column",
       }}
     >
-        <Stack
-          justifyContent={"center"}
-          alignItems={"center"}
-          direction={"row"}
-          spacing={2}
-          sx={{ minHeight: "150px" }}
-        >
-          <ChatIcon
-            sx={{ color: "white", minWidth: "80px", minHeight: "100px" }}
-          />
-          <Typography variant="h4">LOGO</Typography>
-        </Stack>
-        <Divider />
-          <Typography variant="h6" textAlign={"left"} mt={3} mb={2} ml={5}>
-            GROUPS
-          </Typography>
-          <Box sx={{ flexGrow: "4", overflow: "auto" }}>
-            <ChatGroupList />
-          </Box>
-          <Box pb={3} pl={2}>
-            <ChatSearch />
-            {isAdmin && <ChatGroupCreator />}
-          </Box>
+      <Stack
+        justifyContent={"center"}
+        alignItems={"center"}
+        direction={"row"}
+        spacing={2}
+        sx={{ minHeight: "150px" }}
+      >
+        <ChatIcon
+          sx={{ color: "white", minWidth: "80px", minHeight: "100px" }}
+        />
+        <Typography variant="h4">LOGO</Typography>
+      </Stack>
+      <Divider />
+      <Typography variant="h6" textAlign={"left"} mt={3} mb={2} ml={5}>
+        GROUPS
+      </Typography>
+      <Box sx={{ flexGrow: "4", overflow: "auto" }}>
+        <ChatGroupList />
+      </Box>
+      <Box pb={3} pl={2}>
+        {isAdmin && <ChatGroupCreator />}
+      </Box>
     </Box>
   );
 };

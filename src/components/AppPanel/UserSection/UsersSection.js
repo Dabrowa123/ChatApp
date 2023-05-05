@@ -31,7 +31,7 @@ const UsersSection = () => {
           background: "#eceff1",
         }}
       >
-        <UserSearch />
+        {/* <UserSearch /> */}
       </Box>
     </Box>
   );
