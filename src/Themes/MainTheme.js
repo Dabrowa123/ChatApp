@@ -8,31 +8,31 @@ const MainTheme = createTheme({
     MuiCssBaseline: {
       styleOverrides: {
         body: {
-          scrollbarColor: "#FFBD59 transparent",
+          scrollbarColor: "#757575 transparent",
           "&::-webkit-scrollbar, & *::-webkit-scrollbar": {
             backgroundColor: "transparent",
             width: "3px",
           },
           "&::-webkit-scrollbar-thumb, & *::-webkit-scrollbar-thumb": {
             borderRadius: 8,
-            backgroundColor: "#FFBD59",
+            backgroundColor: "#757575",
             minHeight: 24,
             border: "1px solid transparent",
             width: "3px",
           },
           "&::-webkit-scrollbar-thumb:focus, & *::-webkit-scrollbar-thumb:focus":
             {
-              backgroundColor: "#FFBD59",
+              backgroundColor: "#757575",
               width: "3px",
             },
           "&::-webkit-scrollbar-thumb:active, & *::-webkit-scrollbar-thumb:active":
             {
-              backgroundColor: "#FFBD59",
+              backgroundColor: "#757575",
               width: "3px",
             },
           "&::-webkit-scrollbar-thumb:hover, & *::-webkit-scrollbar-thumb:hover":
             {
-              backgroundColor: "#FFBD59",
+              backgroundColor: "#757575",
               width: "3px",
             },
           "&::-webkit-scrollbar-corner, & *::-webkit-scrollbar-corner": {

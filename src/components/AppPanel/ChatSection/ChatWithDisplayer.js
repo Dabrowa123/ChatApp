@@ -3,6 +3,9 @@ import Avatar from "@mui/material/Avatar";
 import Badge from "@mui/material/Badge";
 import { Stack, Typography } from "@mui/material";
 import GroupsRoundedIcon from "@mui/icons-material/GroupsRounded";
+import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
+import VideocamIcon from '@mui/icons-material/Videocam';
+import InfoIcon from '@mui/icons-material/Info';
 
 const ChatWithDisplayer = () => {
   const displayCurrentPickedGroup = useSelector((state) => state.currentGroup);
@@ -35,52 +38,59 @@ const ChatWithDisplayer = () => {
   };
 
   return (
-    <>
-      {isPriv && !isAdmin && (
-        <Stack
-          direction={"row"}
-          display={"flex"}
-          justifyContent={"flex-start"}
-          alignItems={"center"}
-          p={3}
-          sx={{ maxHeight: "70px", minHeight: "70px" }}
-        >
-          <Badge
-            color="primary"
-            badgeContent=" "
-            overlap="circular"
-            variant="dot"
+    <Stack direction={"row"} justifyContent={"space-between"}>
+      <Stack>
+        {isPriv && !isAdmin && (
+          <Stack
+            direction={"row"}
+            display={"flex"}
+            justifyContent={"flex-start"}
+            alignItems={"center"}
+            p={3}
+            sx={{ maxHeight: "70px", minHeight: "70px" }}
           >
-            <Avatar sx={{ bgcolor: currentPickedUserFilter[0].avatarColor }}>
-              {displayFirstLetterOfUsername()}
-            </Avatar>
-          </Badge>
-          <Typography ml={2}>{privGroupUsername}</Typography>
-        </Stack>
-      )}
-      {(!isPriv || (isAdmin && isPriv)) && (
-        <Stack
-          direction={"row"}
-          display={"flex"}
-          justifyContent={"flex-start"}
-          alignItems={"center"}
-          p={3}
-          sx={{ maxHeight: "70px", minHeight: "70px" }}
-        >
-          <GroupsRoundedIcon
-            sx={{
-              color: "#002F6D",
-              background: "white",
-              padding: "5px",
-              borderRadius: "12px",
-              height: "35px",
-              width: "35px",
-            }}
-          />
-          <Typography ml={2}>{currentPickedGroupName.groupName}</Typography>
-        </Stack>
-      )}
-    </>
+            <Badge
+              color="primary"
+              badgeContent=" "
+              overlap="circular"
+              variant="dot"
+            >
+              <Avatar sx={{ bgcolor: currentPickedUserFilter[0].avatarColor }}>
+                {displayFirstLetterOfUsername()}
+              </Avatar>
+            </Badge>
+            <Typography ml={2}>{privGroupUsername}</Typography>
+          </Stack>
+        )}
+        {(!isPriv || (isAdmin && isPriv)) && (
+          <Stack
+            direction={"row"}
+            display={"flex"}
+            justifyContent={"flex-start"}
+            alignItems={"center"}
+            p={3}
+            sx={{ maxHeight: "70px", minHeight: "70px" }}
+          >
+            <GroupsRoundedIcon
+              sx={{
+                color: "#002F6D",
+                background: "white",
+                padding: "5px",
+                borderRadius: "12px",
+                height: "35px",
+                width: "35px",
+              }}
+            />
+            <Typography ml={2}>{currentPickedGroupName.groupName}</Typography>
+          </Stack>
+        )}
+      </Stack>
+      <Stack direction={"row"} justifyContent={"space-between"} alignItems={"center"}>
+        <LocalPhoneIcon sx={{marginRight:"35px"}} />
+        <VideocamIcon sx={{marginRight:"35px"}}/>
+        <InfoIcon sx={{marginRight:"35px"}}/>
+      </Stack>
+    </Stack>
   );
 };
 
