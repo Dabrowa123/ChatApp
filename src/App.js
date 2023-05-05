@@ -9,7 +9,6 @@ import AppPanel from "./components/AppPanel/AppPanel";
 function App() {
   const userId = useSelector((state) => state.isLogged.userId);
   const users = useSelector((state) => state.users);
-  let isAdmin = false;
   let isLogged = false;
 
   if (userId !== 0) {
@@ -17,7 +16,6 @@ function App() {
     if (filteredUser.length !== 0) {
       isLogged = true;
     }
-    isAdmin = filteredUser[0].isAdmin;
   }
 
   return (

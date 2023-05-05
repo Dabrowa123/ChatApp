@@ -32,7 +32,7 @@ export const usersReducer = (
     case "EDIT_USER":
       return [
         state.map((user) => {
-          if (user.id !== action.payload.id) {
+          if (user.userId !== action.payload.id) {
             return user;
           }
 
@@ -47,6 +47,17 @@ export const usersReducer = (
           };
         }),
       ];
+    case "CHANGE_AVATAR_COLOR":
+      return state.map((user) => {
+        if (user.userId !== action.payload.id) {
+          return user;
+        }
+        return {
+          ...user,
+          avatarColor: action.payload.avatarColor,
+        };
+      });
+
     default:
       return state;
   }

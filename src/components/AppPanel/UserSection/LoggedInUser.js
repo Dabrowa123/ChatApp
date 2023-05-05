@@ -3,6 +3,7 @@ import Stack from "@mui/material/Stack";
 import Avatar from "@mui/material/Avatar";
 import Badge from "@mui/material/Badge";
 import Button from "@mui/material/Button";
+import { ButtonGroup } from "@mui/material";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { useNavigate } from "react-router";
@@ -15,13 +16,14 @@ import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
 import Typography from "@mui/material/Typography";
 import CloseIcon from "@mui/icons-material/Close";
+import { changeAvatarColor } from "../../../actions/userActions/changeAvatarColor";
 
 const style = {
   position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 300,
+  width: 500,
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
@@ -45,6 +47,8 @@ const LoggedInUser = () => {
     userColor = filteredUser[0].avatarColor;
   }
 
+  const [colorToChange, setColorToChange] = React.useState(userColor);
+
   // Click user name to expand logout button
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -58,6 +62,11 @@ const LoggedInUser = () => {
   const displayFirstLetterOfUsername = () => {
     const charArr = [...loggedUser];
     return charArr[0].toUpperCase();
+  };
+
+  const setColor = (e) => {
+    const color = e.target.name;
+    setColorToChange(color);
   };
 
   //SettingsModal
@@ -145,13 +154,66 @@ const LoggedInUser = () => {
               component="h2"
               textAlign={"center"}
             >
-              Settings
+              Wybierz kolor awatara
             </Typography>
             <Stack
               direction={"row"}
               alignItems={"center"}
               justifyContent={"center"}
-            ></Stack>
+            >
+              <Avatar sx={{ bgcolor: colorToChange }}>
+                {displayFirstLetterOfUsername()}
+              </Avatar>
+              <ButtonGroup
+                variant="contained"
+                aria-label="outlined primary button group"
+              >
+                <Button name="red" size="small" onClick={setColor}>
+                  Red
+                </Button>
+                <Button name="blue" size="small" onClick={setColor}>
+                  Blue
+                </Button>
+                <Button name="green" size="small" onClick={setColor}>
+                  Green
+                </Button>
+                <Button name="orange" size="small" onClick={setColor}>
+                  Orange
+                </Button>
+              </ButtonGroup>
+              <Button
+                variant="contained"
+                size="small"
+                onClick={(e) => {
+                  e.preventDefault();
+                  dispatch(changeAvatarColor(userId, colorToChange));
+                  setOpenModal(false);
+                }}
+              >
+                Zatwierdź
+              </Button>
+              {/* <button name="red" onClick={setColor}>
+                Red
+              </button>
+              <button name="blue" onClick={setColor}>
+                Blue
+              </button>
+              <button name="green" onClick={setColor}>
+                Green
+              </button>
+              <button name="orange" onClick={setColor}>
+                Orange
+              </button> */}
+              {/* <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  dispatch(changeAvatarColor(userId, colorToChange));
+                  setOpenModal(false);
+                }}
+              >
+                Zatwierdź
+              </button> */}
+            </Stack>
             <CloseIcon
               onClick={handleCloseModal}
               sx={{

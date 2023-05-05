@@ -31,7 +31,7 @@ const ChatGroupList = () => {
 
   return (
     <div>
-      {toDisplayGroups.length !== 0 ? (
+      {filteredGroups.length !== 0 ? (
         toDisplayGroups
       ) : (
         <p>Not found any matching group!</p>
