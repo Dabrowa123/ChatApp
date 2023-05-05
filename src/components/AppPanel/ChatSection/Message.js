@@ -112,13 +112,13 @@ const Message = ({ groupId, id, author, time, content, isDeleted }) => {
                         whiteSpace: "normal",
                       },
                     }
-                  : {
+                    : {
                       color: "grey",
                       border: "1px solid grey",
                       background: "transparent",
                       fontStyle: "italic",
                       pointerEvents: "none",
-                      height: "24",
+                      height: "24px",
                       maxWidth: "60%",
                       fontSize: "16px",
                       "& .MuiChip-label": {
