@@ -6,6 +6,9 @@ import reportWebVitals from "./reportWebVitals";
 import { rootReducer } from "./reducers/rootReducer";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
+import { ThemeProvider } from "@mui/material/styles";
+import MainTheme from "./Themes/MainTheme";
+import CssBaseline from "@mui/material/CssBaseline";
 
 let store = createStore(
   rootReducer,
@@ -16,7 +19,10 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
     <React.StrictMode>
-      <App />
+      <ThemeProvider theme={MainTheme}>
+        <CssBaseline />
+        <App />
+      </ThemeProvider>
     </React.StrictMode>
   </Provider>
 );

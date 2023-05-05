@@ -9,6 +9,24 @@ import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { pickGroup } from "../../../actions/groupActions/pickGroup";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import Backdrop from "@mui/material/Backdrop";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import Fade from "@mui/material/Fade";
+import Typography from "@mui/material/Typography";
+import CloseIcon from "@mui/icons-material/Close";
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 300,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
 
 const LoggedInUser = () => {
   const dispatch = useDispatch();
@@ -41,7 +59,15 @@ const LoggedInUser = () => {
     const charArr = [...loggedUser];
     return charArr[0].toUpperCase();
   };
+
+  //SettingsModal
+
+  const [openModal, setOpenModal] = React.useState(false);
+  const handleOpenModal = () => setOpenModal(true);
+  const handleCloseModal = () => setOpenModal(false);
+
   return (
+    <>
       <Stack
         justifyContent={"center"}
         alignItems={"center"}
@@ -81,7 +107,9 @@ const LoggedInUser = () => {
             open={open}
             onClose={handleClose}
           >
-            <MenuItem disableRipple>Settings</MenuItem>
+            <MenuItem disableRipple onClick={handleOpenModal}>
+              Settings
+            </MenuItem>
             <MenuItem disableRipple>Calendar</MenuItem>
             <MenuItem
               onClick={() => {
@@ -96,6 +124,46 @@ const LoggedInUser = () => {
         </Stack>
       </Stack>
 
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        open={openModal}
+        onClose={handleCloseModal}
+        closeAfterTransition
+        slots={{ backdrop: Backdrop }}
+        slotProps={{
+          backdrop: {
+            timeout: 500,
+          },
+        }}
+      >
+        <Fade in={openModal}>
+          <Box sx={style}>
+            <Typography
+              id="transition-modal-title"
+              variant="h6"
+              component="h2"
+              textAlign={"center"}
+            >
+              Settings
+            </Typography>
+            <Stack
+              direction={"row"}
+              alignItems={"center"}
+              justifyContent={"center"}
+            ></Stack>
+            <CloseIcon
+              onClick={handleCloseModal}
+              sx={{
+                position: "absolute",
+                top: 17,
+                right: 20,
+              }}
+            />
+          </Box>
+        </Fade>
+      </Modal>
+    </>
   );
 };
 
