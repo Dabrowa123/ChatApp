@@ -1,3 +1,4 @@
+import * as React from "react";
 import ListItemButton from "@mui/material/ListItemButton";
 import GroupsRoundedIcon from "@mui/icons-material/GroupsRounded";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -9,6 +10,23 @@ import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { useDispatch, useSelector } from "react-redux";
 import { pickGroup } from "../../../actions/groupActions/pickGroup";
 import { deleteGroup } from "../../../actions/groupActions/deleteGroup";
+import Backdrop from "@mui/material/Backdrop";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import Fade from "@mui/material/Fade";
+import Button from "@mui/material/Button";
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 300,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
 
 const ChatGroup = ({ groupId, groupName, userIdList, messages }) => {
   const currentPickedGroup = useSelector((state) => state.currentGroup.groupId);
@@ -20,54 +38,104 @@ const ChatGroup = ({ groupId, groupName, userIdList, messages }) => {
   const isAdmin = filteredUser[0].isAdmin;
   const dispatch = useDispatch();
 
+  //RemoveGroupModal
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   return (
-    <Typography variant="h1" fontSize="large">
-      <ListItemButton>
-        <Stack
-          direction={"row"}
-          onClick={() => {
-            dispatch(pickGroup(groupId));
-          }}
-          width={"100%"}
-          alignItems={"center"}
-          pl={1}
-        >
-          <ListItemIcon>
-            <GroupsRoundedIcon
-              color="primary"
-              sx={{
-                background: "InfoBackground",
-                padding: "5px",
-                borderRadius: "12px",
-              }}
-            />
-          </ListItemIcon>
-          <ListItemText primary={groupName} />
-        </Stack>
-        {isAdmin && (
-          <IconButton
-            type="submit"
-            color="primary"
-            sx={{ p: "10px" }}
-            aria-label="directions"
+    <>
+      <Typography variant="h1" fontSize="large">
+        <ListItemButton>
+          <Stack
+            direction={"row"}
             onClick={() => {
-              if (groupId === 1) {
-                alert("Nie możesz usunąć głównej grupy!");
-              } else {
-                if (currentPickedGroup === groupId) {
-                  dispatch(pickGroup(1));
-                  dispatch(deleteGroup(groupId));
-                } else {
-                  dispatch(deleteGroup(groupId));
-                }
-              }
+              dispatch(pickGroup(groupId));
             }}
+            width={"100%"}
+            alignItems={"center"}
+            pl={1}
           >
-            <HighlightOffIcon />
-          </IconButton>
-        )}
-      </ListItemButton>
-    </Typography>
+            <ListItemIcon>
+              <GroupsRoundedIcon
+                color="primary"
+                sx={{
+                  background: "InfoBackground",
+                  padding: "5px",
+                  borderRadius: "12px",
+                }}
+              />
+            </ListItemIcon>
+            <ListItemText primary={groupName} />
+          </Stack>
+          {isAdmin && (
+            <IconButton
+              type="submit"
+              color="primary"
+              sx={{ p: "10px" }}
+              aria-label="directions"
+              onClick={handleOpen}
+            >
+              <HighlightOffIcon />
+            </IconButton>
+          )}
+        </ListItemButton>
+      </Typography>
+
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        open={open}
+        onClose={handleClose}
+        closeAfterTransition
+        slots={{ backdrop: Backdrop }}
+        slotProps={{
+          backdrop: {
+            timeout: 500,
+          },
+        }}
+      >
+        <Fade in={open}>
+          <Box sx={style}>
+            <Typography
+              id="transition-modal-title"
+              variant="h6"
+              component="h2"
+              textAlign={"center"}
+            >
+              Are you sure you want to remove this group?
+            </Typography>
+            <Stack
+              direction={"row"}
+              alignItems={"center"}
+              justifyContent={"center"}
+            >
+              <Button
+                sx={{ mt: 2 }}
+                onClick={() => {
+                  if (groupId === 1) {
+                    alert("Nie możesz usunąć głównej grupy!");
+                  } else {
+                    if (currentPickedGroup === groupId) {
+                      dispatch(pickGroup(1));
+                      dispatch(deleteGroup(groupId));
+                    } else {
+                      dispatch(deleteGroup(groupId));
+                    }
+                  }
+                }}
+              >
+                Yes
+              </Button>
+              <Button sx={{ mt: 2 }} onClick={handleClose}>
+                No
+              </Button>
+            </Stack>
+          </Box>
+        </Fade>
+      </Modal>
+    </>
   );
 };
 
