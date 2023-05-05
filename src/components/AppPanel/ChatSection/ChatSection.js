@@ -28,17 +28,23 @@ const ChatSection = () => {
   }, [messageList]);
 
   return (
-    <Box sx={{ bgcolor: "#f5f5f5", minHeight: "100vh", maxHeight: "100vh", minWidth: "50vw", display: "flex", flexDirection: "column" }}>
-        <ChatWithDisplayer />
-        <Divider />
-        <List
-          ref={container}
-          sx={{ flexGrow: "4" }}
-        >
-          {messageList}
-        </List>
-        <Divider />
-        <MessageSender />
+    <Box
+      sx={{
+        bgcolor: "#f5f5f5",
+        minHeight: "100vh",
+        maxHeight: "100vh",
+        minWidth: "50vw",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
+      <ChatWithDisplayer />
+      <Divider />
+      <List ref={container} sx={{ flexGrow: "4", overflow: "auto" }}>
+        {messageList}
+      </List>
+      <Divider />
+      <MessageSender />
     </Box>
   );
 };
