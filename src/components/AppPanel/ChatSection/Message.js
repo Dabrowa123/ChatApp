@@ -102,7 +102,7 @@ const Message = ({ groupId, id, author, time, content, isDeleted }) => {
               sx={
                 !isDeleted
                   ? {
-                      height: "auto",
+                      height: "24px",
                       maxWidth: "60%",
                       marginLeft: "5px",
                       fontSize: "16px",
@@ -118,7 +118,7 @@ const Message = ({ groupId, id, author, time, content, isDeleted }) => {
                       background: "transparent",
                       fontStyle: "italic",
                       pointerEvents: "none",
-                      height: "auto",
+                      height: "24",
                       maxWidth: "60%",
                       fontSize: "16px",
                       "& .MuiChip-label": {
@@ -173,7 +173,7 @@ const Message = ({ groupId, id, author, time, content, isDeleted }) => {
               sx={
                 !isDeleted
                   ? {
-                      height: "auto",
+                      height: "24px",
                       maxWidth: "60%",
                       marginRight: "5px",
                       fontSize: "16px",
@@ -188,7 +188,7 @@ const Message = ({ groupId, id, author, time, content, isDeleted }) => {
                       background: "transparent",
                       fontStyle: "italic",
                       pointerEvents: "none",
-                      height: "auto",
+                      height: "24px",
                       maxWidth: "60%",
                       fontSize: "16px",
                       "& .MuiChip-label": {
