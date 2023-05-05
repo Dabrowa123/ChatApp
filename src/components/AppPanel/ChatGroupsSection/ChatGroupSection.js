@@ -1,11 +1,13 @@
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
+import Stack from "@mui/material/Stack";
 import { Typography } from "@mui/material";
 import ChatGroupList from "./ChatGroupList";
 import ChatGroupCreator from "./ChatGroupCreator";
 import { useSelector } from "react-redux";
 import ChatSearch from "./ChatSearch";
 import ChatGroupLogo from "./ChatGroupLogo";
+import ChatIcon from "@mui/icons-material/Chat";
 
 const ChatGroupSection = () => {
   const displayUsers = useSelector((state) => state.users);
