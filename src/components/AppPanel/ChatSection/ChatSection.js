@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react";
 import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import MessageSender from "./MessageSender";
@@ -29,19 +28,17 @@ const ChatSection = () => {
   }, [messageList]);
 
   return (
-    <Box sx={{ bgcolor: "#f5f5f5", minHeight: "100vh", maxHeight: "100vh", minWidth: "50vw" }}>
-      <Grid item xs={9}>
+    <Box sx={{ bgcolor: "#f5f5f5", minHeight: "100vh", maxHeight: "100vh", minWidth: "50vw", display: "flex", flexDirection: "column" }}>
         <ChatWithDisplayer />
         <Divider />
         <List
           ref={container}
-          sx={{ minHeight: "70vh", maxHeight: "70vh", overflow: "auto" }}
+          sx={{ flexGrow: "4" }}
         >
           {messageList}
         </List>
         <Divider />
         <MessageSender />
-      </Grid>
     </Box>
   );
 };
