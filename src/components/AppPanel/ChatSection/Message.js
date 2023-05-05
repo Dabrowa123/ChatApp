@@ -4,6 +4,7 @@ import ListItemText from "@mui/material/ListItemText";
 import ListItem from "@mui/material/ListItem";
 import Chip from "@mui/material/Chip";
 import Typography from "@mui/material/Typography";
+import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import { useDispatch, useSelector } from "react-redux";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
@@ -14,14 +15,15 @@ const Message = ({ groupId, id, author, time, content, isDeleted }) => {
   const userId = useSelector((state) => state.isLogged.userId);
   const users = useSelector((state) => state.users);
   let loggedUser;
+  let avatarColor;
 
   if (userId !== 0) {
     const filteredUser = users.filter((user) => user.userId === userId);
     if (filteredUser.length !== 0) {
       loggedUser = filteredUser[0].userName;
+      avatarColor = filteredUser[0].avatarColor;
     }
   }
-
   const filteredUserForAdmin = users.filter((user) => user.userId === userId);
   const isAdmin = filteredUserForAdmin[0].isAdmin;
 
@@ -46,6 +48,12 @@ const Message = ({ groupId, id, author, time, content, isDeleted }) => {
       setLetUserClickMessage("none");
     }
   }, [isMessageClicked]);
+
+  /////////////////////////////
+  const displayFirstLetterOfUsername = () => {
+    const charArr = loggedUser;
+    return charArr[0].toUpperCase();
+  };
 
   let message =
     loggedUser !== author ? (
@@ -75,6 +83,11 @@ const Message = ({ groupId, id, author, time, content, isDeleted }) => {
             )}
 
             <Chip
+              avatar={
+                <Avatar sx={{ bgcolor: avatarColor }}>
+                  {displayFirstLetterOfUsername()}
+                </Avatar>
+              }
               label={
                 <Typography style={{ whiteSpace: "normal" }}>
                   {content}
@@ -134,6 +147,11 @@ const Message = ({ groupId, id, author, time, content, isDeleted }) => {
             }}
           >
             <Chip
+              avatar={
+                <Avatar sx={{ bgcolor: avatarColor }}>
+                  {displayFirstLetterOfUsername()}
+                </Avatar>
+              }
               label={
                 <Typography style={{ whiteSpace: "normal" }}>
                   {content}

@@ -5,13 +5,18 @@ import Paper from "@mui/material/Paper";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setSearchUserItem } from "../../../actions/searchUserActions/setSearchUserItem";
 
 const UserSearch = ({ onSearch }) => {
   const [userNameValue, setGroupNameValue] = useState("");
 
+  const dispatch = useDispatch();
+
   const onEditHandle = (e) => {
     setGroupNameValue(e.target.value);
-    onSearch(e.target.value);
+    dispatch(setSearchUserItem(e.target.value));
+    // onSearch(e.target.value);
   };
 
   return (

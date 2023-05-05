@@ -6,7 +6,8 @@ import UserSearch from "./UserSearch";
 const UserList = () => {
   const displayUsers = useSelector((state) => state.users);
   const currentUserId = useSelector((state) => state.isLogged.userId);
-  const [searchItem, setSearchItem] = useState("");
+  const searchItem = useSelector((state) => state.searchUser);
+  // const [searchItem, setSearchItem] = useState("");
 
   const filteredUsers = displayUsers.filter((user) =>
     user.userName.toLowerCase().includes(searchItem.toLowerCase())
@@ -27,7 +28,6 @@ const UserList = () => {
       ) : (
         <p>Not found any matching user!</p>
       )}
-      <UserSearch onSearch={setSearchItem} />
     </div>
   );
 };

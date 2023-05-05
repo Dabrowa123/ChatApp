@@ -1,15 +1,17 @@
-import { Search } from "@mui/icons-material";
 import ChatGroup from "./ChatGroup";
 import { useSelector } from "react-redux";
 import ChatSearch from "./ChatSearch";
-import { useState } from "react";
-import { useEffect } from "react";
+import ChatGroupCreator from "./ChatGroupCreator";
+import Box from "@mui/material/Box";
 
 const ChatGroupList = () => {
   const displayUsers = useSelector((state) => state.users);
   const displayGroups = useSelector((state) => state.chatGroups);
   const loggedUser = useSelector((state) => state.isLogged.userId);
-  const [searchItem, setSearchItem] = useState("");
+  const searchItem = useSelector((state) => state.searchGroup);
+
+  console.log(searchItem);
+
   const filteredUser = displayUsers.filter(
     (user) => user.userId === loggedUser
   );
@@ -27,8 +29,6 @@ const ChatGroupList = () => {
     }
   });
 
-  console.log(filteredGroups);
-
   return (
     <div>
       {filteredGroups.length !== 0 ? (
@@ -36,7 +36,6 @@ const ChatGroupList = () => {
       ) : (
         <p>Not found any matching group!</p>
       )}
-      <ChatSearch onSearch={setSearchItem} />
     </div>
   );
 };
