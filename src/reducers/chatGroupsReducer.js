@@ -2,14 +2,14 @@ export const chatGroupsReducer = (
   state = [
     {
       groupId: 1,
-      groupName: "Group1",
+      groupName: "General",
       userIdList: [],
       messages: [],
       isPriv: false,
     },
     {
       groupId: 2,
-      groupName: "Group2",
+      groupName: "NovoAkademia",
       userIdList: [],
       messages: [],
       isPriv: false,

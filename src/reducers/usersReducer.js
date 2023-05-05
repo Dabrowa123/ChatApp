@@ -2,21 +2,21 @@ export const usersReducer = (
   state = [
     {
       userId: 1,
-      userName: "admin01",
+      userName: "Administrator",
       password: "admin",
-      avatarColor: "orange",
+      avatarColor: "grey",
       isAdmin: true,
     },
     {
       userId: 2,
-      userName: "user01",
+      userName: "Dominik",
       password: "user",
-      avatarColor: "blue",
+      avatarColor: "green",
       isAdmin: false,
     },
     {
       userId: 3,
-      userName: "user02",
+      userName: "Szymon",
       password: "user",
       avatarColor: "orange",
       isAdmin: false,

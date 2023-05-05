@@ -200,8 +200,8 @@ const LoggedInUser = () => {
                     <Button name="red" size="small" onClick={setColor}>
                       Red
                     </Button>
-                    <Button name="blue" size="small" onClick={setColor}>
-                      Blue
+                    <Button name="grey" size="small" onClick={setColor}>
+                      Grey
                     </Button>
                     <Button name="green" size="small" onClick={setColor}>
                       Green
