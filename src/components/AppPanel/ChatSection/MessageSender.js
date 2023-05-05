@@ -73,7 +73,7 @@ const MessageSender = () => {
 
   return (
     <Grid container style={{ padding: "20px" }}>
-      <Grid item xs={11}>
+      <Grid item xs={10.8}>
         <TextField
           id="outlined-basic-email"
           label="Type something"
@@ -88,9 +88,9 @@ const MessageSender = () => {
           fullWidth
         />
       </Grid>
-      <Grid xs={1} align="right">
+      <Grid xs={1.2} align="right">
         <Fab color="primary" aria-label="add" onClick={send}>
-          <SendIcon />
+          <SendIcon/>
         </Fab>
       </Grid>
     </Grid>
