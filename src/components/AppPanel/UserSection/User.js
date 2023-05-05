@@ -1,3 +1,4 @@
+import * as React from "react";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
@@ -12,6 +13,23 @@ import IconButton from "@mui/material/IconButton";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { deleteUser } from "../../../actions/userActions/deleteUser";
 import { pickUser } from "../../../actions/userActions/pickUser";
+import Backdrop from "@mui/material/Backdrop";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import Fade from "@mui/material/Fade";
+import Button from "@mui/material/Button";
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 300,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
 
 const User = ({ userId, userName, avatarColor }) => {
   const dispatch = useDispatch();
@@ -66,48 +84,98 @@ const User = ({ userId, userName, avatarColor }) => {
     return charArr[0].toUpperCase();
   };
 
+  //RemoveUserModal
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   return (
-    <Typography variant="h1" fontSize="large" pl={1}>
-      <ListItemButton>
-        <Stack
-          direction={"row"}
-          onClick={createOrSelectPrivChat}
-          width={"100%"}
-          alignItems={"center"}
-        >
-          <ListItemIcon>
-            <Badge
-              color="info"
-              badgeContent=" "
-              overlap="circular"
-              variant="dot"
-            >
-              <Avatar sx={{ bgcolor: avatarColor }}>
-                {displayFirstLetterOfUsername()}
-              </Avatar>
-            </Badge>
-          </ListItemIcon>
-          <ListItemText primary={userName} />
-        </Stack>
-        {isAdmin && (
-          <IconButton
-            type="submit"
-            color="primary"
-            sx={{ p: "10px" }}
-            aria-label="directions"
-            onClick={() => {
-              if (loggedUser === userId) {
-                alert("Nie możesz usunąć samego siebie!");
-              } else {
-                dispatch(deleteUser(userId));
-              }
-            }}
+    <>
+      <Typography variant="h1" fontSize="large" pl={1}>
+        <ListItemButton>
+          <Stack
+            direction={"row"}
+            onClick={createOrSelectPrivChat}
+            width={"100%"}
+            alignItems={"center"}
           >
-            <HighlightOffIcon />
-          </IconButton>
-        )}
-      </ListItemButton>
-    </Typography>
+            <ListItemIcon>
+              <Badge
+                color="info"
+                badgeContent=" "
+                overlap="circular"
+                variant="dot"
+              >
+                <Avatar sx={{ bgcolor: avatarColor }}>
+                  {displayFirstLetterOfUsername()}
+                </Avatar>
+              </Badge>
+            </ListItemIcon>
+            <ListItemText primary={userName} />
+          </Stack>
+          {isAdmin && (
+            <IconButton
+              type="submit"
+              color="primary"
+              sx={{ p: "10px" }}
+              aria-label="directions"
+              onClick={handleOpen}
+            >
+              <HighlightOffIcon />
+            </IconButton>
+          )}
+        </ListItemButton>
+      </Typography>
+
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        open={open}
+        onClose={handleClose}
+        closeAfterTransition
+        slots={{ backdrop: Backdrop }}
+        slotProps={{
+          backdrop: {
+            timeout: 500,
+          },
+        }}
+      >
+        <Fade in={open}>
+          <Box sx={style}>
+            <Typography
+              id="transition-modal-title"
+              variant="h6"
+              component="h2"
+              textAlign={"center"}
+            >
+              Are you sure you want to remove this user?
+            </Typography>
+            <Stack
+              direction={"row"}
+              alignItems={"center"}
+              justifyContent={"center"}
+            >
+              <Button
+                sx={{ mt: 2 }}
+                onClick={() => {
+                  if (loggedUser === userId) {
+                    alert("Nie możesz usunąć samego siebie!");
+                  } else {
+                    dispatch(deleteUser(userId));
+                  }
+                }}
+              >
+                Yes
+              </Button>
+              <Button sx={{ mt: 2 }} onClick={handleClose}>
+                No
+              </Button>
+            </Stack>
+          </Box>
+        </Fade>
+      </Modal>
+    </>
   );
 };
 
