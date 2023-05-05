@@ -35,6 +35,7 @@ const LoggedInUser = () => {
   const navigate = useNavigate();
   const userId = useSelector((state) => state.isLogged.userId);
   const users = useSelector((state) => state.users);
+  const currentGroup = useSelector((state) => state.currentGroup.groupId);
   let loggedUser;
   let userColor;
 

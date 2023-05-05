@@ -15,17 +15,27 @@ const Message = ({ groupId, id, author, time, content, isDeleted }) => {
   const userId = useSelector((state) => state.isLogged.userId);
   const users = useSelector((state) => state.users);
   let loggedUser;
-  let avatarColor;
 
   if (userId !== 0) {
     const filteredUser = users.filter((user) => user.userId === userId);
     if (filteredUser.length !== 0) {
       loggedUser = filteredUser[0].userName;
-      avatarColor = filteredUser[0].avatarColor;
     }
   }
+
   const filteredUserForAdmin = users.filter((user) => user.userId === userId);
   const isAdmin = filteredUserForAdmin[0].isAdmin;
+
+  const filteredMessageAuthor = users.filter(
+    (user) => user.userName === author
+  );
+
+  const filteredAuthorAvatarColor = filteredMessageAuthor[0].avatarColor;
+  const [authorAvatarColor, setAuthorAvatarColor] = React.useState(
+    filteredAuthorAvatarColor
+  );
+
+  console.log("Author avatar color: " + authorAvatarColor);
 
   // Clicking the message to show 'remove'
   const handleClickMessage = () => {
@@ -50,8 +60,8 @@ const Message = ({ groupId, id, author, time, content, isDeleted }) => {
   }, [isMessageClicked]);
 
   /////////////////////////////
-  const displayFirstLetterOfUsername = () => {
-    const charArr = loggedUser;
+  const displayFirstLetterOfUsername = (userName) => {
+    const charArr = [...userName];
     return charArr[0].toUpperCase();
   };
 
@@ -83,11 +93,6 @@ const Message = ({ groupId, id, author, time, content, isDeleted }) => {
             )}
 
             <Chip
-              avatar={
-                <Avatar sx={{ bgcolor: avatarColor }}>
-                  {displayFirstLetterOfUsername()}
-                </Avatar>
-              }
               label={
                 <Typography style={{ whiteSpace: "normal" }}>
                   {content}
@@ -125,6 +130,9 @@ const Message = ({ groupId, id, author, time, content, isDeleted }) => {
               }
               onClick={handleClickMessage}
             />
+            <Avatar sx={{ bgcolor: authorAvatarColor }}>
+              {displayFirstLetterOfUsername(author)}
+            </Avatar>
           </Grid>
           <Grid item xs={12}>
             <ListItemText
@@ -147,11 +155,6 @@ const Message = ({ groupId, id, author, time, content, isDeleted }) => {
             }}
           >
             <Chip
-              avatar={
-                <Avatar sx={{ bgcolor: avatarColor }}>
-                  {displayFirstLetterOfUsername()}
-                </Avatar>
-              }
               label={
                 <Typography style={{ whiteSpace: "normal" }}>
                   {content}

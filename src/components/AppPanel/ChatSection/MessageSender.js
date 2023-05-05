@@ -90,7 +90,7 @@ const MessageSender = () => {
       </Grid>
       <Grid xs={1.2} align="right">
         <Fab color="primary" aria-label="add" onClick={send}>
-          <SendIcon/>
+          <SendIcon />
         </Fab>
       </Grid>
     </Grid>
