@@ -64,6 +64,8 @@ const ChatGroup = ({ groupId, groupName, userIdList, messages }) => {
                   background: "InfoBackground",
                   padding: "5px",
                   borderRadius: "12px",
+                  height: "35px",
+                  width: "35px",
                 }}
               />
             </ListItemIcon>
