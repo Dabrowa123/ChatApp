@@ -46,7 +46,7 @@ const ChatGroup = ({ groupId, groupName, userIdList, messages }) => {
 
   return (
     <>
-      <Typography variant="h1" fontSize="large">
+      <Typography variant="h1" fontSize="large" sx={{ color: "white" }}>
         <ListItemButton>
           <Stack
             direction={"row"}

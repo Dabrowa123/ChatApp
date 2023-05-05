@@ -1,6 +1,9 @@
 import { createTheme } from "@mui/material/styles";
 
 const MainTheme = createTheme({
+  typography: {
+    fontFamily: ["Poppins", "sans-serif"].join(","),
+  },
   components: {
     MuiCssBaseline: {
       styleOverrides: {

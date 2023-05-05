@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import ChatSearch from "./ChatSearch";
 import ChatGroupLogo from "./ChatGroupLogo";
 import ChatIcon from "@mui/icons-material/Chat";
+import Logo from "../../../pictures/Logo.png";
 
 const ChatGroupSection = () => {
   const displayUsers = useSelector((state) => state.users);
@@ -20,7 +21,8 @@ const ChatGroupSection = () => {
   return (
     <Box
       sx={{
-        background: "linear-gradient(to bottom, #36EAEF, #1565c0)",
+        // background: "linear-gradient(to bottom, #36EAEF, #1565c0)",
+        background: "#002F6D",
         minHeight: "100vh",
         maxHeight: "100vh",
         minWidth: "25vw",
@@ -34,15 +36,23 @@ const ChatGroupSection = () => {
         alignItems={"center"}
         direction={"row"}
         spacing={2}
-        sx={{ minHeight: "150px" }}
+        sx={{ minHeight: "200px" }}
       >
-        <ChatIcon
+        <img src={Logo} alt="logo" width="60%" height="auto"></img>
+        {/* <ChatIcon
           sx={{ color: "white", minWidth: "80px", minHeight: "100px" }}
         />
-        <Typography variant="h4">LOGO</Typography>
+        <Typography variant="h4">LOGO</Typography> */}
       </Stack>
-      <Divider />
-      <Typography variant="h6" textAlign={"left"} mt={3} mb={2} ml={5}>
+      <Divider sx={{ bgcolor: "#ffbd59" }} />
+      <Typography
+        sx={{ color: "white" }}
+        variant="h6"
+        textAlign={"left"}
+        mt={3}
+        mb={2}
+        ml={5}
+      >
         GROUPS
       </Typography>
       <Box sx={{ flexGrow: "4", overflow: "auto" }}>
