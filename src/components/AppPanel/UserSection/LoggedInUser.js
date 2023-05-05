@@ -3,13 +3,13 @@ import Stack from "@mui/material/Stack";
 import Avatar from "@mui/material/Avatar";
 import Badge from "@mui/material/Badge";
 import Button from "@mui/material/Button";
-import { ButtonGroup } from "@mui/material";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
+import { ButtonGroup, ListItemButton, ListItemText, Collapse } from "@mui/material";
+import List from "@mui/material/List";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { pickGroup } from "../../../actions/groupActions/pickGroup";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
@@ -51,14 +51,10 @@ const LoggedInUser = () => {
 
   const [colorToChange, setColorToChange] = React.useState(userColor);
 
-  // Click user name to expand logout button
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => {
+    setOpen((prev) => !prev)
   };
 
   const displayFirstLetterOfUsername = () => {
@@ -80,13 +76,13 @@ const LoggedInUser = () => {
   return (
     <>
       <Stack
-        justifyContent={"center"}
+        justifyContent={"flex-start"}
         alignItems={"center"}
-        spacing={2}
         sx={{
           minHeight: "150px",
-          maxHeight: "150px",
           background: "#002F6D",
+          pt: "5px",
+          pb: "15px"
         }}
       >
         <Stack justifyContent={"center"} alignItems={"center"} pt={3}>
@@ -103,43 +99,37 @@ const LoggedInUser = () => {
             </Avatar>
           </Badge>
           <Button
-            id="demo-customized-button"
-            aria-controls={open ? "demo-customized-menu" : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? "true" : undefined}
             variant="text"
             size="large"
             disableElevation
             onClick={handleClick}
-            endIcon={<KeyboardArrowDownIcon />}
-            sx={{ color: "white", textTransform: "none", fontSize: "22px" }}
+            endIcon={open? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+            sx={{ color: "white", textTransform: "none", fontSize: "22px", pb: "0" }}
           >
             {loggedUser}
           </Button>
-          <Menu
-            id="demo-customized-menu"
-            MenuListProps={{
-              "aria-labelledby": "demo-customized-button",
-            }}
-            anchorEl={anchorEl}
-            open={open}
-            onClose={handleClose}
-          >
-            <MenuItem disableRipple onClick={handleOpenModal}>
-              Settings
-            </MenuItem>
-            <MenuItem disableRipple>Calendar</MenuItem>
-            <MenuItem
-              onClick={() => {
-                navigate("/");
-                dispatch(pickGroup(1));
-              }}
-              disableRipple
-            >
-              Log out
-            </MenuItem>
-          </Menu>
         </Stack>
+        <Collapse in={open} sx={{width: "100%"}}>
+          <List 
+            sx={{color: "white", pt: "3px", pb: "0px"}}
+          >
+            <ListItemButton
+              onClick={handleOpenModal}
+            >
+              <ListItemText primary={"Settings"} sx={{ textAlign: "center"}}/>
+            </ListItemButton>
+            <ListItemButton>
+              <ListItemText 
+                primary={"Log out"} 
+                onClick={() => {
+                  navigate("/");
+                  dispatch(pickGroup(1));
+                }}
+                sx={{ textAlign: "center"}}
+              />
+            </ListItemButton>
+          </List>
+        </Collapse>
       </Stack>
 
       <Modal
@@ -244,3 +234,5 @@ const LoggedInUser = () => {
 };
 
 export default LoggedInUser;
+
+
