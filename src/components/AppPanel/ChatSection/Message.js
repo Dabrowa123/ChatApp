@@ -59,7 +59,6 @@ const Message = ({ groupId, id, author, time, content, isDeleted }) => {
     }
   }, [isMessageClicked]);
 
-  /////////////////////////////
   const displayFirstLetterOfUsername = (userName) => {
     const charArr = [...userName];
     return charArr[0].toUpperCase();
@@ -130,7 +129,16 @@ const Message = ({ groupId, id, author, time, content, isDeleted }) => {
               }
               onClick={handleClickMessage}
             />
-            <Avatar sx={{ bgcolor: authorAvatarColor }}>
+            <Avatar
+              sx={{
+                bgcolor: authorAvatarColor,
+                width: 20,
+                height: 20,
+                fontSize: "12px",
+                ml: "5px",
+                mt: "2px",
+              }}
+            >
               {displayFirstLetterOfUsername(author)}
             </Avatar>
           </Grid>
