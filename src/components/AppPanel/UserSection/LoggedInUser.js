@@ -15,6 +15,7 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
 import Typography from "@mui/material/Typography";
+import Divider from "@mui/material/Divider";
 import CloseIcon from "@mui/icons-material/Close";
 import { changeAvatarColor } from "../../../actions/userActions/changeAvatarColor";
 
@@ -151,70 +152,75 @@ const LoggedInUser = () => {
           <Box sx={style}>
             <Typography
               id="transition-modal-title"
-              variant="h6"
+              variant="h5"
               component="h2"
+              mb={4}
               textAlign={"center"}
             >
-              Wybierz kolor awatara
+              SETTINGS
             </Typography>
-            <Stack
-              direction={"row"}
-              alignItems={"center"}
-              justifyContent={"center"}
-            >
-              <Avatar sx={{ bgcolor: colorToChange }}>
-                {displayFirstLetterOfUsername()}
-              </Avatar>
-              <ButtonGroup
-                variant="contained"
-                aria-label="outlined primary button group"
+            <Divider />
+            <Box mt={4}>
+              <Stack
+                justifyContent={"space-between"}
+                alignContent={"center"}
+                spacing={3}
+                mb={5}
               >
-                <Button name="red" size="small" onClick={setColor}>
-                  Red
+                <Typography
+                  id="transition-modal-title"
+                  variant="h6"
+                  component="h2"
+                  textAlign={"center"}
+                >
+                  Set avatar color:
+                </Typography>
+                <Box sx={{ display: "flex", justifyContent: "center" }}>
+                  <Avatar sx={{ bgcolor: colorToChange, alignItems: "center" }}>
+                    {displayFirstLetterOfUsername()}
+                  </Avatar>
+                </Box>
+                <Stack
+                  direction={"row"}
+                  alignItems={"center"}
+                  justifyContent={"center"}
+                  mb={5}
+                >
+                  <ButtonGroup
+                    variant="outlined"
+                    aria-label="outlined primary button group"
+                  >
+                    <Button name="red" size="small" onClick={setColor}>
+                      Red
+                    </Button>
+                    <Button name="blue" size="small" onClick={setColor}>
+                      Blue
+                    </Button>
+                    <Button name="green" size="small" onClick={setColor}>
+                      Green
+                    </Button>
+                    <Button name="orange" size="small" onClick={setColor}>
+                      Orange
+                    </Button>
+                  </ButtonGroup>
+                </Stack>
+              </Stack>
+              <Divider />
+              <Box mt={5} sx={{ display: "flex", justifyContent: "flex-end" }}>
+                <Button
+                  variant="contained"
+                  size="small"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    dispatch(changeAvatarColor(userId, colorToChange));
+                    setOpenModal(false);
+                  }}
+                >
+                  Confirm Changes
                 </Button>
-                <Button name="blue" size="small" onClick={setColor}>
-                  Blue
-                </Button>
-                <Button name="green" size="small" onClick={setColor}>
-                  Green
-                </Button>
-                <Button name="orange" size="small" onClick={setColor}>
-                  Orange
-                </Button>
-              </ButtonGroup>
-              <Button
-                variant="contained"
-                size="small"
-                onClick={(e) => {
-                  e.preventDefault();
-                  dispatch(changeAvatarColor(userId, colorToChange));
-                  setOpenModal(false);
-                }}
-              >
-                Zatwierdź
-              </Button>
-              {/* <button name="red" onClick={setColor}>
-                Red
-              </button>
-              <button name="blue" onClick={setColor}>
-                Blue
-              </button>
-              <button name="green" onClick={setColor}>
-                Green
-              </button>
-              <button name="orange" onClick={setColor}>
-                Orange
-              </button> */}
-              {/* <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  dispatch(changeAvatarColor(userId, colorToChange));
-                  setOpenModal(false);
-                }}
-              >
-                Zatwierdź
-              </button> */}
-            </Stack>
+              </Box>
+            </Box>
+
             <CloseIcon
               onClick={handleCloseModal}
               sx={{
