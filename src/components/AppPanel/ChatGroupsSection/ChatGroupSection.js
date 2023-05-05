@@ -48,7 +48,7 @@ const ChatGroupSection = () => {
       <Box sx={{ flexGrow: "4", overflow: "auto" }}>
         <ChatGroupList />
       </Box>
-      <Box pb={3} pl={2}>
+      <Box pb={3} pl={4}>
         <ChatSearch />
         {isAdmin && <ChatGroupCreator />}
       </Box>
