@@ -91,7 +91,14 @@ const LoggedInUser = () => {
       >
         <Stack justifyContent={"center"} alignItems={"center"} pt={3}>
           <Badge badgeContent=" " overlap="circular">
-            <Avatar sx={{ bgcolor: userColor, width: 56, height: 56 }}>
+            <Avatar
+              sx={{
+                bgcolor: userColor,
+                width: 56,
+                height: 56,
+                border: "2px solid white",
+              }}
+            >
               {displayFirstLetterOfUsername()}
             </Avatar>
           </Badge>

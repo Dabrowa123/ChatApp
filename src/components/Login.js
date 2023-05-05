@@ -142,15 +142,15 @@ const Login = () => {
             Sign In
           </Button>
           <Grid container>
-            <Grid item xs={6} sx={{ textAlign: "left" }}>
+            <Grid item xs={5} sx={{ textAlign: "left" }}>
               <Link href="#" variant="body2">
                 Forgot password?
               </Link>
             </Grid>
-            <Grid item xs={4.5} sx={{ textAlign: "right" }}>
+            <Grid item xs={5.3} sx={{ textAlign: "right" }}>
               Don't have an account?
             </Grid>
-            <Grid item xs={1.5} sx={{ textAlign: "right" }}>
+            <Grid item xs={1.7} sx={{ textAlign: "right" }}>
               <Link onClick={toRegister} variant="body2">
                 {"Sign Up"}
               </Link>

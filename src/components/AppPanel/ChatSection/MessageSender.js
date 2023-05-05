@@ -92,7 +92,8 @@ const MessageSender = () => {
         <Fab
           aria-label="add"
           onClick={send}
-          sx={{ bgcolor: "white", color: "#002F6D" }}
+          color={"primary"}
+          // sx={{ bgcolor: "white", color: "#002F6D" }}
         >
           <SendIcon />
         </Fab>

@@ -49,7 +49,8 @@ const ChatSearch = () => {
               sx={{ p: "10px" }}
               aria-label="directions"
             >
-              <SearchIcon sx={{ color: "#002F6D" }} />
+              <SearchIcon />
+              {/* <SearchIcon sx={{ color: "#002F6D" }} /> */}
             </IconButton>
           </Paper>
         </Box>

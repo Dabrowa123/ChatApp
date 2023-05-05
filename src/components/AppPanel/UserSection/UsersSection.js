@@ -17,7 +17,7 @@ const UsersSection = () => {
       }}
     >
       <LoggedInUser />
-      <Divider />
+      <Divider sx={{ bgcolor: "#ffbd59", height: "3px" }} />
       <Typography variant="h6" textAlign={"left"} mt={3} mb={2} ml={5}>
         USERS
       </Typography>
