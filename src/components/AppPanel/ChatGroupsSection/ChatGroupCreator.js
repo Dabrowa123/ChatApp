@@ -27,7 +27,7 @@ const ChatGroupCreator = () => {
       dispatch(createGroup(groupNameValue));
       setGroupNameValue("");
     } else {
-      alert("Nazwa grupy nie może być pusta!");
+      alert("You must give the name to the group");
     }
   };
   return (
@@ -57,7 +57,7 @@ const ChatGroupCreator = () => {
               sx={{ p: "10px" }}
               aria-label="directions"
             >
-              <AddCircleIcon />
+              <AddCircleIcon sx={{ color: "#002F6D" }} />
             </IconButton>
           </Paper>
         </Box>

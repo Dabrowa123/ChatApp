@@ -59,9 +59,9 @@ const ChatGroup = ({ groupId, groupName, userIdList, messages }) => {
           >
             <ListItemIcon>
               <GroupsRoundedIcon
-                color="primary"
                 sx={{
-                  background: "InfoBackground",
+                  color: "#002F6D",
+                  background: "white",
                   padding: "5px",
                   borderRadius: "12px",
                   height: "35px",
@@ -79,7 +79,7 @@ const ChatGroup = ({ groupId, groupName, userIdList, messages }) => {
               aria-label="directions"
               onClick={handleOpen}
             >
-              <HighlightOffIcon />
+              <HighlightOffIcon sx={{ color: "white" }} />
             </IconButton>
           )}
         </ListItemButton>

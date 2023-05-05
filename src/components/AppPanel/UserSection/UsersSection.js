@@ -29,7 +29,7 @@ const UsersSection = () => {
         pb={3}
         pl={2}
         sx={{
-          background: "#eceff1",
+          background: "#002F6D",
         }}
       >
         <UserSearch />

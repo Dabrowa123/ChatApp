@@ -20,7 +20,7 @@ const UserSearch = ({ onSearch }) => {
   };
 
   return (
-    <Box mt={3}>
+    <Box mt={3} ml={2}>
       <form>
         <Box component="div" display={"flex"}>
           <Paper

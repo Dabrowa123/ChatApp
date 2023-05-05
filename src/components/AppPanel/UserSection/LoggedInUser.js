@@ -86,7 +86,7 @@ const LoggedInUser = () => {
         sx={{
           minHeight: "150px",
           maxHeight: "150px",
-          background: "#eceff1",
+          background: "#002F6D",
         }}
       >
         <Stack justifyContent={"center"} alignItems={"center"} pt={3}>
@@ -105,7 +105,7 @@ const LoggedInUser = () => {
             disableElevation
             onClick={handleClick}
             endIcon={<KeyboardArrowDownIcon />}
-            sx={{ color: "black", textTransform: "none", fontSize: "22px" }}
+            sx={{ color: "white", textTransform: "none", fontSize: "22px" }}
           >
             {loggedUser}
           </Button>
@@ -199,7 +199,7 @@ const LoggedInUser = () => {
                     <Button name="green" size="small" onClick={setColor}>
                       Green
                     </Button>
-                    <Button name="orange" size="small" onClick={setColor}>
+                    <Button name="#ffbd59" size="small" onClick={setColor}>
                       Orange
                     </Button>
                   </ButtonGroup>

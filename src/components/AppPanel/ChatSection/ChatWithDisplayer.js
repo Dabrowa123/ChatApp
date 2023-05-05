@@ -68,9 +68,9 @@ const ChatWithDisplayer = () => {
           sx={{ maxHeight: "70px", minHeight: "70px" }}
         >
           <GroupsRoundedIcon
-            color="primary"
             sx={{
-              background: "InfoBackground",
+              color: "#002F6D",
+              background: "white",
               padding: "5px",
               borderRadius: "12px",
               height: "35px",
