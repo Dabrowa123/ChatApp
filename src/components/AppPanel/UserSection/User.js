@@ -67,7 +67,7 @@ const User = ({ userId, userName, avatarColor }) => {
   };
 
   return (
-    <Typography variant="h1" fontSize="large">
+    <Typography variant="h1" fontSize="large" pl={1}>
       <ListItemButton>
         <Stack
           direction={"row"}

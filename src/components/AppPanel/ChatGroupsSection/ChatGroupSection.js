@@ -40,7 +40,7 @@ const ChatGroupSection = () => {
           <Typography variant="h4">LOGO</Typography>
         </Stack>
         <Divider />
-          <Typography variant="h6" textAlign={"left"} mt={2} mb={2} ml={5}>
+          <Typography variant="h6" textAlign={"left"} mt={3} mb={2} ml={5}>
             GROUPS
           </Typography>
           <Box sx={{ flexGrow: "4", overflow: "auto" }}>

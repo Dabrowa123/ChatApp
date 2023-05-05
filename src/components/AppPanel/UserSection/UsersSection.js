@@ -19,7 +19,7 @@ const UsersSection = () => {
     >
       <LoggedInUser />
       <Divider />
-      <Typography variant="h6" textAlign={"left"} m={3}>
+      <Typography variant="h6" textAlign={"left"} mt={3} mb={2} ml={5}>
         USERS
       </Typography>
       <Box  sx={{ flexGrow: "4", overflow: "auto" }}>

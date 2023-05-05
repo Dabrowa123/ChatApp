@@ -30,6 +30,7 @@ const ChatGroup = ({ groupId, groupName, userIdList, messages }) => {
           }}
           width={"100%"}
           alignItems={"center"}
+          pl={1}
         >
           <ListItemIcon>
             <GroupsRoundedIcon
