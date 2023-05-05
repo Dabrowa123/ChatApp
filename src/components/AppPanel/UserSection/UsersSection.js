@@ -7,14 +7,13 @@ import UserSearch from "./UserSearch";
 import LoggedInUser from "./LoggedInUser";
 
 const UsersSection = () => {
-
   return (
     <Box
       sx={{
         minheight: "100vh",
         minWidth: "25vw",
         display: "flex",
-        flexDirection: "column"
+        flexDirection: "column",
       }}
     >
       <LoggedInUser />
@@ -22,10 +21,16 @@ const UsersSection = () => {
       <Typography variant="h6" textAlign={"left"} mt={3} mb={2} ml={5}>
         USERS
       </Typography>
-      <Box  sx={{ flexGrow: "4", overflow: "auto" }}>
+      <Box sx={{ flexGrow: "4", overflow: "auto" }}>
         <UserList />
       </Box>
-      <Box pb={3} pl={2}>
+      <Box
+        pb={3}
+        pl={2}
+        sx={{
+          background: "#eceff1",
+        }}
+      >
         <UserSearch />
       </Box>
     </Box>
