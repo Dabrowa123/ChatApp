@@ -14,6 +14,7 @@ const ChatGroupSection = () => {
     (user) => user.userId === loggedUser
   );
   const isAdmin = filteredUser[0].isAdmin;
+
   return (
     <Box
       sx={{
@@ -26,7 +27,18 @@ const ChatGroupSection = () => {
         flexDirection: "column",
       }}
     >
-      <ChatGroupLogo />
+      <Stack
+        justifyContent={"center"}
+        alignItems={"center"}
+        direction={"row"}
+        spacing={2}
+        sx={{ minHeight: "150px" }}
+      >
+        <ChatIcon
+          sx={{ color: "white", minWidth: "80px", minHeight: "100px" }}
+        />
+        <Typography variant="h4">LOGO</Typography>
+      </Stack>
       <Divider />
       <Typography variant="h6" textAlign={"left"} mt={3} mb={2} ml={5}>
         GROUPS

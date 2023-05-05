@@ -4,8 +4,16 @@ import IconButton from "@mui/material/IconButton";
 import Paper from "@mui/material/Paper";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
+import { useState } from "react";
 
-const UserSearch = () => {
+const UserSearch = ({ onSearch }) => {
+  const [userNameValue, setGroupNameValue] = useState("");
+
+  const onEditHandle = (e) => {
+    setGroupNameValue(e.target.value);
+    onSearch(e.target.value);
+  };
+
   return (
     <Box mt={3}>
       <form>
@@ -23,8 +31,8 @@ const UserSearch = () => {
               sx={{ ml: 1, flex: 1 }}
               placeholder="Search users"
               inputProps={{ "aria-label": "Add a group" }}
-              // value={groupNameValue}
-              // onChange={onEditHandle}
+              value={userNameValue}
+              onChange={onEditHandle}
             />
             <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
             <IconButton
