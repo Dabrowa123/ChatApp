@@ -42,9 +42,6 @@ const LoggedInUser = ({ loggedUserId, users }) => {
   const navigate = useNavigate();
 
   const filteredLoggedUser = users.find((user) => user.userId === loggedUserId);
-  const [colorToChange, setColorToChange] = React.useState(
-    filteredLoggedUser.avatarColor
-  );
 
   const [open, setOpen] = React.useState(false);
 
@@ -55,11 +52,6 @@ const LoggedInUser = ({ loggedUserId, users }) => {
   const displayFirstLetterOfUsername = () => {
     const charArr = [...filteredLoggedUser.userName];
     return charArr[0].toUpperCase();
-  };
-
-  const setColor = (e) => {
-    const color = e.target.name;
-    setColorToChange(color);
   };
 
   //SettingsModal

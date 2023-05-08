@@ -43,16 +43,16 @@ const User = ({
   loggedUserId,
 }) => {
   const dispatch = useDispatch();
-  const currentPickedUser = userId;
+  const currentPickedUserId = userId;
   const filteredLoggedUser = users.find((user) => user.userId === loggedUserId);
   const filteredGroup = groups.filter(
     (group) =>
       group.userIdList.includes(loggedUserId) &&
-      group.userIdList.includes(currentPickedUser)
+      group.userIdList.includes(currentPickedUserId)
   );
 
   const currentPickedUserFilter = users.find(
-    (user) => user.userId === currentPickedUser
+    (user) => user.userId === currentPickedUserId
   );
 
   const currentLoggedUserFilter = users.find(
@@ -61,7 +61,7 @@ const User = ({
 
   const createOrSelectPrivChat = () => {
     if (filteredGroup.length === 0) {
-      const userIdList = [loggedUserId, currentPickedUser];
+      const userIdList = [loggedUserId, currentPickedUserId];
       const id = Math.floor(Math.random() * 1234);
       dispatch(
         createPrivGroup(
@@ -73,7 +73,7 @@ const User = ({
       );
       dispatch(pickGroup(id));
       dispatch(pickUser(userId));
-    } else if (currentPickedUser === loggedUserId) {
+    } else if (currentPickedUserId === loggedUserId) {
       alert("Nie możesz pisać z samym sobą :(");
     } else {
       dispatch(pickGroup(filteredGroup[0].groupId));
