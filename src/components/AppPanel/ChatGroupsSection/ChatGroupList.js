@@ -1,29 +1,39 @@
 import ChatGroup from "./ChatGroup";
-import { useSelector } from "react-redux";
-import ChatSearch from "./ChatGroupSearch";
-import ChatGroupCreator from "./ChatGroupCreator";
-import Box from "@mui/material/Box";
 
-const ChatGroupList = () => {
-  const displayUsers = useSelector((state) => state.users);
-  const displayGroups = useSelector((state) => state.chatGroups);
-  const loggedUser = useSelector((state) => state.isLogged.userId);
-  const searchItem = useSelector((state) => state.searchGroup);
+const ChatGroupList = ({
+  users,
+  groups,
+  loggedUserId,
+  searchGroupItem,
+  currentGroupId,
+}) => {
+  const filteredLoggedUser = users.find((user) => user.userId === loggedUserId);
 
-  const filteredUser = displayUsers.filter(
-    (user) => user.userId === loggedUser
-  );
-  const isAdmin = filteredUser[0].isAdmin;
-
-  const filteredGroups = displayGroups.filter((group) =>
-    group.groupName.toLowerCase().includes(searchItem.toLowerCase())
+  const filteredGroups = groups.filter((group) =>
+    group.groupName.toLowerCase().includes(searchGroupItem.toLowerCase())
   );
 
   const toDisplayGroups = filteredGroups.map((group) => {
-    if (isAdmin) {
-      return <ChatGroup key={group.groupId} {...group} />;
-    } else if (!isAdmin && !group.isPriv) {
-      return <ChatGroup key={group.groupId} {...group} />;
+    if (filteredLoggedUser.isAdmin) {
+      return (
+        <ChatGroup
+          key={group.groupId}
+          {...group}
+          currentGroupId={currentGroupId}
+          users={users}
+          loggedUserId={loggedUserId}
+        />
+      );
+    } else if (!filteredLoggedUser.isAdmin && !group.isPriv) {
+      return (
+        <ChatGroup
+          key={group.groupId}
+          {...group}
+          currentGroupId={currentGroupId}
+          users={users}
+          loggedUserId={loggedUserId}
+        />
+      );
     }
   });
 
