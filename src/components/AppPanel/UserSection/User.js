@@ -11,13 +11,14 @@ import { createPrivGroup } from "../../../actions/groupActions/createPrivGroup";
 import { pickGroup } from "../../../actions/groupActions/pickGroup";
 import IconButton from "@mui/material/IconButton";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
-import { deleteUser } from "../../../actions/userActions/deleteUser";
+import { banUser } from "../../../actions/userActions/banUser";
 import { pickUser } from "../../../actions/userActions/pickUser";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
 import Button from "@mui/material/Button";
+import { unBanUser } from "../../../actions/userActions/unBanUser";
 
 const style = {
   position: "absolute",
@@ -111,7 +112,17 @@ const User = ({
                 </Avatar>
               </Badge>
             </ListItemIcon>
-            <ListItemText primary={userName} />
+            <ListItemText
+              primary={
+                currentPickedUserFilter.isBanned ? (
+                  <i>
+                    {userName} <strong>zablokowany</strong>
+                  </i>
+                ) : (
+                  userName
+                )
+              }
+            />
           </Stack>
           {filteredLoggedUser.isAdmin && (
             <IconButton
@@ -148,7 +159,11 @@ const User = ({
               component="h2"
               textAlign={"center"}
             >
-              Are you sure you want to remove this user?
+              {currentPickedUserFilter.isBanned ? (
+                <p>Are you sure you want to unban this user?</p>
+              ) : (
+                <p>Are you sure you want to ban this user?</p>
+              )}
             </Typography>
             <Stack
               direction={"row"}
@@ -158,10 +173,12 @@ const User = ({
               <Button
                 sx={{ mt: 2 }}
                 onClick={() => {
-                  if (loggedUserId === userId) {
-                    alert("Nie możesz usunąć samego siebie!");
+                  if (currentPickedUserFilter.isBanned) {
+                    dispatch(unBanUser(userId));
                   } else {
-                    dispatch(deleteUser(userId));
+                    dispatch(banUser(userId));
+                    console.log(userId);
+                    console.log(users);
                   }
                 }}
               >
