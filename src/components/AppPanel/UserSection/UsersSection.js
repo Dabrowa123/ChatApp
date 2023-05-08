@@ -11,20 +11,22 @@ const UsersSection = () => {
     <Box
       sx={{
         minheight: "100vh",
+        maxHeight: "100vh",
         minWidth: "25vw",
         display: "flex",
         flexDirection: "column",
+        backgroundColor: "white" 
       }}
     >
       <LoggedInUser />
-      <Divider />
+      <Divider sx={{ bgcolor: "#ffbd59", height: "3px" }} />
       <Typography variant="h6" textAlign={"left"} mt={3} mb={2} ml={5}>
         USERS
       </Typography>
       <Box sx={{ flexGrow: "4", overflow: "auto" }}>
         <UserList />
       </Box>
-      <Divider />
+      <Divider sx={{ bgcolor: "grey" }} />
       <Box
         pb={3}
         pl={2}

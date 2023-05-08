@@ -122,7 +122,8 @@ const User = ({ userId, userName, avatarColor }) => {
               aria-label="directions"
               onClick={handleOpen}
             >
-              <HighlightOffIcon sx={{ color: "#002F6D" }} />
+              <HighlightOffIcon />
+              {/* <HighlightOffIcon sx={{ color: "#002F6D" }} /> */}
             </IconButton>
           )}
         </ListItemButton>

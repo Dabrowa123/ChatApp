@@ -3,6 +3,9 @@ import Avatar from "@mui/material/Avatar";
 import Badge from "@mui/material/Badge";
 import { Stack, Typography } from "@mui/material";
 import GroupsRoundedIcon from "@mui/icons-material/GroupsRounded";
+import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
+import VideocamIcon from "@mui/icons-material/Videocam";
+import InfoIcon from "@mui/icons-material/Info";
 
 const ChatWithDisplayer = () => {
   const displayCurrentPickedGroup = useSelector((state) => state.currentGroup);

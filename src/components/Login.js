@@ -12,6 +12,7 @@ import { logInUser } from "../actions/userActions/logInUser";
 import { Container } from "@mui/material";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router";
+import Logo from "../pictures/Logo.png";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -77,20 +78,25 @@ const Login = () => {
   };
 
   return (
-    <Container component="main" maxWidth="sm">
+    <Container component="main" maxWidth="sm"      
+      sx={{
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center"
+    }}>
       <Box
         sx={{
           boxShadow: 3,
           borderRadius: 2,
           px: 4,
           py: 6,
-          marginTop: 8,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           backgroundColor: "white",
         }}
-      >
+        >
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
@@ -142,15 +148,15 @@ const Login = () => {
             Sign In
           </Button>
           <Grid container>
-            <Grid item xs={6} sx={{ textAlign: "left" }}>
+            <Grid item xs={5} sx={{ textAlign: "left" }}>
               <Link href="#" variant="body2">
                 Forgot password?
               </Link>
             </Grid>
-            <Grid item xs={4.5} sx={{ textAlign: "right" }}>
+            <Grid item xs={5.3} sx={{ textAlign: "right" }}>
               Don't have an account?
             </Grid>
-            <Grid item xs={1.5} sx={{ textAlign: "right" }}>
+            <Grid item xs={1.7} sx={{ textAlign: "right" }}>
               <Link onClick={toRegister} variant="body2">
                 {"Sign Up"}
               </Link>

@@ -6,8 +6,6 @@ import ChatGroupList from "./ChatGroupList";
 import ChatGroupCreator from "./ChatGroupCreator";
 import { useSelector } from "react-redux";
 import ChatSearch from "./ChatSearch";
-import ChatGroupLogo from "./ChatGroupLogo";
-import ChatIcon from "@mui/icons-material/Chat";
 import Logo from "../../../pictures/Logo.png";
 
 const ChatGroupSection = () => {
@@ -21,7 +19,6 @@ const ChatGroupSection = () => {
   return (
     <Box
       sx={{
-        // background: "linear-gradient(to bottom, #36EAEF, #1565c0)",
         background: "#002F6D",
         minHeight: "100vh",
         maxHeight: "100vh",
@@ -36,13 +33,9 @@ const ChatGroupSection = () => {
         alignItems={"center"}
         direction={"row"}
         spacing={2}
-        sx={{ minHeight: "200px" }}
+        sx={{ minHeight: "170px" }}
       >
         <img src={Logo} alt="logo" width="60%" height="auto"></img>
-        {/* <ChatIcon
-          sx={{ color: "white", minWidth: "80px", minHeight: "100px" }}
-        />
-        <Typography variant="h4">LOGO</Typography> */}
       </Stack>
       <Divider sx={{ bgcolor: "#ffbd59" }} />
       <Typography
@@ -58,6 +51,7 @@ const ChatGroupSection = () => {
       <Box sx={{ flexGrow: "4", overflow: "auto" }}>
         <ChatGroupList />
       </Box>
+      <Divider sx={{ bgcolor: "white" }} />
       <Box pb={3} pl={4}>
         <ChatSearch />
         {isAdmin && <ChatGroupCreator />}

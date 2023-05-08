@@ -2,14 +2,14 @@ export const chatGroupsReducer = (
   state = [
     {
       groupId: 1,
-      groupName: "Group1",
+      groupName: "General",
       userIdList: [],
       messages: [],
       isPriv: false,
     },
     {
       groupId: 2,
-      groupName: "Group2",
+      groupName: "NovoAkademia",
       userIdList: [],
       messages: [],
       isPriv: false,
@@ -75,7 +75,7 @@ export const chatGroupsReducer = (
             if (message.id === id) {
               return {
                 ...message,
-                content: "Wiadomość usunięta",
+                content: "Message removed",
                 isDeleted: true,
               };
             } else {
@@ -84,39 +84,6 @@ export const chatGroupsReducer = (
           }),
         };
       });
-    // return [
-    //   state.map((group) => {
-    //     const { groupId, id } = action.payload;
-    //     if (group.groupId !== groupId) {
-    //       return group;
-    //     }
-
-    //     return group.messages.map((message) => {
-    //       if (message.id === id) {
-    //         return {
-    //           id: message.id,
-    //           author: message.author,
-    //           time: message.time,
-    //           content: "Wiadomość usunięta",
-    //         };
-    //       }
-    //     });
-    //   }),
-    // ];
-    // {
-    //   const { groupId, id } = action.payload;
-
-    //   return state.map((group) => {
-    //     if (group.groupId !== groupId) {
-    //       return group;
-    //     }
-
-    //     return {
-    //       ...group,
-    //       messages: group.messages.filter((message) => message.id !== id),
-    //     };
-    //   });
-    // }
 
     default:
       return state;

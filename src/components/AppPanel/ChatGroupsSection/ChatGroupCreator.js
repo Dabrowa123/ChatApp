@@ -57,7 +57,8 @@ const ChatGroupCreator = () => {
               sx={{ p: "10px" }}
               aria-label="directions"
             >
-              <AddCircleIcon sx={{ color: "#002F6D" }} />
+              <AddCircleIcon />
+              {/* <AddCircleIcon sx={{ color: "#002F6D" }} /> */}
             </IconButton>
           </Paper>
         </Box>

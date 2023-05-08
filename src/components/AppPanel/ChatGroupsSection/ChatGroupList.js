@@ -10,8 +10,6 @@ const ChatGroupList = () => {
   const loggedUser = useSelector((state) => state.isLogged.userId);
   const searchItem = useSelector((state) => state.searchGroup);
 
-  console.log(searchItem);
-
   const filteredUser = displayUsers.filter(
     (user) => user.userId === loggedUser
   );

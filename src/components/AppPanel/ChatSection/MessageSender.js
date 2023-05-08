@@ -59,11 +59,24 @@ const MessageSender = () => {
 
   const send = (e) => {
     if (messageContent !== "") {
+      let toSend; 
+    //   if (messageContent === ":)") {
+    //   toSend = messageContent;
+    // } else {
+    //   toSend = filter.clean(messageContent);
+    // }
+
+    try {
+      toSend = filter.clean(messageContent);
+    } catch {
+      toSend = messageContent;
+    }
+    
       const messageObject = {
         groupId: currentGroupId,
         author: loggedUser,
         time: currentTime(),
-        content: filter.clean(messageContent),
+        content: toSend,
       };
 
       dispatch(sendMessage(messageObject));
@@ -92,7 +105,8 @@ const MessageSender = () => {
         <Fab
           aria-label="add"
           onClick={send}
-          sx={{ bgcolor: "white", color: "#002F6D" }}
+          color={"primary"}
+          // sx={{ bgcolor: "white", color: "#002F6D" }}
         >
           <SendIcon />
         </Fab>
