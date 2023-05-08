@@ -116,15 +116,11 @@ const ChatGroup = ({ groupId, groupName, userIdList, messages }) => {
               <Button
                 sx={{ mt: 2 }}
                 onClick={() => {
-                  if (groupId === 1) {
-                    alert("Nie możesz usunąć głównej grupy!");
+                  if (currentPickedGroup === groupId) {
+                    dispatch(pickGroup(1));
+                    dispatch(deleteGroup(groupId));
                   } else {
-                    if (currentPickedGroup === groupId) {
-                      dispatch(pickGroup(1));
-                      dispatch(deleteGroup(groupId));
-                    } else {
-                      dispatch(deleteGroup(groupId));
-                    }
+                    dispatch(deleteGroup(groupId));
                   }
                 }}
               >
