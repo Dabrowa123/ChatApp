@@ -89,10 +89,8 @@ const Message = ({
               sx={
                 !isDeleted
                   ? {
-                      // height: "24px",
                       maxWidth: "60%",
                       marginLeft: "5px",
-                      fontSize: "16px",
                       pointerEvents: `${letUserClickMessage}`,
                       height: "auto",
                       "& .MuiChip-label": {
@@ -106,10 +104,8 @@ const Message = ({
                       background: "transparent",
                       fontStyle: "italic",
                       pointerEvents: "none",
-                      // height: "24px",
+                      height: "24px",
                       maxWidth: "60%",
-                      fontSize: "16px",
-                      height: "auto",
                       "& .MuiChip-label": {
                         display: "block",
                         whiteSpace: "normal",
@@ -162,10 +158,8 @@ const Message = ({
               sx={
                 !isDeleted
                   ? {
-                      // height: "24px",
                       maxWidth: "60%",
                       marginRight: "5px",
-                      fontSize: "16px",
                       height: "auto",
                       "& .MuiChip-label": {
                         display: "block",
@@ -178,9 +172,7 @@ const Message = ({
                       background: "transparent",
                       fontStyle: "italic",
                       pointerEvents: "none",
-                      // height: "24px",
                       maxWidth: "60%",
-                      fontSize: "16px",
                       height: "auto",
                       "& .MuiChip-label": {
                         display: "block",
