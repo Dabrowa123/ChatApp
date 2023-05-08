@@ -11,6 +11,7 @@ const UsersSection = () => {
     <Box
       sx={{
         minheight: "100vh",
+        maxHeight: "100vh",
         minWidth: "25vw",
         display: "flex",
         flexDirection: "column",
