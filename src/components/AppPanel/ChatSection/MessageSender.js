@@ -20,14 +20,6 @@ const MessageSender = ({ currentGroupId, loggedUserId, users }) => {
   let today = new Date();
   console.log(today);
   const currentTime = () => {
-    let month = () => {
-      if (today.getDate() > 8) {
-        return "0" + (today.getDate() + 1);
-      } else {
-        return today.getDate() + 1;
-      }
-    };
-
     let hours = () => {
       if (today.getHours() > 9) {
         return today.getHours();
