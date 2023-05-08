@@ -1,7 +1,6 @@
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import MessageSender from "./MessageSender";
-import { useSelector } from "react-redux";
 import ChatWithDisplayer from "./ChatWithDisplayer";
 import MessageList from "./MessageList";
 import useChatState from "../../../customHooks/useChatState";

@@ -4,21 +4,13 @@ import Stack from "@mui/material/Stack";
 import { Typography } from "@mui/material";
 import ChatGroupList from "./ChatGroupList";
 import ChatGroupCreator from "./ChatGroupCreator";
-import { useSelector } from "react-redux";
 import ChatGroupSearch from "./ChatGroupSearch";
 import Logo from "../../../pictures/Logo.png";
 import useChatState from "../../../customHooks/useChatState";
 
 const ChatGroupSection = () => {
-  const {
-    currentGroupId,
-    groups,
-    currentPickedUser,
-    users,
-    loggedUserId,
-    searchUserItem,
-    searchGroupItem,
-  } = useChatState();
+  const { currentGroupId, groups, users, loggedUserId, searchGroupItem } =
+    useChatState();
 
   const filteredLoggedUser = users.find((user) => user.userId === loggedUserId);
 

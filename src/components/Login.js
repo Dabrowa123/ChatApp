@@ -12,7 +12,6 @@ import { logInUser } from "../actions/userActions/logInUser";
 import { Container } from "@mui/material";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router";
-import Logo from "../pictures/Logo.png";
 
 const Login = () => {
   const dispatch = useDispatch();

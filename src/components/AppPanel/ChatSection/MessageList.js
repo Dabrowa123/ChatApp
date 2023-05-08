@@ -31,7 +31,7 @@ const MessageList = ({ currentGroupId, groups, users, loggedUserId }) => {
     if (messageList.length !== savedMessageListLength) {
       Scroll();
     }
-  }, [messageList]);
+  }, [messageList, savedMessageListLength]);
 
   return (
     <List ref={container} sx={{ flexGrow: "4", overflow: "auto" }}>

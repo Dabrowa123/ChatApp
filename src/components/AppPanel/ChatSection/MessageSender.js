@@ -3,7 +3,7 @@ import TextField from "@mui/material/TextField";
 import Fab from "@mui/material/Fab";
 import SendIcon from "@mui/icons-material/Send";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { sendMessage } from "../../../actions/messageAction/sendMessage";
 import { wulgaryzmy } from "../../../wulgaryzmy";
 import Filter from "bad-words";

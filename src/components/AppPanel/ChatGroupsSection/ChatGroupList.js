@@ -34,6 +34,8 @@ const ChatGroupList = ({
           loggedUserId={loggedUserId}
         />
       );
+    } else {
+      return null;
     }
   });
 

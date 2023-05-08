@@ -1,4 +1,3 @@
-import { useSelector } from "react-redux";
 import Avatar from "@mui/material/Avatar";
 import Badge from "@mui/material/Badge";
 import { Stack, Typography } from "@mui/material";

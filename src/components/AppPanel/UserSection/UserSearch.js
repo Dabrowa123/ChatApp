@@ -8,7 +8,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setSearchUserItem } from "../../../actions/searchUserActions/setSearchUserItem";
 
-const UserSearch = ({ onSearch }) => {
+const UserSearch = () => {
   const [userNameValue, setGroupNameValue] = useState("");
 
   const dispatch = useDispatch();
@@ -16,7 +16,6 @@ const UserSearch = ({ onSearch }) => {
   const onEditHandle = (e) => {
     setGroupNameValue(e.target.value);
     dispatch(setSearchUserItem(e.target.value));
-    // onSearch(e.target.value);
   };
 
   return (

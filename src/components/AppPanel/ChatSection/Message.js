@@ -24,10 +24,6 @@ const Message = ({
   const filteredLoggedUser = users.find((user) => user.userId === loggedUserId);
   const filteredMessageAuthor = users.find((user) => user.userName === author);
 
-  const [authorAvatarColor, setAuthorAvatarColor] = React.useState(
-    filteredMessageAuthor.avatarColor
-  );
-
   // Clicking the message to show 'remove'
   const handleClickMessage = () => {
     setIsmesageClicked(!isMessageClicked);
@@ -53,7 +49,7 @@ const Message = ({
     } else {
       setLetUserClickMessage("none");
     }
-  }, [isMessageClicked]);
+  }, [isMessageClicked, filteredLoggedUser.isAdmin]);
 
   let message =
     filteredLoggedUser.userName !== author ? (
@@ -122,7 +118,7 @@ const Message = ({
             />
             <Avatar
               sx={{
-                bgcolor: authorAvatarColor,
+                bgcolor: filteredMessageAuthor.avatarColor,
                 width: 20,
                 height: 20,
                 fontSize: "12px",
