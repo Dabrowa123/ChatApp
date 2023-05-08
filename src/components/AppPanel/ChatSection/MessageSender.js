@@ -18,7 +18,16 @@ const MessageSender = ({ currentGroupId, loggedUserId, users }) => {
   const filteredLoggedUser = users.find((user) => user.userId === loggedUserId);
 
   let today = new Date();
+  console.log(today);
   const currentTime = () => {
+    let month = () => {
+      if (today.getDate() > 8) {
+        return "0" + (today.getDate() + 1);
+      } else {
+        return today.getDate() + 1;
+      }
+    };
+
     let hours = () => {
       if (today.getHours() > 9) {
         return today.getHours();
@@ -43,7 +52,19 @@ const MessageSender = ({ currentGroupId, loggedUserId, users }) => {
       }
     };
 
-    return hours() + ":" + minutes() + ":" + seconds();
+    return (
+      today.getDate() +
+      "/" +
+      (today.getMonth() + 1) +
+      "/" +
+      today.getFullYear() +
+      " " +
+      hours() +
+      ":" +
+      minutes() +
+      ":" +
+      seconds()
+    );
   };
 
   const onEditHandler = (e) => {
