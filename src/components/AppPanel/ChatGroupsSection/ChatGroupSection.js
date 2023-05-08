@@ -35,7 +35,7 @@ const ChatGroupSection = () => {
         spacing={2}
         sx={{ minHeight: "170px" }}
       >
-        <img src={Logo} alt="logo" width="60%" height="auto"></img>
+        <img src={Logo} alt="logo" width="50%" height="auto"></img>
       </Stack>
       <Divider sx={{ bgcolor: "#ffbd59" }} />
       <Typography
