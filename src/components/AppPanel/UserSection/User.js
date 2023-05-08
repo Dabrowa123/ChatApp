@@ -19,6 +19,8 @@ import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
 import Button from "@mui/material/Button";
 import { unBanUser } from "../../../actions/userActions/unBanUser";
+import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
+import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 
 const style = {
   position: "absolute",
@@ -116,7 +118,7 @@ const User = ({
               primary={
                 currentPickedUserFilter.isBanned ? (
                   <i>
-                    {userName} <strong>zablokowany</strong>
+                    {userName} <strong>(banned)</strong>
                   </i>
                 ) : (
                   userName
@@ -132,7 +134,11 @@ const User = ({
               aria-label="directions"
               onClick={handleOpen}
             >
-              <HighlightOffIcon />
+              {currentPickedUserFilter.isBanned ? (
+                <RemoveCircleOutlineIcon />
+              ) : (
+                <RemoveCircleIcon />
+              )}
             </IconButton>
           )}
         </ListItemButton>
@@ -177,8 +183,6 @@ const User = ({
                     dispatch(unBanUser(userId));
                   } else {
                     dispatch(banUser(userId));
-                    console.log(userId);
-                    console.log(users);
                   }
                 }}
               >

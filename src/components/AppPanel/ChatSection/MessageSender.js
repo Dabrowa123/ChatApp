@@ -18,7 +18,7 @@ const MessageSender = ({ currentGroupId, loggedUserId, users }) => {
   const filteredLoggedUser = users.find((user) => user.userId === loggedUserId);
 
   let today = new Date();
-  console.log(today);
+
   const currentTime = () => {
     let hours = () => {
       if (today.getHours() > 9) {
@@ -84,7 +84,7 @@ const MessageSender = ({ currentGroupId, loggedUserId, users }) => {
     }
   };
 
-  return (
+  return !filteredLoggedUser.isBanned ? (
     <Grid container style={{ padding: "20px" }}>
       <Grid item xs={10.8} sx={{ bgcolor: "white" }}>
         <TextField
@@ -104,6 +104,22 @@ const MessageSender = ({ currentGroupId, loggedUserId, users }) => {
       <Grid xs={1.2} align="right">
         <Fab aria-label="add" onClick={send} color={"primary"}>
           <SendIcon />
+        </Fab>
+      </Grid>
+    </Grid>
+  ) : (
+    <Grid container style={{ padding: "20px" }}>
+      <Grid item xs={10.8} sx={{ bgcolor: "white" }}>
+        <TextField
+          disabled
+          id="outlined-basic-email"
+          label="User banned by administrator - Unable to send messages "
+          fullWidth
+        />
+      </Grid>
+      <Grid xs={1.2} align="right">
+        <Fab aria-label="add" color={"default"} sx={{ cursor: "not-allowed" }}>
+          <SendIcon sx={{ color: "white" }} />
         </Fab>
       </Grid>
     </Grid>

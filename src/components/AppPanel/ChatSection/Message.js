@@ -94,6 +94,7 @@ const Message = ({
                       marginLeft: "5px",
                       fontSize: "16px",
                       pointerEvents: `${letUserClickMessage}`,
+                      height: "auto",
                       "& .MuiChip-label": {
                         display: "block",
                         whiteSpace: "normal",
@@ -108,6 +109,7 @@ const Message = ({
                       height: "24px",
                       maxWidth: "60%",
                       fontSize: "16px",
+                      height: "auto",
                       "& .MuiChip-label": {
                         display: "block",
                         whiteSpace: "normal",
@@ -164,6 +166,7 @@ const Message = ({
                       maxWidth: "60%",
                       marginRight: "5px",
                       fontSize: "16px",
+                      height: "auto",
                       "& .MuiChip-label": {
                         display: "block",
                         whiteSpace: "normal",
@@ -178,6 +181,7 @@ const Message = ({
                       height: "24px",
                       maxWidth: "60%",
                       fontSize: "16px",
+                      height: "auto",
                       "& .MuiChip-label": {
                         display: "block",
                         whiteSpace: "normal",
