@@ -30,7 +30,7 @@ export const chatGroupsReducer = (
           id: 4,
           author: "Dominik",
           time: "12:30:45",
-          content: "Wiadomość usunięta",
+          content: "Message removed",
           isDeleted: true,
         },
       ],
