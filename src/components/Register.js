@@ -67,14 +67,19 @@ const Register = () => {
   });
 
   return (
-    <Container component="main" maxWidth="sm">
+    <Container component="main" maxWidth="sm"  
+      sx={{
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center"}}
+      >
       <Box
         sx={{
           boxShadow: 3,
           borderRadius: 2,
           px: 4,
           py: 6,
-          marginTop: 8,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",

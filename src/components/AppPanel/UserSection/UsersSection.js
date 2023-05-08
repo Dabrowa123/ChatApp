@@ -14,6 +14,7 @@ const UsersSection = () => {
         minWidth: "25vw",
         display: "flex",
         flexDirection: "column",
+        backgroundColor: "white" 
       }}
     >
       <LoggedInUser />

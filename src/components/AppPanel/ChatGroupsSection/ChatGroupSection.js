@@ -6,8 +6,6 @@ import ChatGroupList from "./ChatGroupList";
 import ChatGroupCreator from "./ChatGroupCreator";
 import { useSelector } from "react-redux";
 import ChatSearch from "./ChatSearch";
-import ChatGroupLogo from "./ChatGroupLogo";
-import ChatIcon from "@mui/icons-material/Chat";
 import Logo from "../../../pictures/Logo.png";
 
 const ChatGroupSection = () => {
