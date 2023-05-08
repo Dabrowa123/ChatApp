@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import Box from "@mui/material/Box";
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
@@ -18,13 +18,20 @@ const ChatSection = () => {
   ));
 
   // Scrollable container
+  const [savedMessageListLength, setSavedMessageListLength] = useState(
+    messageList.length
+  );
+
   const container = useRef(null);
   const Scroll = () => {
     const { scrollHeight } = container.current;
     container.current?.scrollTo(0, scrollHeight);
   };
   useEffect(() => {
-    Scroll();
+    setSavedMessageListLength(messageList.length);
+    if (messageList.length !== savedMessageListLength) {
+      Scroll();
+    }
   }, [messageList]);
 
   return (
