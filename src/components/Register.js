@@ -67,13 +67,16 @@ const Register = () => {
   });
 
   return (
-    <Container component="main" maxWidth="sm"  
+    <Container
+      component="main"
+      maxWidth="sm"
       sx={{
         minHeight: "100vh",
         display: "flex",
         alignItems: "center",
-        justifyContent: "center"}}
-      >
+        justifyContent: "center",
+      }}
+    >
       <Box
         sx={{
           boxShadow: 3,
@@ -87,7 +90,13 @@ const Register = () => {
         }}
       >
         {isSubmited && (
-          <Stack alignItems="center" justifyContent={"center"} spacing={5}>
+          <Stack
+            alignItems="center"
+            justifyContent={"center"}
+            spacing={5}
+            px={6}
+            py={8}
+          >
             <VerifiedUserIcon color="success" fontSize="large" />
             <Typography variant="h5">Thank you for registration!</Typography>
           </Stack>
