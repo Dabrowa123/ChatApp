@@ -7,7 +7,7 @@ import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import IconButton from "@mui/material/IconButton";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { pickGroup } from "../../../actions/groupActions/pickGroup";
 import { deleteGroup } from "../../../actions/groupActions/deleteGroup";
 import Backdrop from "@mui/material/Backdrop";

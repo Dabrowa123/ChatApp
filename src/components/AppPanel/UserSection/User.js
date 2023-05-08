@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
 import Badge from "@mui/material/Badge";
 import Stack from "@mui/material/Stack";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { createPrivGroup } from "../../../actions/groupActions/createPrivGroup";
 import { pickGroup } from "../../../actions/groupActions/pickGroup";
 import IconButton from "@mui/material/IconButton";
@@ -31,47 +31,46 @@ const style = {
   p: 4,
 };
 
-const User = ({ userId, userName, avatarColor }) => {
+const User = ({
+  userId,
+  userName,
+  avatarColor,
+  groups,
+  users,
+  loggedUserId,
+}) => {
   const dispatch = useDispatch();
-  const displayUsers = useSelector((state) => state.users);
-  const loggedUser = useSelector((state) => state.isLogged.userId);
   const currentPickedUser = userId;
-  const filteredUser = displayUsers.filter(
-    (user) => user.userId === loggedUser
-  );
-  const isAdmin = filteredUser[0].isAdmin;
-  const displayGroups = useSelector((state) => state.chatGroups);
-  const filteredGroup = displayGroups.filter(
+  const filteredLoggedUser = users.find((user) => user.userId === loggedUserId);
+  const filteredGroup = groups.filter(
     (group) =>
-      group.userIdList.includes(loggedUser) &&
+      group.userIdList.includes(loggedUserId) &&
       group.userIdList.includes(currentPickedUser)
   );
 
-  const users = useSelector((state) => state.users);
-
-  const currentPickedUserFilter = users.filter(
+  const currentPickedUserFilter = users.find(
     (user) => user.userId === currentPickedUser
   );
 
-  const currentLoggedUserFilter = users.filter(
-    (user) => user.userId === loggedUser
+  const currentLoggedUserFilter = users.find(
+    (user) => user.userId === loggedUserId
   );
 
   const createOrSelectPrivChat = () => {
     if (filteredGroup.length === 0) {
-      const userIdList = [loggedUser, currentPickedUser];
+      const userIdList = [loggedUserId, currentPickedUser];
       const id = Math.floor(Math.random() * 1234);
       dispatch(
         createPrivGroup(
           id,
           userIdList,
-          currentLoggedUserFilter[0].userName,
-          currentPickedUserFilter[0].userName
+          currentLoggedUserFilter.userName,
+          currentPickedUserFilter.userName
         )
       );
       dispatch(pickGroup(id));
       dispatch(pickUser(userId));
-    } else if (currentPickedUser === loggedUser) {
+    } else if (currentPickedUser === loggedUserId) {
       alert("Nie możesz pisać z samym sobą :(");
     } else {
       dispatch(pickGroup(filteredGroup[0].groupId));
@@ -114,7 +113,7 @@ const User = ({ userId, userName, avatarColor }) => {
             </ListItemIcon>
             <ListItemText primary={userName} />
           </Stack>
-          {isAdmin && (
+          {filteredLoggedUser.isAdmin && (
             <IconButton
               type="submit"
               color="primary"
@@ -123,7 +122,6 @@ const User = ({ userId, userName, avatarColor }) => {
               onClick={handleOpen}
             >
               <HighlightOffIcon />
-              {/* <HighlightOffIcon sx={{ color: "#002F6D" }} /> */}
             </IconButton>
           )}
         </ListItemButton>
@@ -160,7 +158,7 @@ const User = ({ userId, userName, avatarColor }) => {
               <Button
                 sx={{ mt: 2 }}
                 onClick={() => {
-                  if (loggedUser === userId) {
+                  if (loggedUserId === userId) {
                     alert("Nie możesz usunąć samego siebie!");
                   } else {
                     dispatch(deleteUser(userId));

@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import List from "@mui/material/List";
 import { useNavigate } from "react-router";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { pickGroup } from "../../../actions/groupActions/pickGroup";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
@@ -37,25 +37,14 @@ const style = {
   p: 4,
 };
 
-const LoggedInUser = () => {
+const LoggedInUser = ({ loggedUserId, users }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const userId = useSelector((state) => state.isLogged.userId);
-  const users = useSelector((state) => state.users);
-  const currentGroup = useSelector((state) => state.currentGroup.groupId);
-  let loggedUser;
-  let userColor;
 
-  if (userId !== 0) {
-    const filteredUser = users.filter((user) => user.userId === userId);
-    if (filteredUser.length !== 0) {
-      loggedUser = filteredUser[0].userName;
-    }
-
-    userColor = filteredUser[0].avatarColor;
-  }
-
-  const [colorToChange, setColorToChange] = React.useState(userColor);
+  const filteredLoggedUser = users.find((user) => user.userId === loggedUserId);
+  const [colorToChange, setColorToChange] = React.useState(
+    filteredLoggedUser.avatarColor
+  );
 
   const [open, setOpen] = React.useState(false);
 
@@ -64,7 +53,7 @@ const LoggedInUser = () => {
   };
 
   const displayFirstLetterOfUsername = () => {
-    const charArr = [...loggedUser];
+    const charArr = [...filteredLoggedUser.userName];
     return charArr[0].toUpperCase();
   };
 
@@ -95,7 +84,7 @@ const LoggedInUser = () => {
           <Badge badgeContent=" " overlap="circular">
             <Avatar
               sx={{
-                bgcolor: userColor,
+                bgcolor: filteredLoggedUser.avatarColor,
                 width: 56,
                 height: 56,
                 border: "2px solid white",
@@ -117,7 +106,7 @@ const LoggedInUser = () => {
               pb: "0",
             }}
           >
-            {loggedUser}
+            {filteredLoggedUser.userName}
           </Button>
         </Stack>
         <Collapse in={open} sx={{ width: "100%" }}>
@@ -217,7 +206,7 @@ const LoggedInUser = () => {
                   size="small"
                   onClick={(e) => {
                     e.preventDefault();
-                    dispatch(changeAvatarColor(userId, colorToChange));
+                    dispatch(changeAvatarColor(loggedUserId, colorToChange));
                     setOpenModal(false);
                   }}
                 >
