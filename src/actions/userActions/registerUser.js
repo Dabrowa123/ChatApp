@@ -28,6 +28,7 @@ export const registerUser = ({ userName, password }) => {
       password,
       avatarColor: "orange",
       isAdmin: false,
+      isBanned: false,
     },
   };
 };

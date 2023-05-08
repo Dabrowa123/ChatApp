@@ -6,6 +6,7 @@ export const usersReducer = (
       password: "admin",
       avatarColor: "grey",
       isAdmin: true,
+      isBanned: false,
     },
     {
       userId: 2,
@@ -13,6 +14,7 @@ export const usersReducer = (
       password: "user",
       avatarColor: "green",
       isAdmin: false,
+      isBanned: false,
     },
     {
       userId: 3,
@@ -20,6 +22,7 @@ export const usersReducer = (
       password: "user",
       avatarColor: "orange",
       isAdmin: false,
+      isBanned: false,
     },
   ],
   action
@@ -27,8 +30,26 @@ export const usersReducer = (
   switch (action.type) {
     case "REGISTER_USER":
       return [...state, action.payload];
-    case "DELETE_USER":
-      return state.filter((user) => user.userId !== action.payload);
+    case "BAN_USER":
+      return state.map((user) => {
+        if (user.userId !== action.payload) {
+          return user;
+        }
+        return {
+          ...user,
+          isBanned: true,
+        };
+      });
+    case "UNBAN_USER":
+      return state.map((user) => {
+        if (user.userId !== action.payload) {
+          return user;
+        }
+        return {
+          ...user,
+          isBanned: false,
+        };
+      });
     case "EDIT_USER":
       return [
         state.map((user) => {
