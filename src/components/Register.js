@@ -20,6 +20,7 @@ const Register = () => {
     username: yup
       .string()
       .required("Username is required")
+      .min(2, "Password must be at least 6 characters long")
       .test(
         "Unique Name",
         "Name already in use, please choose another one",
@@ -28,6 +29,24 @@ const Register = () => {
             (user) => user.userName === value
           );
           if (doesUserExist.length > 0) {
+            return false;
+          } else {
+            return true;
+          }
+        }
+      ),
+    email: yup
+      .string()
+      .required("Email is required")
+      .email()
+      .test(
+        "Unique Email",
+        "Email already in use, please choose another one",
+        function (value) {
+          const doesEmailExist = existingUsers.filter(
+            (user) => user.email === value
+          );
+          if (doesEmailExist.length > 0) {
             return false;
           } else {
             return true;
@@ -51,6 +70,7 @@ const Register = () => {
   const formik = useFormik({
     initialValues: {
       username: "",
+      email: "",
       password: "",
       password2: "",
     },
@@ -58,6 +78,7 @@ const Register = () => {
     onSubmit: (values) => {
       const userObject = {
         userName: values.username,
+        email: values.email,
         password: values.password,
       };
       dispatch(registerUser(userObject));
@@ -116,7 +137,7 @@ const Register = () => {
                 margin="normal"
                 required
                 fullWidth
-                id="email"
+                id="username"
                 label="Username"
                 name="username"
                 autoComplete="Name"
@@ -129,6 +150,24 @@ const Register = () => {
                   formik.touched.username && Boolean(formik.errors.username)
                 }
                 helperText={formik.touched.username && formik.errors.username}
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                label="Email"
+                name="email"
+                autoComplete="Email"
+                autoFocus
+                value={formik.values.email}
+                onChange={(e) => {
+                  formik.handleChange(e);
+                }}
+                error={
+                  formik.touched.email && Boolean(formik.errors.email)
+                }
+                helperText={formik.touched.email && formik.errors.email}
               />
               <TextField
                 margin="normal"

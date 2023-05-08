@@ -1,4 +1,4 @@
-export const registerUser = ({ userName, password }) => {
+export const registerUser = ({ userName, email, password }) => {
   // function generateRandomColor() {
   //   const minBrightness = 0.2; // minimalna jasność koloru
   //   let color;
@@ -25,6 +25,7 @@ export const registerUser = ({ userName, password }) => {
     payload: {
       userId: Math.floor(Math.random() * 1234),
       userName,
+      email,
       password,
       avatarColor: "orange",
       isAdmin: false,

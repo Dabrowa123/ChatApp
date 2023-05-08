@@ -8,6 +8,7 @@ import { displaySettings } from "../../../actions/displaySettingsActions/display
 import { changeAvatarColor } from "../../../actions/userActions/changeAvatarColor";
 import { useDispatch } from "react-redux";
 import useChatState from "../../../customHooks/useChatState";
+import EmailSettings from "./EmailSettings";
 
 const SettingsSection = () => {
   const { loggedUserId } = useChatState();
@@ -43,6 +44,7 @@ const SettingsSection = () => {
           sx={{minWidth: "90%", maxWidth: "90%"}}
         >
           <AvatarSettings func={avatarData}/>
+          <EmailSettings />
         </Box>
       </Box>
 

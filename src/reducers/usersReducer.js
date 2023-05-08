@@ -3,6 +3,7 @@ export const usersReducer = (
     {
       userId: 1,
       userName: "Administrator",
+      email: "admin@gmail.com",
       password: "admin",
       avatarColor: "grey",
       isAdmin: true,
@@ -11,6 +12,7 @@ export const usersReducer = (
     {
       userId: 2,
       userName: "Dominik",
+      email: "dominik@gmail.com",
       password: "user",
       avatarColor: "green",
       isAdmin: false,
@@ -19,6 +21,7 @@ export const usersReducer = (
     {
       userId: 3,
       userName: "Szymon",
+      email: "szymon@gmail.com",
       password: "user",
       avatarColor: "orange",
       isAdmin: false,
@@ -57,11 +60,13 @@ export const usersReducer = (
             return user;
           }
 
-          const { userName, password, isAdmin } = action.payload;
+          const { userName, email, password, isAdmin } = action.payload;
 
           return {
+            // ...state,
             userId: user.userId,
             userName,
+            email,
             password,
             isAdmin,
             avatarColor: user.avatarColor,

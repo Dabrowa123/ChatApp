@@ -11,7 +11,7 @@ import { useDispatch } from "react-redux";
 import useChatState from "../../../customHooks/useChatState";
 import { displaySettings } from "../../../actions/displaySettingsActions/displaySettings";
 
-const AvatarSettings = (props) => {
+const EmailSettings = (props) => {
   const { users, loggedUserId } =
     useChatState();
 
@@ -47,12 +47,18 @@ const AvatarSettings = (props) => {
                   component="h2"
                   textAlign={"center"}
                 >
-                  Set avatar color:
+                  Change email adress:
                 </Typography>
                 <Box sx={{ display: "flex", justifyContent: "center" }}>
-                  <Avatar sx={{ bgcolor: colorToChange, alignItems: "center" }}>
-                    {displayFirstLetterOfUsername()}
-                  </Avatar>
+                <Typography
+                  id="transition-modal-title"
+                  variant="h6"
+                  component="h2"
+                  textAlign={"center"}
+                >
+                  {filteredLoggedUser.email}
+                </Typography>
+ 
                 </Box>
                 <Stack
                   direction={"row"}
@@ -60,23 +66,7 @@ const AvatarSettings = (props) => {
                   justifyContent={"center"}
                   mb={5}
                 >
-                  <ButtonGroup
-                    variant="outlined"
-                    aria-label="outlined primary button group"
-                  >
-                    <Button name="red" size="small" onClick={setColor}>
-                      Red
-                    </Button>
-                    <Button name="grey" size="small" onClick={setColor}>
-                      Grey
-                    </Button>
-                    <Button name="green" size="small" onClick={setColor}>
-                      Green
-                    </Button>
-                    <Button name="orange" size="small" onClick={setColor}>
-                      Orange
-                    </Button>
-                  </ButtonGroup>
+   
                 </Stack>
               </Stack>
               <Divider />
@@ -84,4 +74,4 @@ const AvatarSettings = (props) => {
   );
 };
 
-export default AvatarSettings;
+export default EmailSettings;
