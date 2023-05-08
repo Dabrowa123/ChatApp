@@ -86,6 +86,7 @@ const ChatGroupCreator = () => {
         </form>
       </Box>
       <Snackbar
+        autoHideDuration={2000}
         severity="error"
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
         open={openAlert}
