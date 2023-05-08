@@ -10,20 +10,29 @@ import { useDispatch, useSelector } from "react-redux";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { deleteMessage } from "../../../actions/messageAction/deleteMessage";
 
-const Message = ({ groupId, id, author, time, content, isDeleted }) => {
+const Message = ({
+  groupId,
+  id,
+  author,
+  time,
+  content,
+  isDeleted,
+  loggedUserId,
+  users,
+}) => {
   const dispatch = useDispatch();
-  const userId = useSelector((state) => state.isLogged.userId);
-  const users = useSelector((state) => state.users);
-  let loggedUser;
+  let loggedUserName;
 
-  if (userId !== 0) {
-    const filteredUser = users.filter((user) => user.userId === userId);
+  if (loggedUserId !== 0) {
+    const filteredUser = users.filter((user) => user.userId === loggedUserId);
     if (filteredUser.length !== 0) {
-      loggedUser = filteredUser[0].userName;
+      loggedUserName = filteredUser[0].userName;
     }
   }
 
-  const filteredUserForAdmin = users.filter((user) => user.userId === userId);
+  const filteredUserForAdmin = users.filter(
+    (user) => user.userId === loggedUserId
+  );
   const isAdmin = filteredUserForAdmin[0].isAdmin;
 
   const filteredMessageAuthor = users.filter(
@@ -65,7 +74,7 @@ const Message = ({ groupId, id, author, time, content, isDeleted }) => {
   };
 
   let message =
-    loggedUser !== author ? (
+    loggedUserName !== author ? (
       <ListItem>
         <Grid container>
           <Grid
@@ -112,7 +121,7 @@ const Message = ({ groupId, id, author, time, content, isDeleted }) => {
                         whiteSpace: "normal",
                       },
                     }
-                    : {
+                  : {
                       color: "grey",
                       border: "1px solid grey",
                       background: "transparent",

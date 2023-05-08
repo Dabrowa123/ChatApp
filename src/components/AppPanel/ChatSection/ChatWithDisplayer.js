@@ -7,11 +7,12 @@ import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import VideocamIcon from "@mui/icons-material/Videocam";
 import InfoIcon from "@mui/icons-material/Info";
 
-const ChatWithDisplayer = ({ currentGroupFilter }) => {
-  const currentPickedUser = useSelector((state) => state.currentPickedUser);
-  const users = useSelector((state) => state.users);
-  const loggedUserId = useSelector((state) => state.isLogged.userId);
-
+const ChatWithDisplayer = ({
+  currentGroupFilter,
+  currentPickedUser,
+  users,
+  loggedUserId,
+}) => {
   const currentLoggedUserFilter = users.filter(
     (user) => user.userId === loggedUserId
   );

@@ -6,26 +6,18 @@ import MessageSender from "./MessageSender";
 import { useSelector } from "react-redux";
 import Message from "./Message";
 import ChatWithDisplayer from "./ChatWithDisplayer";
+import MessageList from "./MessageList";
 
 const ChatSection = () => {
   const currentGroupId = useSelector((state) => state.currentGroup.groupId);
   const groups = useSelector((state) => state.chatGroups);
+  const currentPickedUser = useSelector((state) => state.currentPickedUser);
+  const users = useSelector((state) => state.users);
+  const loggedUserId = useSelector((state) => state.isLogged.userId);
+
   const currentGroupFilter = groups.filter(
     (group) => group.groupId === currentGroupId
   );
-  const messageList = currentGroupFilter[0].messages.map((message) => (
-    <Message key={message.id} groupId={currentGroupId} {...message} />
-  ));
-
-  // Scrollable container
-  const container = useRef(null);
-  const Scroll = () => {
-    const { scrollHeight } = container.current;
-    container.current?.scrollTo(0, scrollHeight);
-  };
-  useEffect(() => {
-    Scroll();
-  }, [messageList]);
 
   return (
     <Box
@@ -38,11 +30,22 @@ const ChatSection = () => {
         flexDirection: "column",
       }}
     >
-      <ChatWithDisplayer currentGroupFilter={currentGroupFilter} />
+      <ChatWithDisplayer
+        currentGroupFilter={currentGroupFilter}
+        currentPickedUser={currentPickedUser}
+        users={users}
+        loggedUserId={loggedUserId}
+      />
       <Divider />
-      <List ref={container} sx={{ flexGrow: "4", overflow: "auto" }}>
+      <MessageList
+        currentGroupId={currentGroupId}
+        groups={groups}
+        users={users}
+        loggedUserId={loggedUserId}
+      />
+      {/* <List ref={container} sx={{ flexGrow: "4", overflow: "auto" }}>
         {messageList}
-      </List>
+      </List> */}
       <Divider />
       <MessageSender />
     </Box>
