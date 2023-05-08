@@ -21,34 +21,25 @@ const Message = ({
   users,
 }) => {
   const dispatch = useDispatch();
-  let loggedUserName;
-
-  if (loggedUserId !== 0) {
-    const filteredUser = users.filter((user) => user.userId === loggedUserId);
-    if (filteredUser.length !== 0) {
-      loggedUserName = filteredUser[0].userName;
-    }
-  }
-
-  const filteredUserForAdmin = users.filter(
+  const filteredLoggedUser = users.filter(
     (user) => user.userId === loggedUserId
   );
-  const isAdmin = filteredUserForAdmin[0].isAdmin;
-
   const filteredMessageAuthor = users.filter(
     (user) => user.userName === author
   );
 
-  const filteredAuthorAvatarColor = filteredMessageAuthor[0].avatarColor;
   const [authorAvatarColor, setAuthorAvatarColor] = React.useState(
-    filteredAuthorAvatarColor
+    filteredMessageAuthor[0].avatarColor
   );
-
-  console.log("Author avatar color: " + authorAvatarColor);
 
   // Clicking the message to show 'remove'
   const handleClickMessage = () => {
     setIsmesageClicked(!isMessageClicked);
+  };
+
+  const displayFirstLetterOfUsername = (userName) => {
+    const charArr = [...userName];
+    return charArr[0].toUpperCase();
   };
 
   const [isMessageClicked, setIsmesageClicked] = React.useState(false);
@@ -61,20 +52,15 @@ const Message = ({
     } else {
       setShowRemoveIcon("none");
     }
-    if (isAdmin) {
+    if (filteredLoggedUser[0].isAdmin) {
       setLetUserClickMessage("initial");
     } else {
       setLetUserClickMessage("none");
     }
   }, [isMessageClicked]);
 
-  const displayFirstLetterOfUsername = (userName) => {
-    const charArr = [...userName];
-    return charArr[0].toUpperCase();
-  };
-
   let message =
-    loggedUserName !== author ? (
+    filteredLoggedUser[0].userName !== author ? (
       <ListItem>
         <Grid container>
           <Grid

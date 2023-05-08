@@ -8,22 +8,15 @@ import { sendMessage } from "../../../actions/messageAction/sendMessage";
 import { wulgaryzmy } from "../../../wulgaryzmy";
 import Filter from "bad-words";
 
-const MessageSender = () => {
+const MessageSender = ({ currentGroupId, loggedUserId, users }) => {
   const dispatch = useDispatch();
-  const filter = new Filter();
   const [messageContent, setMessageContent] = useState("");
-  const currentGroupId = useSelector((state) => state.currentGroup.groupId);
-  const userId = useSelector((state) => state.isLogged.userId);
-  const users = useSelector((state) => state.users);
-  let loggedUser;
+
+  const filter = new Filter();
   filter.addWords(...wulgaryzmy);
 
-  if (userId !== 0) {
-    const filteredUser = users.filter((user) => user.userId === userId);
-    if (filteredUser.length !== 0) {
-      loggedUser = filteredUser[0].userName;
-    }
-  }
+  const filteredUser = users.filter((user) => user.userId === loggedUserId);
+
   let today = new Date();
   const currentTime = () => {
     let hours = () => {
@@ -59,22 +52,16 @@ const MessageSender = () => {
 
   const send = (e) => {
     if (messageContent !== "") {
-      let toSend; 
-    //   if (messageContent === ":)") {
-    //   toSend = messageContent;
-    // } else {
-    //   toSend = filter.clean(messageContent);
-    // }
+      let toSend;
+      try {
+        toSend = filter.clean(messageContent);
+      } catch {
+        toSend = messageContent;
+      }
 
-    try {
-      toSend = filter.clean(messageContent);
-    } catch {
-      toSend = messageContent;
-    }
-    
       const messageObject = {
         groupId: currentGroupId,
-        author: loggedUser,
+        author: filteredUser[0].userName,
         time: currentTime(),
         content: toSend,
       };
@@ -102,12 +89,7 @@ const MessageSender = () => {
         />
       </Grid>
       <Grid xs={1.2} align="right">
-        <Fab
-          aria-label="add"
-          onClick={send}
-          color={"primary"}
-          // sx={{ bgcolor: "white", color: "#002F6D" }}
-        >
+        <Fab aria-label="add" onClick={send} color={"primary"}>
           <SendIcon />
         </Fab>
       </Grid>

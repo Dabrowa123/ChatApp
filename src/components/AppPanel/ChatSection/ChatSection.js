@@ -42,7 +42,11 @@ const ChatSection = () => {
         loggedUserId={loggedUserId}
       />
       <Divider />
-      <MessageSender />
+      <MessageSender
+        currentGroupId={currentGroupId}
+        loggedUserId={loggedUserId}
+        users={users}
+      />
     </Box>
   );
 };
