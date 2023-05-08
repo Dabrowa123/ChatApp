@@ -5,12 +5,13 @@ import { Typography } from "@mui/material";
 import ChatGroupList from "./ChatGroupList";
 import ChatGroupCreator from "./ChatGroupCreator";
 import { useSelector } from "react-redux";
-import ChatSearch from "./ChatSearch";
+import ChatSearch from "./ChatGroupSearch";
 import Logo from "../../../pictures/Logo.png";
 
 const ChatGroupSection = () => {
   const displayUsers = useSelector((state) => state.users);
   const loggedUser = useSelector((state) => state.isLogged.userId);
+
   const filteredLoggedUser = displayUsers.find(
     (user) => user.userId === loggedUser
   );

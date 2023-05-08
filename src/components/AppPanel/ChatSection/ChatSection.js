@@ -4,13 +4,11 @@ import MessageSender from "./MessageSender";
 import { useSelector } from "react-redux";
 import ChatWithDisplayer from "./ChatWithDisplayer";
 import MessageList from "./MessageList";
+import useChatState from "../../../customHooks/useChatState";
 
 const ChatSection = () => {
-  const currentGroupId = useSelector((state) => state.currentGroup.groupId);
-  const groups = useSelector((state) => state.chatGroups);
-  const currentPickedUser = useSelector((state) => state.currentPickedUser);
-  const users = useSelector((state) => state.users);
-  const loggedUserId = useSelector((state) => state.isLogged.userId);
+  const { currentGroupId, groups, currentPickedUser, users, loggedUserId } =
+    useChatState();
 
   const currentGroupFilter = groups.find(
     (group) => group.groupId === currentGroupId

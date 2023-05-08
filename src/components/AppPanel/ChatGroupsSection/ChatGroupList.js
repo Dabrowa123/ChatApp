@@ -1,6 +1,6 @@
 import ChatGroup from "./ChatGroup";
 import { useSelector } from "react-redux";
-import ChatSearch from "./ChatSearch";
+import ChatSearch from "./ChatGroupSearch";
 import ChatGroupCreator from "./ChatGroupCreator";
 import Box from "@mui/material/Box";
 
