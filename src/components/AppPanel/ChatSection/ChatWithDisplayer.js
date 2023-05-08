@@ -9,34 +9,25 @@ const ChatWithDisplayer = () => {
   const displayGroups = useSelector((state) => state.chatGroups);
   const currentPickedUser = useSelector((state) => state.currentPickedUser);
   const users = useSelector((state) => state.users);
+  const loggedUserId = useSelector((state) => state.isLogged.userId);
+  const loggedUserArr = users.filter((user) => user.userId === loggedUserId);
+
+  const currentPickedUserFilter = users.filter(
+    (user) => user.userId === currentPickedUser.userId
+  );
+
   const filteredGroup = displayGroups.filter(
     (group) => group.groupId === displayCurrentPickedGroup.groupId
   );
 
-  const currentPickedGroupName = filteredGroup[0];
-  const isPriv = filteredGroup[0].isPriv;
-  const displayUsers = useSelector((state) => state.users);
-  const loggedUser = useSelector((state) => state.isLogged.userId);
-  let privGroupUsername;
-  const filteredUser = displayUsers.filter(
-    (user) => user.userId === loggedUser
-  );
-  const isAdmin = filteredUser[0].isAdmin;
-  const currentPickedUserFilter = users.filter(
-    (user) => user.userId === currentPickedUser.userId
-  );
-  if (currentPickedUser.userId !== null) {
-    privGroupUsername = currentPickedUserFilter[0].userName;
-  }
-
-  const displayFirstLetterOfUsername = () => {
-    const charArr = [...privGroupUsername];
+  const displayFirstLetterOf = () => {
+    const charArr = [...filteredGroup[0].groupName];
     return charArr[0].toUpperCase();
   };
 
   return (
     <>
-      {isPriv && !isAdmin && (
+      {filteredGroup[0].isPriv && !loggedUserArr[0].isAdmin && (
         <Stack
           direction={"row"}
           display={"flex"}
@@ -52,13 +43,14 @@ const ChatWithDisplayer = () => {
             variant="dot"
           >
             <Avatar sx={{ bgcolor: currentPickedUserFilter[0].avatarColor }}>
-              {displayFirstLetterOfUsername()}
+              {displayFirstLetterOf()}
             </Avatar>
           </Badge>
-          <Typography ml={2}>{privGroupUsername}</Typography>
+          <Typography ml={2}>{currentPickedUserFilter[0].userName}</Typography>
         </Stack>
       )}
-      {(!isPriv || (isAdmin && isPriv)) && (
+      {(!filteredGroup[0].isPriv ||
+        (loggedUserArr[0].isAdmin && filteredGroup[0].isPriv)) && (
         <Stack
           direction={"row"}
           display={"flex"}
@@ -77,7 +69,7 @@ const ChatWithDisplayer = () => {
               width: "35px",
             }}
           />
-          <Typography ml={2}>{currentPickedGroupName.groupName}</Typography>
+          <Typography ml={2}>{filteredGroup[0].groupName}</Typography>
         </Stack>
       )}
     </>
