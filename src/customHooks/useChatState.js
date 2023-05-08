@@ -6,8 +6,8 @@ const useChatState = () => {
   const currentPickedUser = useSelector((state) => state.currentPickedUser);
   const users = useSelector((state) => state.users);
   const loggedUserId = useSelector((state) => state.isLogged.userId);
-  const searchUserItem = useSelector((state) => state.searchUser.state);
-  const searchGroupItem = useSelector((state) => state.searchGroup.state);
+  const searchUserItem = useSelector((state) => state.searchUser);
+  const searchGroupItem = useSelector((state) => state.searchGroup);
 
   return {
     currentGroupId,

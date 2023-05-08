@@ -8,7 +8,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setSearchGroupItem } from "../../../actions/searchGroupActions/setSearchGroupItem";
 
-const ChatSearch = () => {
+const ChatGroupSearch = () => {
   const [groupNameValue, setGroupNameValue] = useState("");
 
   const dispatch = useDispatch();
@@ -50,7 +50,6 @@ const ChatSearch = () => {
               aria-label="directions"
             >
               <SearchIcon />
-              {/* <SearchIcon sx={{ color: "#002F6D" }} /> */}
             </IconButton>
           </Paper>
         </Box>
@@ -59,4 +58,4 @@ const ChatSearch = () => {
   );
 };
 
-export default ChatSearch;
+export default ChatGroupSearch;

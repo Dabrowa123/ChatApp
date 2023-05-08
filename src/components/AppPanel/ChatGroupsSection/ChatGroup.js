@@ -28,14 +28,14 @@ const style = {
   p: 4,
 };
 
-const ChatGroup = ({ groupId, groupName, userIdList, messages }) => {
-  const currentPickedGroup = useSelector((state) => state.currentGroup.groupId);
-  const displayUsers = useSelector((state) => state.users);
-  const loggedUser = useSelector((state) => state.isLogged.userId);
-  const filteredUser = displayUsers.filter(
-    (user) => user.userId === loggedUser
-  );
-  const isAdmin = filteredUser[0].isAdmin;
+const ChatGroup = ({
+  groupId,
+  groupName,
+  currentGroupId,
+  users,
+  loggedUserId,
+}) => {
+  const filteredUser = users.find((user) => user.userId === loggedUserId);
   const dispatch = useDispatch();
 
   //RemoveGroupModal
@@ -71,7 +71,7 @@ const ChatGroup = ({ groupId, groupName, userIdList, messages }) => {
             </ListItemIcon>
             <ListItemText primary={groupName} />
           </Stack>
-          {isAdmin && !(groupId === 1) && (
+          {filteredUser.isAdmin && !(groupId === 1) && (
             <IconButton
               type="submit"
               color="primary"
@@ -116,7 +116,7 @@ const ChatGroup = ({ groupId, groupName, userIdList, messages }) => {
               <Button
                 sx={{ mt: 2 }}
                 onClick={() => {
-                  if (currentPickedGroup === groupId) {
+                  if (currentGroupId === groupId) {
                     dispatch(pickGroup(1));
                     dispatch(deleteGroup(groupId));
                   } else {

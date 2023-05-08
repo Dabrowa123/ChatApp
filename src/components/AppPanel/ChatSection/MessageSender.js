@@ -15,7 +15,7 @@ const MessageSender = ({ currentGroupId, loggedUserId, users }) => {
   const filter = new Filter();
   filter.addWords(...wulgaryzmy);
 
-  const filteredUser = users.find((user) => user.userId === loggedUserId);
+  const filteredLoggedUser = users.find((user) => user.userId === loggedUserId);
 
   let today = new Date();
   console.log(today);
@@ -82,7 +82,7 @@ const MessageSender = ({ currentGroupId, loggedUserId, users }) => {
 
       const messageObject = {
         groupId: currentGroupId,
-        author: filteredUser.userName,
+        author: filteredLoggedUser.userName,
         time: currentTime(),
         content: toSend,
       };

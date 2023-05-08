@@ -5,16 +5,22 @@ import { Typography } from "@mui/material";
 import ChatGroupList from "./ChatGroupList";
 import ChatGroupCreator from "./ChatGroupCreator";
 import { useSelector } from "react-redux";
-import ChatSearch from "./ChatGroupSearch";
+import ChatGroupSearch from "./ChatGroupSearch";
 import Logo from "../../../pictures/Logo.png";
+import useChatState from "../../../customHooks/useChatState";
 
 const ChatGroupSection = () => {
-  const displayUsers = useSelector((state) => state.users);
-  const loggedUser = useSelector((state) => state.isLogged.userId);
+  const {
+    currentGroupId,
+    groups,
+    currentPickedUser,
+    users,
+    loggedUserId,
+    searchUserItem,
+    searchGroupItem,
+  } = useChatState();
 
-  const filteredLoggedUser = displayUsers.find(
-    (user) => user.userId === loggedUser
-  );
+  const filteredLoggedUser = users.find((user) => user.userId === loggedUserId);
 
   return (
     <Box
@@ -49,11 +55,17 @@ const ChatGroupSection = () => {
         GROUPS
       </Typography>
       <Box sx={{ flexGrow: "4", overflow: "auto" }}>
-        <ChatGroupList />
+        <ChatGroupList
+          users={users}
+          groups={groups}
+          loggedUserId={loggedUserId}
+          searchGroupItem={searchGroupItem}
+          currentGroupId={currentGroupId}
+        />
       </Box>
       <Divider sx={{ bgcolor: "white" }} />
       <Box pb={3} pl={4}>
-        <ChatSearch />
+        <ChatGroupSearch />
         {filteredLoggedUser.isAdmin && <ChatGroupCreator />}
       </Box>
     </Box>
