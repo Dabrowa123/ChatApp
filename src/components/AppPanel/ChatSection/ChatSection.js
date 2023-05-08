@@ -9,11 +9,11 @@ import ChatWithDisplayer from "./ChatWithDisplayer";
 
 const ChatSection = () => {
   const currentGroupId = useSelector((state) => state.currentGroup.groupId);
-  const displayGroups = useSelector((state) => state.chatGroups);
-  const filteredGroup = displayGroups.filter(
+  const groups = useSelector((state) => state.chatGroups);
+  const currentGroupFilter = groups.filter(
     (group) => group.groupId === currentGroupId
   );
-  const messageList = filteredGroup[0].messages.map((message) => (
+  const messageList = currentGroupFilter[0].messages.map((message) => (
     <Message key={message.id} groupId={currentGroupId} {...message} />
   ));
 
@@ -38,7 +38,7 @@ const ChatSection = () => {
         flexDirection: "column",
       }}
     >
-      <ChatWithDisplayer />
+      <ChatWithDisplayer currentGroupFilter={currentGroupFilter} />
       <Divider />
       <List ref={container} sx={{ flexGrow: "4", overflow: "auto" }}>
         {messageList}
