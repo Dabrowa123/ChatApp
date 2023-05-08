@@ -10,7 +10,6 @@ import { useDispatch } from "react-redux";
 import { createPrivGroup } from "../../../actions/groupActions/createPrivGroup";
 import { pickGroup } from "../../../actions/groupActions/pickGroup";
 import IconButton from "@mui/material/IconButton";
-import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { banUser } from "../../../actions/userActions/banUser";
 import { pickUser } from "../../../actions/userActions/pickUser";
 import Backdrop from "@mui/material/Backdrop";
@@ -19,10 +18,9 @@ import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
 import Button from "@mui/material/Button";
 import { unBanUser } from "../../../actions/userActions/unBanUser";
-import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
-import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
+import { displaySettings } from "../../../actions/displaySettingsActions/displaySettings";
 
 const style = {
   position: "absolute",
@@ -75,11 +73,11 @@ const User = ({
       );
       dispatch(pickGroup(id));
       dispatch(pickUser(userId));
-    } else if (currentPickedUserId === loggedUserId) {
-      alert("Nie możesz pisać z samym sobą :(");
+      dispatch(displaySettings(false));
     } else {
       dispatch(pickGroup(filteredGroup[0].groupId));
       dispatch(pickUser(userId));
+      dispatch(displaySettings(false));
     }
   };
 

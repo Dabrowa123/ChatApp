@@ -4,7 +4,6 @@ import MessageSender from "./MessageSender";
 import ChatWithDisplayer from "./ChatWithDisplayer";
 import MessageList from "./MessageList";
 import useChatState from "../../../customHooks/useChatState";
-import BlockedMessageSender from "./BlockedMessageSender";
 
 const ChatSection = () => {
   const { currentGroupId, groups, currentPickedUser, users, loggedUserId } =

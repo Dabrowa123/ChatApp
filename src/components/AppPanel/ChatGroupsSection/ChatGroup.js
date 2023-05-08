@@ -15,6 +15,7 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
 import Button from "@mui/material/Button";
+import { displaySettings } from "../../../actions/displaySettingsActions/displaySettings";
 
 const style = {
   position: "absolute",
@@ -52,6 +53,7 @@ const ChatGroup = ({
             direction={"row"}
             onClick={() => {
               dispatch(pickGroup(groupId));
+              dispatch(displaySettings(false));
             }}
             width={"100%"}
             alignItems={"center"}
