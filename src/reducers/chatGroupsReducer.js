@@ -4,7 +4,36 @@ export const chatGroupsReducer = (
       groupId: 1,
       groupName: "General",
       userIdList: [],
-      messages: [],
+      messages: [
+        {
+          id: 1,
+          author: "Dominik",
+          time: "12:30:31",
+          content: "Siemka wszystkim!",
+          isDeleted: false,
+        },
+        {
+          id: 2,
+          author: "Szymon",
+          time: "12:30:35",
+          content: "No siema siema!",
+          isDeleted: false,
+        },
+        {
+          id: 3,
+          author: "Administrator",
+          time: "12:30:38",
+          content: "Witajcie na czacie, tylko bądźcie grzeczni bo was zbanuję!",
+          isDeleted: false,
+        },
+        {
+          id: 4,
+          author: "Dominik",
+          time: "12:30:45",
+          content: "Wiadomość usunięta",
+          isDeleted: true,
+        },
+      ],
       isPriv: false,
     },
     {

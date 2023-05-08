@@ -3,10 +3,10 @@ import List from "@mui/material/List";
 import Message from "./Message";
 
 const MessageList = ({ currentGroupId, groups, users, loggedUserId }) => {
-  const currentGroupFilter = groups.filter(
+  const currentGroupFilter = groups.find(
     (group) => group.groupId === currentGroupId
   );
-  const messageList = currentGroupFilter[0].messages.map((message) => (
+  const messageList = currentGroupFilter.messages.map((message) => (
     <Message
       key={message.id}
       groupId={currentGroupId}

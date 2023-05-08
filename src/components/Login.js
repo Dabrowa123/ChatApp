@@ -78,13 +78,16 @@ const Login = () => {
   };
 
   return (
-    <Container component="main" maxWidth="sm"      
+    <Container
+      component="main"
+      maxWidth="sm"
       sx={{
         minHeight: "100vh",
         display: "flex",
         alignItems: "center",
-        justifyContent: "center"
-    }}>
+        justifyContent: "center",
+      }}
+    >
       <Box
         sx={{
           boxShadow: 3,
@@ -96,7 +99,7 @@ const Login = () => {
           alignItems: "center",
           backgroundColor: "white",
         }}
-        >
+      >
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>

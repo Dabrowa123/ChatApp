@@ -2,7 +2,6 @@ import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import MessageSender from "./MessageSender";
 import { useSelector } from "react-redux";
-import Message from "./Message";
 import ChatWithDisplayer from "./ChatWithDisplayer";
 import MessageList from "./MessageList";
 
@@ -13,7 +12,7 @@ const ChatSection = () => {
   const users = useSelector((state) => state.users);
   const loggedUserId = useSelector((state) => state.isLogged.userId);
 
-  const currentGroupFilter = groups.filter(
+  const currentGroupFilter = groups.find(
     (group) => group.groupId === currentGroupId
   );
 

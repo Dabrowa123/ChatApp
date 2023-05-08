@@ -11,10 +11,9 @@ import Logo from "../../../pictures/Logo.png";
 const ChatGroupSection = () => {
   const displayUsers = useSelector((state) => state.users);
   const loggedUser = useSelector((state) => state.isLogged.userId);
-  const filteredUser = displayUsers.filter(
+  const filteredLoggedUser = displayUsers.find(
     (user) => user.userId === loggedUser
   );
-  const isAdmin = filteredUser[0].isAdmin;
 
   return (
     <Box
@@ -54,7 +53,7 @@ const ChatGroupSection = () => {
       <Divider sx={{ bgcolor: "white" }} />
       <Box pb={3} pl={4}>
         <ChatSearch />
-        {isAdmin && <ChatGroupCreator />}
+        {filteredLoggedUser.isAdmin && <ChatGroupCreator />}
       </Box>
     </Box>
   );

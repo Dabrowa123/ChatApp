@@ -13,51 +13,45 @@ const ChatWithDisplayer = ({
   users,
   loggedUserId,
 }) => {
-  const currentLoggedUserFilter = users.filter(
+  const currentLoggedUserFilter = users.find(
     (user) => user.userId === loggedUserId
   );
-  const currentPickedUserFilter = users.filter(
+  const currentPickedUserFilter = users.find(
     (user) => user.userId === currentPickedUser.userId
   );
 
   const displayFirstLetterOf = () => {
-    const charArr = [...currentGroupFilter[0].groupName];
+    const charArr = [...currentPickedUserFilter.userName];
     return charArr[0].toUpperCase();
   };
 
   return (
     <Stack direction={"row"} justifyContent={"space-between"}>
       <Stack>
-        {currentGroupFilter[0].isPriv &&
-          !currentLoggedUserFilter[0].isAdmin && (
-            <Stack
-              direction={"row"}
-              display={"flex"}
-              justifyContent={"flex-start"}
-              alignItems={"center"}
-              p={3}
-              sx={{ maxHeight: "70px", minHeight: "70px" }}
+        {currentGroupFilter.isPriv && !currentLoggedUserFilter.isAdmin && (
+          <Stack
+            direction={"row"}
+            display={"flex"}
+            justifyContent={"flex-start"}
+            alignItems={"center"}
+            p={3}
+            sx={{ maxHeight: "70px", minHeight: "70px" }}
+          >
+            <Badge
+              color="primary"
+              badgeContent=" "
+              overlap="circular"
+              variant="dot"
             >
-              <Badge
-                color="primary"
-                badgeContent=" "
-                overlap="circular"
-                variant="dot"
-              >
-                <Avatar
-                  sx={{ bgcolor: currentPickedUserFilter[0].avatarColor }}
-                >
-                  {displayFirstLetterOf()}
-                </Avatar>
-              </Badge>
-              <Typography ml={2}>
-                {currentPickedUserFilter[0].userName}
-              </Typography>
-            </Stack>
-          )}
-        {(!currentGroupFilter[0].isPriv ||
-          (currentLoggedUserFilter[0].isAdmin &&
-            currentGroupFilter[0].isPriv)) && (
+              <Avatar sx={{ bgcolor: currentPickedUserFilter.avatarColor }}>
+                {displayFirstLetterOf()}
+              </Avatar>
+            </Badge>
+            <Typography ml={2}>{currentPickedUserFilter.userName}</Typography>
+          </Stack>
+        )}
+        {(!currentGroupFilter.isPriv ||
+          (currentLoggedUserFilter.isAdmin && currentGroupFilter.isPriv)) && (
           <Stack
             direction={"row"}
             display={"flex"}
@@ -76,7 +70,7 @@ const ChatWithDisplayer = ({
                 width: "35px",
               }}
             />
-            <Typography ml={2}>{currentGroupFilter[0].groupName}</Typography>
+            <Typography ml={2}>{currentGroupFilter.groupName}</Typography>
           </Stack>
         )}
       </Stack>
