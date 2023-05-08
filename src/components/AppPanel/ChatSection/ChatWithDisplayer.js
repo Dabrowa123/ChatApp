@@ -78,9 +78,9 @@ const ChatWithDisplayer = ({
         justifyContent={"space-between"}
         alignItems={"center"}
       >
-        <LocalPhoneIcon sx={{ marginRight: "35px" }} />
-        <VideocamIcon sx={{ marginRight: "35px" }} />
-        <InfoIcon sx={{ marginRight: "35px" }} />
+        <LocalPhoneIcon sx={{ marginRight: "35px", color: "#263238" }} />
+        <VideocamIcon sx={{ marginRight: "35px", color: "#263238" }} />
+        <InfoIcon sx={{ marginRight: "35px", color: "#263238" }} />
       </Stack>
     </Stack>
   );

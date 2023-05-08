@@ -21,6 +21,8 @@ import Button from "@mui/material/Button";
 import { unBanUser } from "../../../actions/userActions/unBanUser";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
+import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
+import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 
 const style = {
   position: "absolute",
@@ -116,10 +118,10 @@ const User = ({
             </ListItemIcon>
             <ListItemText
               primary={
-                currentPickedUserFilter.isBanned ? (
-                  <i>
-                    {userName} <strong>(banned)</strong>
-                  </i>
+                currentPickedUserFilter.isBanned ? (<>
+                  <span style={{color: "grey"}}>
+                    {userName} <i style={{fontSize: "80%"}}>(banned)</i>
+                  </span></>
                 ) : (
                   userName
                 )
@@ -135,9 +137,13 @@ const User = ({
               onClick={handleOpen}
             >
               {currentPickedUserFilter.isBanned ? (
-                <RemoveCircleOutlineIcon />
-              ) : (
-                <RemoveCircleIcon />
+                <PersonAddAlt1Icon sx={{color: "#263238", height: "22px", width: "22px", '&:hover': {
+                  color: "#4caf50",
+               }}}/>
+                ) : (
+                <PersonRemoveIcon sx={{color: "#263238", height: "22px", width: "22px", '&:hover': {
+                  color: "#ef5350",
+               }}}/>
               )}
             </IconButton>
           )}
