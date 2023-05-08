@@ -3,7 +3,12 @@ import Stack from "@mui/material/Stack";
 import Avatar from "@mui/material/Avatar";
 import Badge from "@mui/material/Badge";
 import Button from "@mui/material/Button";
-import { ButtonGroup, ListItemButton, ListItemText, Collapse } from "@mui/material";
+import {
+  ButtonGroup,
+  ListItemButton,
+  ListItemText,
+  Collapse,
+} from "@mui/material";
 import List from "@mui/material/List";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
@@ -54,7 +59,7 @@ const LoggedInUser = () => {
   const [open, setOpen] = React.useState(false);
 
   const handleClick = () => {
-    setOpen((prev) => !prev)
+    setOpen((prev) => !prev);
   };
 
   const displayFirstLetterOfUsername = () => {
@@ -82,7 +87,7 @@ const LoggedInUser = () => {
           minHeight: "150px",
           background: "#002F6D",
           pt: "5px",
-          pb: "15px"
+          pb: "15px",
         }}
       >
         <Stack justifyContent={"center"} alignItems={"center"} pt={3}>
@@ -103,29 +108,30 @@ const LoggedInUser = () => {
             size="large"
             disableElevation
             onClick={handleClick}
-            endIcon={open? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-            sx={{ color: "white", textTransform: "none", fontSize: "22px", pb: "0" }}
+            endIcon={open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+            sx={{
+              color: "white",
+              textTransform: "none",
+              fontSize: "22px",
+              pb: "0",
+            }}
           >
             {loggedUser}
           </Button>
         </Stack>
-        <Collapse in={open} sx={{width: "100%"}}>
-          <List 
-            sx={{color: "white", pt: "3px", pb: "0px"}}
-          >
-            <ListItemButton
-              onClick={handleOpenModal}
-            >
-              <ListItemText primary={"Settings"} sx={{ textAlign: "center"}}/>
+        <Collapse in={open} sx={{ width: "100%" }}>
+          <List sx={{ color: "white", pt: "3px", pb: "0px" }}>
+            <ListItemButton onClick={handleOpenModal}>
+              <ListItemText primary={"Settings"} sx={{ textAlign: "center" }} />
             </ListItemButton>
             <ListItemButton>
-              <ListItemText 
-                primary={"Log out"} 
+              <ListItemText
+                primary={"Log out"}
                 onClick={() => {
                   navigate("/");
                   dispatch(pickGroup(1));
                 }}
-                sx={{ textAlign: "center"}}
+                sx={{ textAlign: "center" }}
               />
             </ListItemButton>
           </List>
@@ -196,7 +202,7 @@ const LoggedInUser = () => {
                     <Button name="green" size="small" onClick={setColor}>
                       Green
                     </Button>
-                    <Button name="#ffbd59" size="small" onClick={setColor}>
+                    <Button name="orange" size="small" onClick={setColor}>
                       Orange
                     </Button>
                   </ButtonGroup>
@@ -234,5 +240,3 @@ const LoggedInUser = () => {
 };
 
 export default LoggedInUser;
-
-

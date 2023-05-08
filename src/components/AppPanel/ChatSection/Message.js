@@ -21,15 +21,11 @@ const Message = ({
   users,
 }) => {
   const dispatch = useDispatch();
-  const filteredLoggedUser = users.filter(
-    (user) => user.userId === loggedUserId
-  );
-  const filteredMessageAuthor = users.filter(
-    (user) => user.userName === author
-  );
+  const filteredLoggedUser = users.find((user) => user.userId === loggedUserId);
+  const filteredMessageAuthor = users.find((user) => user.userName === author);
 
   const [authorAvatarColor, setAuthorAvatarColor] = React.useState(
-    filteredMessageAuthor[0].avatarColor
+    filteredMessageAuthor.avatarColor
   );
 
   // Clicking the message to show 'remove'
@@ -52,7 +48,7 @@ const Message = ({
     } else {
       setShowRemoveIcon("none");
     }
-    if (filteredLoggedUser[0].isAdmin) {
+    if (filteredLoggedUser.isAdmin) {
       setLetUserClickMessage("initial");
     } else {
       setLetUserClickMessage("none");
@@ -60,7 +56,7 @@ const Message = ({
   }, [isMessageClicked]);
 
   let message =
-    filteredLoggedUser[0].userName !== author ? (
+    filteredLoggedUser.userName !== author ? (
       <ListItem>
         <Grid container>
           <Grid
