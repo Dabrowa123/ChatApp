@@ -6,6 +6,7 @@ import { currentGroupReducer } from "./currentGroupReducer";
 import { currentPickedUserReducer } from "./currentPickedUserReducer";
 import { searchGroupReducer } from "./searchGroupReducer";
 import { searchUserReducer } from "./searchUserReducer";
+import { displaySettingsReducer } from "./displaySettingsReducer";
 
 export const rootReducer = combineReducers({
   users: usersReducer,
@@ -15,4 +16,5 @@ export const rootReducer = combineReducers({
   currentPickedUser: currentPickedUserReducer,
   searchGroup: searchGroupReducer,
   searchUser: searchUserReducer,
+  displaySettings: displaySettingsReducer,
 });
