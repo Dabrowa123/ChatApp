@@ -33,7 +33,7 @@ const ChatGroupSection = () => {
         alignItems={"center"}
         direction={"row"}
         spacing={2}
-        sx={{ minHeight: "200px" }}
+        sx={{ minHeight: "170px" }}
       >
         <img src={Logo} alt="logo" width="60%" height="auto"></img>
       </Stack>
@@ -51,6 +51,7 @@ const ChatGroupSection = () => {
       <Box sx={{ flexGrow: "4", overflow: "auto" }}>
         <ChatGroupList />
       </Box>
+      <Divider sx={{ bgcolor: "white" }} />
       <Box pb={3} pl={4}>
         <ChatSearch />
         {isAdmin && <ChatGroupCreator />}

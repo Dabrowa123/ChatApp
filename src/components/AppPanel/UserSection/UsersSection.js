@@ -25,7 +25,7 @@ const UsersSection = () => {
       <Box sx={{ flexGrow: "4", overflow: "auto" }}>
         <UserList />
       </Box>
-      <Divider />
+      <Divider sx={{ bgcolor: "grey" }} />
       <Box
         pb={3}
         pl={2}
