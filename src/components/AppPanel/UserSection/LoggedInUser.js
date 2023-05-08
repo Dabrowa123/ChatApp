@@ -23,6 +23,7 @@ import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import CloseIcon from "@mui/icons-material/Close";
 import { changeAvatarColor } from "../../../actions/userActions/changeAvatarColor";
+import { displaySettings } from "../../../actions/displaySettingsActions/displaySettings";
 
 const style = {
   position: "absolute",
@@ -121,7 +122,8 @@ const LoggedInUser = () => {
         </Stack>
         <Collapse in={open} sx={{ width: "100%" }}>
           <List sx={{ color: "white", pt: "3px", pb: "0px" }}>
-            <ListItemButton onClick={handleOpenModal}>
+            <ListItemButton onClick={() => dispatch(displaySettings(true))}>
+              {/* <ListItemButton onClick={handleOpenModal}> */}
               <ListItemText primary={"Settings"} sx={{ textAlign: "center" }} />
             </ListItemButton>
             <ListItemButton>
@@ -138,7 +140,7 @@ const LoggedInUser = () => {
         </Collapse>
       </Stack>
 
-      <Modal
+      {/* <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
         open={openModal}
@@ -234,7 +236,7 @@ const LoggedInUser = () => {
             />
           </Box>
         </Fade>
-      </Modal>
+      </Modal> */}
     </>
   );
 };
