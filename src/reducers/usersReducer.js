@@ -55,20 +55,15 @@ export const usersReducer = (
       });
     case "EDIT_USER":
       return state.map((user) => {
-          if (user.userId !== action.payload.id) {
-            return user;
-          }
+        if (user.userId !== action.payload.id) {
+          return user;
+        }
 
-          return {
-            ...user,
-            userId: user.userId,
-            userName: user.userName,
-            email: action.payload.email,
-            password: user.password,
-            isAdmin: user.isAdmin,
-            avatarColor: user.avatarColor,
-          };
-        });
+        return {
+          ...user,
+          email: action.payload.email,
+        };
+      });
     case "CHANGE_AVATAR_COLOR":
       return state.map((user) => {
         if (user.userId !== action.payload.id) {
