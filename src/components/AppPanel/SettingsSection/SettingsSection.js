@@ -19,7 +19,6 @@ const SettingsSection = () => {
 
   // Avatar 
 
-
   const [color, setColor] = useState("");
   const [enableConfirm, setEnableConfirm] = useState(false);
 
@@ -40,7 +39,7 @@ const SettingsSection = () => {
   const RegisterSchema = yup.object().shape({
     email: yup
       .string()
-      .required("Email is required")
+      .required("Please, write any valid email")
       .email()
       .test(
         "Unique Email",
@@ -62,7 +61,8 @@ const SettingsSection = () => {
 
   const formik = useFormik({
     initialValues: {
-      email: `${filteredLoggedUser.email}`,
+      email: "",
+      // email: `${filteredLoggedUser.email}`,
     },
     validationSchema: RegisterSchema,
     onSubmit: (values) => {
@@ -112,13 +112,13 @@ const SettingsSection = () => {
                 >
                   Change email adress:
                 </Typography>
+                
                 <Box sx={{ minWidth: "70%" }} component="form">
                   <TextField
                     margin="normal"
-                    required
                     fullWidth
                     id="email"
-                    label="Email"
+                    label="New email"
                     name="email"
                     autoComplete="Email"
                     autoFocus
@@ -133,6 +133,17 @@ const SettingsSection = () => {
                     helperText={formik.touched.email && formik.errors.email}
                   />
                 </Box>
+
+                <Typography
+                  id="transition-modal-title"
+                  variant="subtitle2"
+                  component="h2"
+                  mt={1}
+                  mb={2}
+                  textAlign={"left"}
+                >
+                  Currently used email: {filteredLoggedUser.email}
+                </Typography>
               </Box>
               <Divider />
         </Box>
