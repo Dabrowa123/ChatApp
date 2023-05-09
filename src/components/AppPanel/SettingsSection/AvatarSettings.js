@@ -6,11 +6,8 @@ import ButtonGroup from "@mui/material/ButtonGroup";
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
 import { Button } from "@mui/material";
-import useChatState from "../../../customHooks/useChatState";
 
-const AvatarSettings = (props) => {
-  const { users, loggedUserId } = useChatState();
-
+const AvatarSettings = ({ func, users, loggedUserId }) => {
   const filteredLoggedUser = users.find((user) => user.userId === loggedUserId);
 
   const [colorToChange, setColorToChange] = React.useState(
@@ -26,7 +23,7 @@ const AvatarSettings = (props) => {
     e.preventDefault();
     const color = e.target.name;
     setColorToChange(color);
-    props.func(color);
+    func(color);
   };
 
   return (

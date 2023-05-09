@@ -8,17 +8,13 @@ import { displaySettings } from "../../../actions/displaySettingsActions/display
 import { changeAvatarColor } from "../../../actions/userActions/changeAvatarColor";
 import { useDispatch } from "react-redux";
 import useChatState from "../../../customHooks/useChatState";
-import TextField from "@mui/material/TextField";
-import Typography from "@mui/material/Typography";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { useSelector } from "react-redux";
 import { editUser } from "../../../actions/userActions/editUser";
+import EmailSettings from "./EmailSettings";
 
 const SettingsSection = () => {
   const { users, loggedUserId } = useChatState();
-
-  const existingUsers = useSelector((state) => state.users);
 
   const filteredLoggedUser = users.find((user) => user.userId === loggedUserId);
 
@@ -43,9 +39,7 @@ const SettingsSection = () => {
         "Unique Email",
         "Email already in use, please choose another one",
         function (value) {
-          const doesEmailExist = existingUsers.filter(
-            (user) => user.email === value
-          );
+          const doesEmailExist = users.filter((user) => user.email === value);
           if (value === filteredLoggedUser.email) {
             return true;
           } else if (doesEmailExist.length > 0) {
@@ -100,61 +94,13 @@ const SettingsSection = () => {
         }}
       >
         <Box sx={{ minWidth: "90%", maxWidth: "90%" }}>
-          <AvatarSettings func={avatarData} />
+          <AvatarSettings
+            func={avatarData}
+            users={users}
+            loggedUserId={loggedUserId}
+          />
 
-          <Box
-            spacing={3}
-            mb={5}
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Typography
-              id="transition-modal-title"
-              variant="subtitle1"
-              component="h2"
-              mt={4}
-              mb={2}
-              textAlign={"left"}
-            >
-              Change email adress:
-            </Typography>
-
-            <Box sx={{ minWidth: "70%" }} component="form">
-              <TextField
-                margin="normal"
-                fullWidth
-                id="email"
-                label="New email"
-                name="email"
-                autoComplete="Email"
-                autoFocus
-                value={formik.values.email}
-                onChange={(e) => {
-                  e.preventDefault();
-                  formik.handleChange(e);
-                  setEnableConfirm(true);
-                }}
-                error={formik.touched.email && Boolean(formik.errors.email)}
-                helperText={formik.touched.email && formik.errors.email}
-              />
-            </Box>
-
-            <Typography
-              id="transition-modal-title"
-              variant="subtitle2"
-              component="h2"
-              mt={1}
-              mb={2}
-              textAlign={"left"}
-            >
-              Currently used email: {filteredLoggedUser.email}
-            </Typography>
-          </Box>
-          <Divider />
+          <EmailSettings formik={formik} setFunction={setEnableConfirm} />
         </Box>
       </Box>
 
