@@ -134,6 +134,7 @@ const SettingsSection = () => {
                 autoFocus
                 value={formik.values.email}
                 onChange={(e) => {
+                  e.preventDefault();
                   formik.handleChange(e);
                   setEnableConfirm(true);
                 }}

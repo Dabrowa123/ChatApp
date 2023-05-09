@@ -20,7 +20,7 @@ const Register = () => {
     username: yup
       .string()
       .required("Username is required")
-      .min(2, "Password must be at least 6 characters long")
+      .min(2, "Username must be at least 2 characters long")
       .test(
         "Unique Name",
         "Name already in use, please choose another one",
@@ -164,9 +164,7 @@ const Register = () => {
                 onChange={(e) => {
                   formik.handleChange(e);
                 }}
-                error={
-                  formik.touched.email && Boolean(formik.errors.email)
-                }
+                error={formik.touched.email && Boolean(formik.errors.email)}
                 helperText={formik.touched.email && formik.errors.email}
               />
               <TextField
@@ -217,7 +215,12 @@ const Register = () => {
                   Do you already have an account?
                 </Grid>
                 <Grid item xs={1.5} sx={{ textAlign: "right" }}>
-                  <Link onClick={() => {navigate("/")}} variant="body2">
+                  <Link
+                    onClick={() => {
+                      navigate("/");
+                    }}
+                    variant="body2"
+                  >
                     {"Sign in"}
                   </Link>
                 </Grid>

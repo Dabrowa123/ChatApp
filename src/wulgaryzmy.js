@@ -152,6 +152,7 @@ export const wulgaryzmy = [
   "kurwic",
   "kurwica",
   "kurwidołek",
+  "kurcze",
   "kurwie",
   "kurwik",
   "kurwiki",
