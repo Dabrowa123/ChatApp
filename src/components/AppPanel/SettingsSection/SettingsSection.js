@@ -48,7 +48,10 @@ const SettingsSection = () => {
           const doesEmailExist = existingUsers.filter(
             (user) => user.email === value
           );
-          if (doesEmailExist.length > 0) {
+          if (value === filteredLoggedUser.email) {
+            return true;
+          }
+          else if (doesEmailExist.length > 0) {
             return false;
           } else {
             return true;
@@ -61,8 +64,8 @@ const SettingsSection = () => {
 
   const formik = useFormik({
     initialValues: {
-      email: "",
-      // email: `${filteredLoggedUser.email}`,
+      // email: "",
+      email: `${filteredLoggedUser.email}`,
     },
     validationSchema: RegisterSchema,
     onSubmit: (values) => {
