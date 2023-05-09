@@ -217,7 +217,7 @@ const Register = () => {
                   Do you already have an account?
                 </Grid>
                 <Grid item xs={1.5} sx={{ textAlign: "right" }}>
-                  <Link href="http://localhost:3000/" variant="body2">
+                  <Link onClick={() => {navigate("/")}} variant="body2">
                     {"Sign in"}
                   </Link>
                 </Grid>
