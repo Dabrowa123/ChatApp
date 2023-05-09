@@ -1,9 +1,7 @@
-export const editUser = ({ id, author, comment, rate }) => ({
+export const editUser = ( id, email ) => ({
   type: "EDIT_USER",
   payload: {
     id,
-    author,
-    comment,
-    rate,
+    email
   },
 });

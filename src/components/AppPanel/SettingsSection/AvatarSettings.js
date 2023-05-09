@@ -5,17 +5,12 @@ import Stack from "@mui/material/Stack";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
-import { changeAvatarColor } from "../../../actions/userActions/changeAvatarColor";
 import { Button } from "@mui/material";
-import { useDispatch } from "react-redux";
 import useChatState from "../../../customHooks/useChatState";
-import { displaySettings } from "../../../actions/displaySettingsActions/displaySettings";
 
 const AvatarSettings = (props) => {
   const { users, loggedUserId } =
     useChatState();
-
-    const dispatch = useDispatch();
   
     const filteredLoggedUser = users.find((user) => user.userId === loggedUserId);
   
@@ -43,7 +38,7 @@ const AvatarSettings = (props) => {
               >
                 <Typography
                   id="transition-modal-title"
-                  variant="h6"
+                  variant="subtitle1"
                   component="h2"
                   textAlign={"center"}
                 >

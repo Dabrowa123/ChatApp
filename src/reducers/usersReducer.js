@@ -54,25 +54,21 @@ export const usersReducer = (
         };
       });
     case "EDIT_USER":
-      return [
-        state.map((user) => {
+      return state.map((user) => {
           if (user.userId !== action.payload.id) {
             return user;
           }
 
-          const { userName, email, password, isAdmin } = action.payload;
-
           return {
-            // ...state,
+            ...user,
             userId: user.userId,
-            userName,
-            email,
-            password,
-            isAdmin,
+            userName: user.userName,
+            email: action.payload.email,
+            password: user.password,
+            isAdmin: user.isAdmin,
             avatarColor: user.avatarColor,
           };
-        }),
-      ];
+        });
     case "CHANGE_AVATAR_COLOR":
       return state.map((user) => {
         if (user.userId !== action.payload.id) {

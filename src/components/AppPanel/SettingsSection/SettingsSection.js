@@ -3,16 +3,22 @@ import Divider from "@mui/material/Divider";
 import HeadingBar from "./HeadingBar";
 import AvatarSettings from "./AvatarSettings";
 import Button from "@mui/material/Button";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { displaySettings } from "../../../actions/displaySettingsActions/displaySettings";
 import { changeAvatarColor } from "../../../actions/userActions/changeAvatarColor";
 import { useDispatch } from "react-redux";
 import useChatState from "../../../customHooks/useChatState";
-import EmailSettings from "./EmailSettings";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
+import { useFormik } from "formik";
+import * as yup from "yup";
+import { useSelector } from "react-redux";
+import {editUser} from "../../../actions/userActions/editUser"
 
 const SettingsSection = () => {
-  const { loggedUserId } = useChatState();
-  const dispatch = useDispatch();
+
+  // Avatar 
+
 
   const [color, setColor] = useState("");
   const [enableConfirm, setEnableConfirm] = useState(false);
@@ -22,8 +28,55 @@ const SettingsSection = () => {
     setColor(color);
   };
 
+  // Email
+
+  const { users, loggedUserId } =
+  useChatState();
+
+  const existingUsers = useSelector((state) => state.users);
+
+  const filteredLoggedUser = users.find((user) => user.userId === loggedUserId);
+
+  const RegisterSchema = yup.object().shape({
+    email: yup
+      .string()
+      .required("Email is required")
+      .email()
+      .test(
+        "Unique Email",
+        "Email already in use, please choose another one",
+        function (value) {
+          const doesEmailExist = existingUsers.filter(
+            (user) => user.email === value
+          );
+          if (doesEmailExist.length > 0) {
+            return false;
+          } else {
+            return true;
+          }
+        }
+      ),
+  });
+
+  const dispatch = useDispatch();
+
+  const formik = useFormik({
+    initialValues: {
+      email: `${filteredLoggedUser.email}`,
+    },
+    validationSchema: RegisterSchema,
+    onSubmit: (values) => {
+      dispatch(editUser(loggedUserId, values.email));
+      dispatch(changeAvatarColor(loggedUserId, color))
+      dispatch(displaySettings(false));
+    },
+  });
+
   return (
     <Box
+    component="form"
+    onSubmit={formik.handleSubmit}
+      noValidate
       sx={{
         bgcolor: "#f5f5f5",
         minHeight: "100vh",
@@ -44,7 +97,44 @@ const SettingsSection = () => {
           sx={{minWidth: "90%", maxWidth: "90%"}}
         >
           <AvatarSettings func={avatarData}/>
-          <EmailSettings />
+
+        <Box spacing={3}
+                mb={5}
+                sx={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}
+              >
+                <Typography
+                  id="transition-modal-title"
+                  variant="subtitle1"
+                  component="h2"
+                  mt={4}
+                  mb={2}
+                  textAlign={"left"}
+                >
+                  Change email adress:
+                </Typography>
+                <Box sx={{ minWidth: "70%" }} component="form">
+                  <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="email"
+                    label="Email"
+                    name="email"
+                    autoComplete="Email"
+                    autoFocus
+                    value={formik.values.email}
+                    onChange={(e) => {
+                      formik.handleChange(e);
+                      setEnableConfirm(true);
+                    }}
+                    error={
+                      formik.touched.email && Boolean(formik.errors.email)
+                    }
+                    helperText={formik.touched.email && formik.errors.email}
+                  />
+                </Box>
+              </Box>
+              <Divider />
         </Box>
       </Box>
 
@@ -52,12 +142,8 @@ const SettingsSection = () => {
         {enableConfirm ? 
           (<Button
             variant="contained"
+            type="submit"
             size="small"
-            onClick={(e) => {
-              e.preventDefault();
-              dispatch(changeAvatarColor(loggedUserId, color))
-              dispatch(displaySettings(false));
-            }}
           >
             Confirm Changes
           </Button>) : (<Button
