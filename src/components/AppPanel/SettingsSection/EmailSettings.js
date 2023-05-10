@@ -42,6 +42,9 @@ const EmailSettings = ({ formik, setFunction }) => {
             autoComplete="Email"
             autoFocus
             value={formik.values.email}
+            onKeyPress={(e) => {
+              e.key === "Enter" && e.preventDefault();
+            }}
             onChange={(e) => {
               e.preventDefault();
               formik.handleChange(e);
