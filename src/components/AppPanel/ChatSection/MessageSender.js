@@ -7,7 +7,6 @@ import { useDispatch } from "react-redux";
 import { sendMessage } from "../../../actions/messageAction/sendMessage";
 import { wulgaryzmy } from "../../../wulgaryzmy";
 import Filter from "bad-words";
-import axios from "axios";
 
 const MessageSender = ({ currentGroupId, loggedUserId, users }) => {
   const dispatch = useDispatch();

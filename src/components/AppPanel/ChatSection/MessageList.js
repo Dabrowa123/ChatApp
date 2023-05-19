@@ -1,7 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import List from "@mui/material/List";
 import Message from "./Message";
-import axios from "axios";
 
 const MessageList = ({ currentGroupId, groups, users, loggedUserId }) => {
   const [fetchedData, setFetchedData] = useState(null);
@@ -35,17 +34,6 @@ const MessageList = ({ currentGroupId, groups, users, loggedUserId }) => {
       Scroll();
     }
   }, [messageList, savedMessageListLength]);
-
-  // useEffect(() => {
-  //   axios
-  //     .get("http://localhost:8080/tasks")
-  //     .then((data) => {
-  //       console.log(data.data[0].description);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, []);
 
   return (
     <List ref={container} sx={{ flexGrow: "4", overflow: "auto" }}>

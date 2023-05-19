@@ -5,7 +5,6 @@ import Protected from "./components/Protected";
 import Register from "./components/Register";
 import { useSelector } from "react-redux";
 import AppPanel from "./components/AppPanel/AppPanel";
-import axios from "axios";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { fetchDataSuccess } from "./actions/userActions/fetchUserDataActions";

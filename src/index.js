@@ -5,17 +5,18 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { rootReducer } from "./reducers/rootReducer";
 import { Provider } from "react-redux";
-import { createStore, applyMiddleware } from "redux";
+import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import { ThemeProvider } from "@mui/material/styles";
 import MainTheme from "./Themes/MainTheme";
 import CssBaseline from "@mui/material/CssBaseline";
 
-let store = createStore(
-  rootReducer,
+const enhancers = compose(
   applyMiddleware(thunk),
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
+
+const store = createStore(rootReducer, enhancers);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
