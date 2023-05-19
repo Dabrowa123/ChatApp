@@ -1,33 +1,8 @@
 export const usersReducer = (
-  state = [
-    {
-      userId: 1,
-      userName: "Administrator",
-      email: "admin@gmail.com",
-      password: "admin",
-      avatarColor: "grey",
-      isAdmin: true,
-      isBanned: false,
-    },
-    {
-      userId: 2,
-      userName: "Dominik",
-      email: "dominik@gmail.com",
-      password: "user",
-      avatarColor: "green",
-      isAdmin: false,
-      isBanned: false,
-    },
-    {
-      userId: 3,
-      userName: "Szymon",
-      email: "szymon@gmail.com",
-      password: "user",
-      avatarColor: "orange",
-      isAdmin: false,
-      isBanned: false,
-    },
-  ],
+  state = {
+    users: [], // Pusta tablica na początku
+    isLoading: true,
+  },
   action
 ) => {
   switch (action.type) {
@@ -74,6 +49,23 @@ export const usersReducer = (
           avatarColor: action.payload.avatarColor,
         };
       });
+    case "FETCH_DATA_REQUEST":
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case "FETCH_DATA_SUCCESS":
+      return {
+        ...state,
+        isLoading: false,
+        users: action.payload,
+      };
+    case "FETCH_DATA_FAILURE":
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload,
+      };
 
     default:
       return state;

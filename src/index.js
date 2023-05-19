@@ -5,13 +5,15 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { rootReducer } from "./reducers/rootReducer";
 import { Provider } from "react-redux";
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
 import { ThemeProvider } from "@mui/material/styles";
 import MainTheme from "./Themes/MainTheme";
 import CssBaseline from "@mui/material/CssBaseline";
 
 let store = createStore(
   rootReducer,
+  applyMiddleware(thunk),
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 

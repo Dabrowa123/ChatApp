@@ -18,8 +18,8 @@ import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
 import Button from "@mui/material/Button";
 import { unBanUser } from "../../../actions/userActions/unBanUser";
-import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
-import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
+import PersonRemoveIcon from "@mui/icons-material/PersonRemove";
+import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 import { displaySettings } from "../../../actions/displaySettingsActions/displaySettings";
 
 const style = {
@@ -116,10 +116,12 @@ const User = ({
             </ListItemIcon>
             <ListItemText
               primary={
-                currentPickedUserFilter.isBanned ? (<>
-                  <span style={{color: "grey"}}>
-                    {userName} <i style={{fontSize: "80%"}}>(banned)</i>
-                  </span></>
+                currentPickedUserFilter.isBanned ? (
+                  <>
+                    <span style={{ color: "grey" }}>
+                      {userName} <i style={{ fontSize: "80%" }}>(banned)</i>
+                    </span>
+                  </>
                 ) : (
                   userName
                 )
@@ -135,13 +137,27 @@ const User = ({
               onClick={handleOpen}
             >
               {currentPickedUserFilter.isBanned ? (
-                <PersonAddAlt1Icon sx={{color: "#263238", height: "22px", width: "22px", '&:hover': {
-                  color: "#4caf50",
-               }}}/>
-                ) : (
-                <PersonRemoveIcon sx={{color: "#263238", height: "22px", width: "22px", '&:hover': {
-                  color: "#ef5350",
-               }}}/>
+                <PersonAddAlt1Icon
+                  sx={{
+                    color: "#263238",
+                    height: "22px",
+                    width: "22px",
+                    "&:hover": {
+                      color: "#4caf50",
+                    },
+                  }}
+                />
+              ) : (
+                <PersonRemoveIcon
+                  sx={{
+                    color: "#263238",
+                    height: "22px",
+                    width: "22px",
+                    "&:hover": {
+                      color: "#ef5350",
+                    },
+                  }}
+                />
               )}
             </IconButton>
           )}

@@ -2,11 +2,12 @@ import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Fab from "@mui/material/Fab";
 import SendIcon from "@mui/icons-material/Send";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { sendMessage } from "../../../actions/messageAction/sendMessage";
 import { wulgaryzmy } from "../../../wulgaryzmy";
 import Filter from "bad-words";
+import axios from "axios";
 
 const MessageSender = ({ currentGroupId, loggedUserId, users }) => {
   const dispatch = useDispatch();
@@ -63,24 +64,27 @@ const MessageSender = ({ currentGroupId, loggedUserId, users }) => {
     setMessageContent(e.target.value);
   };
 
-  const send = (e) => {
+  const send = () => {
     if (messageContent !== "") {
-      let toSend;
-      try {
-        toSend = filter.clean(messageContent);
-      } catch {
-        toSend = messageContent;
+      if (messageContent === "/footballTip") {
+      } else {
+        let toSend;
+        try {
+          toSend = filter.clean(messageContent);
+        } catch {
+          toSend = messageContent;
+        }
+
+        const messageObject = {
+          groupId: currentGroupId,
+          author: filteredLoggedUser.userName,
+          time: currentTime(),
+          content: toSend,
+        };
+
+        dispatch(sendMessage(messageObject));
+        setMessageContent("");
       }
-
-      const messageObject = {
-        groupId: currentGroupId,
-        author: filteredLoggedUser.userName,
-        time: currentTime(),
-        content: toSend,
-      };
-
-      dispatch(sendMessage(messageObject));
-      setMessageContent("");
     }
   };
 

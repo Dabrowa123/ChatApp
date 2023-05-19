@@ -5,33 +5,19 @@ import Protected from "./components/Protected";
 import Register from "./components/Register";
 import { useSelector } from "react-redux";
 import AppPanel from "./components/AppPanel/AppPanel";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { fetchDataSuccess } from "./actions/userActions/fetchUserDataActions";
+import { fetchDataFailure } from "./actions/userActions/fetchUserDataActions";
 
 function App() {
-  const userId = useSelector((state) => state.isLogged.userId);
-  const users = useSelector((state) => state.users);
-  let isLogged = false;
-
-  if (userId !== 0) {
-    const filteredUser = users.filter((user) => user.userId === userId);
-    if (filteredUser.length !== 0) {
-      isLogged = true;
-    }
-  }
-
   return (
     <div className="App">
       <Router>
         <Routes>
           <Route exact path="/" Component={Login}></Route>
-          <Route
-            exact
-            path="/appPanel"
-            element={
-              <Protected isLoggedIn={isLogged}>
-                <AppPanel />
-              </Protected>
-            }
-          ></Route>
+          <Route exact path="/appPanel" element={<AppPanel />}></Route>
           <Route exact path="/register" Component={Register}></Route>
         </Routes>
       </Router>

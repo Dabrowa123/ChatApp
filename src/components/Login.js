@@ -12,6 +12,10 @@ import { logInUser } from "../actions/userActions/logInUser";
 import { Container } from "@mui/material";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router";
+import axios from "axios";
+import { useEffect } from "react";
+import { fetchDataSuccess } from "../actions/userActions/fetchUserDataActions";
+import { fetchDataFailure } from "../actions/userActions/fetchUserDataActions";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -22,7 +26,8 @@ const Login = () => {
     isWrong: false,
     message: "",
   });
-  const users = useSelector((state) => state.users);
+  const isLoading = useSelector((state) => state.users.isLoading);
+  const users = useSelector((state) => state.users.users);
 
   const authenticate = () => {
     const filteredUser = users.filter(
@@ -75,6 +80,24 @@ const Login = () => {
     e.preventDefault();
     authenticate();
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://localhost:8082/users"); // Zastąp '/api/data' odpowiednim adresem URL do endpointu Springa
+        console.log(response);
+        dispatch(fetchDataSuccess(response.data));
+        console.log(users);
+      } catch (error) {
+        console.log("Błąd połączenia");
+        dispatch(fetchDataFailure(error.message));
+      }
+    };
+
+    if (isLoading) {
+      fetchData();
+    }
+  }, [dispatch]);
 
   return (
     <Container

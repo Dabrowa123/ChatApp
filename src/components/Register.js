@@ -14,7 +14,7 @@ import * as yup from "yup";
 import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 
 const Register = () => {
-  const existingUsers = useSelector((state) => state.users);
+  const existingUsers = useSelector((state) => state.users.users);
 
   const RegisterSchema = yup.object().shape({
     username: yup
@@ -82,6 +82,7 @@ const Register = () => {
         password: values.password,
       };
       dispatch(registerUser(userObject));
+
       setIsSubmited(true);
       setTimeout(() => navigate("/"), 2000);
     },
@@ -164,9 +165,7 @@ const Register = () => {
                 onChange={(e) => {
                   formik.handleChange(e);
                 }}
-                error={
-                  formik.touched.email && Boolean(formik.errors.email)
-                }
+                error={formik.touched.email && Boolean(formik.errors.email)}
                 helperText={formik.touched.email && formik.errors.email}
               />
               <TextField
@@ -217,7 +216,12 @@ const Register = () => {
                   Do you already have an account?
                 </Grid>
                 <Grid item xs={1.5} sx={{ textAlign: "right" }}>
-                  <Link onClick={() => {navigate("/")}} variant="body2">
+                  <Link
+                    onClick={() => {
+                      navigate("/");
+                    }}
+                    variant="body2"
+                  >
                     {"Sign in"}
                   </Link>
                 </Grid>
