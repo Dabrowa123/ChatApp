@@ -20,7 +20,7 @@ const Register = () => {
     username: yup
       .string()
       .required("Username is required")
-      .min(2, "Password must be at least 6 characters long")
+      .min(2, "Username must be at least 2 characters long")
       .test(
         "Unique Name",
         "Name already in use, please choose another one",
