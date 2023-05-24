@@ -22,13 +22,13 @@ const ChatGroupSection = () => {
       try {
         const response = await axios.get("http://localhost:8082/groups");
         setGroups(response.data);
-        console.log(response);
       } catch (error) {
         console.log("Błąd połączenia");
       }
     };
     fetchGroups();
   }, [loggedUserId]);
+  console.log(groups);
 
   const filteredLoggedUser = users.find((user) => user.userId === loggedUserId);
 
