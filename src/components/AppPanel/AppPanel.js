@@ -11,7 +11,7 @@ const AppPanel = () => {
   return (
     <Stack direction="row">
       <ChatGroupSection></ChatGroupSection>
-      {!displaySettings && <ChatSection></ChatSection>}
+      {/* {!displaySettings && <ChatSection></ChatSection>} */}
       {displaySettings && <SettingsSection></SettingsSection>}
       <UsersSection></UsersSection>
     </Stack>

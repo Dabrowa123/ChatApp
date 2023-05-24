@@ -6,11 +6,29 @@ import ChatGroupList from "./ChatGroupList";
 import ChatGroupCreator from "./ChatGroupCreator";
 import ChatGroupSearch from "./ChatGroupSearch";
 import Logo from "../../../pictures/Logo.png";
+import axios from "axios";
 import useChatState from "../../../customHooks/useChatState";
+import { useEffect, useState } from "react";
 
 const ChatGroupSection = () => {
-  const { currentGroupId, groups, users, loggedUserId, searchGroupItem } =
+  const { currentGroupId, users, loggedUserId, searchGroupItem } =
     useChatState();
+
+  // Fetched groups
+  const [groups, setGroups] = useState([]);
+
+  useEffect(() => {
+    const fetchGroups = async () => {
+      try {
+        const response = await axios.get("http://localhost:8082/groups");
+        setGroups(response.data);
+        console.log(response);
+      } catch (error) {
+        console.log("Błąd połączenia");
+      }
+    };
+    fetchGroups();
+  }, [loggedUserId]);
 
   const filteredLoggedUser = users.find((user) => user.userId === loggedUserId);
 
@@ -63,5 +81,5 @@ const ChatGroupSection = () => {
     </Box>
   );
 };
-//
+
 export default ChatGroupSection;
