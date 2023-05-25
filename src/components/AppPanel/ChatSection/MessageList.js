@@ -2,16 +2,10 @@ import { useEffect, useState, useRef } from "react";
 import List from "@mui/material/List";
 import Message from "./Message";
 
-const MessageList = ({ currentGroupId, groups, users, loggedUserId }) => {
-  const [fetchedData, setFetchedData] = useState(null);
-
-  const currentGroupFilter = groups.find(
-    (group) => group.groupId === currentGroupId
-  );
-  const messageList = currentGroupFilter.messages.map((message) => (
+const MessageList = ({ messages, users, loggedUserId }) => {
+  const messageList = messages.map((message) => (
     <Message
-      key={message.id}
-      groupId={currentGroupId}
+      key={message.messageId}
       {...message}
       users={users}
       loggedUserId={loggedUserId}

@@ -28,7 +28,6 @@ const ChatGroupSection = () => {
     };
     fetchGroups();
   }, [loggedUserId]);
-  console.log(groups);
 
   const filteredLoggedUser = users.find((user) => user.userId === loggedUserId);
 

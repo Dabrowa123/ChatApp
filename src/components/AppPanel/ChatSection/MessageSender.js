@@ -44,10 +44,26 @@ const MessageSender = ({ currentGroupId, loggedUserId, users }) => {
       }
     };
 
+    let day = () => {
+      if (today.getDate() > 9) {
+        return today.getDate();
+      } else {
+        return "0" + today.getDate();
+      }
+    };
+
+    let month = () => {
+      if (today.getMonth() + 1 > 9) {
+        return today.getMonth() + 1;
+      } else {
+        return "0" + (today.getMonth() + 1);
+      }
+    };
+
     return (
-      today.getDate() +
+      day() +
       "/" +
-      (today.getMonth() + 1) +
+      month() +
       "/" +
       today.getFullYear() +
       " " +
@@ -75,8 +91,8 @@ const MessageSender = ({ currentGroupId, loggedUserId, users }) => {
         }
 
         const messageObject = {
-          groupId: currentGroupId,
-          author: filteredLoggedUser.userName,
+          chatGroupId: currentGroupId,
+          userId: loggedUserId,
           time: currentTime(),
           content: toSend,
         };

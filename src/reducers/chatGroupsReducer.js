@@ -72,14 +72,15 @@ export const chatGroupsReducer = (
     case "DELETE_GROUP":
       return state.filter((group) => group.groupId !== action.payload);
     case "SEND_MESSAGE": {
-      const { groupId, id, author, time, content, isDeleted } = action.payload;
+      const { chatGroupId, userId, time, content, deleted } = action.payload;
       const message = {
-        id,
-        author,
+        userId,
         time,
         content,
-        isDeleted,
+        chatGroupId,
+        deleted,
       };
+
       return state.map((group) => {
         if (group.groupId !== groupId) {
           return group;

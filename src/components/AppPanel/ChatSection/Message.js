@@ -11,18 +11,18 @@ import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { deleteMessage } from "../../../actions/messageAction/deleteMessage";
 
 const Message = ({
-  groupId,
-  id,
-  author,
-  time,
+  key,
+  chatGroupId,
   content,
-  isDeleted,
-  loggedUserId,
+  deleted,
+  time,
+  userId,
   users,
+  loggedUserId,
 }) => {
   const dispatch = useDispatch();
   const filteredLoggedUser = users.find((user) => user.userId === loggedUserId);
-  const filteredMessageAuthor = users.find((user) => user.userName === author);
+  const filteredMessageAuthor = users.find((user) => user.userId === userId);
 
   // Clicking the message to show 'remove'
   const handleClickMessage = () => {
@@ -49,10 +49,10 @@ const Message = ({
     } else {
       setLetUserClickMessage("none");
     }
-  }, [isMessageClicked, filteredLoggedUser.isAdmin]);
+  }, [isMessageClicked, filteredLoggedUser.admin]);
 
   let message =
-    filteredLoggedUser.userName !== author ? (
+    filteredLoggedUser.userId !== userId ? (
       <ListItem>
         <Grid container>
           <Grid
@@ -64,14 +64,14 @@ const Message = ({
               justifyContent: "right",
             }}
           >
-            {!isDeleted && (
+            {!deleted && (
               <IconButton
                 color="primary"
                 aria-label="upload picture"
                 component="label"
                 sx={{ display: `${showRemoveIcon}`, padding: "0" }}
                 onClick={() => {
-                  dispatch(deleteMessage(groupId, id));
+                  dispatch(deleteMessage(chatGroupId, key));
                 }}
               >
                 <HighlightOffIcon sx={{ width: "15px", height: "15px" }} />
@@ -87,7 +87,7 @@ const Message = ({
               variant="filled"
               color="primary"
               sx={
-                !isDeleted
+                !deleted
                   ? {
                       maxWidth: "60%",
                       marginLeft: "5px",
@@ -124,13 +124,13 @@ const Message = ({
                 mt: "2px",
               }}
             >
-              {displayFirstLetterOfUsername(author)}
+              {displayFirstLetterOfUsername(filteredMessageAuthor.userName)}
             </Avatar>
           </Grid>
           <Grid item xs={12}>
             <ListItemText
               align="right"
-              secondary={`${author} ${time}`}
+              secondary={`${filteredMessageAuthor.userName} ${time}`}
             ></ListItemText>
           </Grid>
         </Grid>
@@ -156,7 +156,7 @@ const Message = ({
               variant="outlined"
               color="primary"
               sx={
-                !isDeleted
+                !deleted
                   ? {
                       maxWidth: "60%",
                       marginRight: "5px",
@@ -182,14 +182,14 @@ const Message = ({
               }
               onClick={handleClickMessage}
             />
-            {!isDeleted && (
+            {!deleted && (
               <IconButton
                 color="primary"
                 aria-label="upload picture"
                 component="label"
                 sx={{ display: `${showRemoveIcon}`, padding: "0" }}
                 onClick={() => {
-                  dispatch(deleteMessage(groupId, id));
+                  dispatch(deleteMessage(chatGroupId, key));
                 }}
               >
                 <HighlightOffIcon sx={{ width: "15px", height: "15px" }} />

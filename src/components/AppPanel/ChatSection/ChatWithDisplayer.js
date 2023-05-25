@@ -5,10 +5,12 @@ import GroupsRoundedIcon from "@mui/icons-material/GroupsRounded";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import VideocamIcon from "@mui/icons-material/Videocam";
 import InfoIcon from "@mui/icons-material/Info";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 const ChatWithDisplayer = ({
-  currentGroupFilter,
   currentPickedUser,
+  group,
   users,
   loggedUserId,
 }) => {
@@ -24,66 +26,67 @@ const ChatWithDisplayer = ({
     return charArr[0].toUpperCase();
   };
 
-  return (
-    <Stack direction={"row"} justifyContent={"space-between"}>
-      <Stack>
-        {currentGroupFilter.isPriv && !currentLoggedUserFilter.isAdmin && (
-          <Stack
-            direction={"row"}
-            display={"flex"}
-            justifyContent={"flex-start"}
-            alignItems={"center"}
-            p={3}
-            sx={{ maxHeight: "70px", minHeight: "70px" }}
-          >
-            <Badge
-              color="primary"
-              badgeContent=" "
-              overlap="circular"
-              variant="dot"
+  if (group !== null) {
+    return (
+      <Stack direction={"row"} justifyContent={"space-between"}>
+        <Stack>
+          {group.priv && !currentLoggedUserFilter.admin && (
+            <Stack
+              direction={"row"}
+              display={"flex"}
+              justifyContent={"flex-start"}
+              alignItems={"center"}
+              p={3}
+              sx={{ maxHeight: "70px", minHeight: "70px" }}
             >
-              <Avatar sx={{ bgcolor: currentPickedUserFilter.avatarColor }}>
-                {displayFirstLetterOf()}
-              </Avatar>
-            </Badge>
-            <Typography ml={2}>{currentPickedUserFilter.userName}</Typography>
-          </Stack>
-        )}
-        {(!currentGroupFilter.isPriv ||
-          (currentLoggedUserFilter.isAdmin && currentGroupFilter.isPriv)) && (
-          <Stack
-            direction={"row"}
-            display={"flex"}
-            justifyContent={"flex-start"}
-            alignItems={"center"}
-            p={3}
-            sx={{ maxHeight: "70px", minHeight: "70px" }}
-          >
-            <GroupsRoundedIcon
-              sx={{
-                color: "#002F6D",
-                background: "white",
-                padding: "5px",
-                borderRadius: "12px",
-                height: "35px",
-                width: "35px",
-              }}
-            />
-            <Typography ml={2}>{currentGroupFilter.groupName}</Typography>
-          </Stack>
-        )}
+              <Badge
+                color="primary"
+                badgeContent=" "
+                overlap="circular"
+                variant="dot"
+              >
+                <Avatar sx={{ bgcolor: currentPickedUserFilter.avatarColor }}>
+                  {displayFirstLetterOf()}
+                </Avatar>
+              </Badge>
+              <Typography ml={2}>{currentPickedUserFilter.userName}</Typography>
+            </Stack>
+          )}
+          {(!group.priv || (currentLoggedUserFilter.admin && group.priv)) && (
+            <Stack
+              direction={"row"}
+              display={"flex"}
+              justifyContent={"flex-start"}
+              alignItems={"center"}
+              p={3}
+              sx={{ maxHeight: "70px", minHeight: "70px" }}
+            >
+              <GroupsRoundedIcon
+                sx={{
+                  color: "#002F6D",
+                  background: "white",
+                  padding: "5px",
+                  borderRadius: "12px",
+                  height: "35px",
+                  width: "35px",
+                }}
+              />
+              <Typography ml={2}>{group.groupName}</Typography>
+            </Stack>
+          )}
+        </Stack>
+        <Stack
+          direction={"row"}
+          justifyContent={"space-between"}
+          alignItems={"center"}
+        >
+          <LocalPhoneIcon sx={{ marginRight: "35px", color: "#263238" }} />
+          <VideocamIcon sx={{ marginRight: "35px", color: "#263238" }} />
+          <InfoIcon sx={{ marginRight: "35px", color: "#263238" }} />
+        </Stack>
       </Stack>
-      <Stack
-        direction={"row"}
-        justifyContent={"space-between"}
-        alignItems={"center"}
-      >
-        <LocalPhoneIcon sx={{ marginRight: "35px", color: "#263238" }} />
-        <VideocamIcon sx={{ marginRight: "35px", color: "#263238" }} />
-        <InfoIcon sx={{ marginRight: "35px", color: "#263238" }} />
-      </Stack>
-    </Stack>
-  );
+    );
+  }
 };
 
 export default ChatWithDisplayer;

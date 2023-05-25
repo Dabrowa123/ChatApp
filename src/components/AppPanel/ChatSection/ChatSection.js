@@ -7,30 +7,27 @@ import useChatState from "../../../customHooks/useChatState";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const ChatSection = () => {
-  const { currentGroupId, groups, currentPickedUser, users, loggedUserId } =
+const ChatSection = ({ groups }) => {
+  const { currentGroupId, currentPickedUser, users, loggedUserId } =
     useChatState();
 
   const [messages, setMessages] = useState([]);
+  const [group, setGroup] = useState([]);
 
   useEffect(() => {
-    const fetchMessages = async () => {
+    const fetchGroup = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8082/messages/group/${currentGroupId}`
+          `http://localhost:8082/groups/${currentGroupId}`
         );
-        setMessages(response.data);
+        setGroup(response.data);
+        setMessages(response.data.messages);
       } catch (error) {
         console.log("Błąd połączenia");
       }
     };
-    fetchMessages();
+    fetchGroup();
   }, [currentGroupId]);
-  console.log(currentGroupId);
-  console.log(messages);
-  const currentGroupFilter = groups.find(
-    (group) => group.groupId === currentGroupId
-  );
 
   return (
     <Box
@@ -43,18 +40,19 @@ const ChatSection = () => {
         flexDirection: "column",
       }}
     >
-      {/* <ChatWithDisplayer
-        currentGroupFilter={currentGroupFilter}
+      <ChatWithDisplayer
         currentPickedUser={currentPickedUser}
+        group={group}
+        currentGroupId={currentGroupId}
         users={users}
         loggedUserId={loggedUserId}
-      /> */}
+      />
       <Divider />
-      {/* <MessageList
+      <MessageList
         messages={messages}
         users={users}
         loggedUserId={loggedUserId}
-      /> */}
+      />
       <Divider />
       <MessageSender
         currentGroupId={currentGroupId}
