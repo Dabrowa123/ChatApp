@@ -1,19 +1,19 @@
-export const fetchDataRequest = () => {
+export const fetchUserDataRequest = () => {
   return {
-    type: "FETCH_DATA_REQUEST",
+    type: "FETCH_USER_DATA_REQUEST",
   };
 };
 
-export const fetchDataSuccess = (data) => {
+export const fetchUserDataSuccess = (data) => {
   return {
-    type: "FETCH_DATA_SUCCESS",
+    type: "FETCH_USER_DATA_SUCCESS",
     payload: data,
   };
 };
 
-export const fetchDataFailure = (error) => {
+export const fetchUserDataFailure = (error) => {
   return {
-    type: "FETCH_DATA_FAILURE",
+    type: "FETCH_USER_DATA_FAILURE",
     payload: error,
   };
 };

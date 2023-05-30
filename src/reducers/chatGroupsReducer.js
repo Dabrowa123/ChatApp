@@ -1,119 +1,45 @@
 export const chatGroupsReducer = (
-  state = [
-    {
-      groupId: 1,
-      groupName: "General",
-      userIdList: [],
-      messages: [
-        {
-          id: 1,
-          author: "Dominik",
-          time: "8/5/2023 12:30:31",
-          content: "Siemka wszystkim!",
-          isDeleted: false,
-        },
-        {
-          id: 2,
-          author: "Szymon",
-          time: "8/5/2023 12:30:35",
-          content: "No siema siema!",
-          isDeleted: false,
-        },
-        {
-          id: 3,
-          author: "Administrator",
-          time: "8/5/2023 12:30:38",
-          content: "Witajcie na czacie, tylko bądźcie grzeczni bo was zbanuję!",
-          isDeleted: false,
-        },
-        {
-          id: 4,
-          author: "Dominik",
-          time: "8/5/2023 12:30:45",
-          content: "Message removed",
-          isDeleted: true,
-        },
-      ],
-      isPriv: false,
-    },
-    {
-      groupId: 2,
-      groupName: "NovoAkademia",
-      userIdList: [],
-      messages: [],
-      isPriv: false,
-    },
-  ],
+  state = {
+    isGroupsLoading: true,
+    isGroupLoading: true,
+  },
   action
 ) => {
   switch (action.type) {
-    case "CREATE_GROUP":
-      return [...state, action.payload];
-    case "CREATE_PRIV_GROUP":
-      return [...state, action.payload];
-    case "JOIN_GROUP":
-      return [
-        state.map((group) => {
-          if (group.groupId !== action.payload.groupId) {
-            return group;
-          }
-
-          const { userIdList } = action.payload;
-
-          return {
-            groupId: group.groupId,
-            groupName: group.groupName,
-            userIdList,
-            messages: group.messages,
-            isPriv: group.isPriv,
-          };
-        }),
-      ];
-    case "DELETE_GROUP":
-      return state.filter((group) => group.groupId !== action.payload);
-    case "SEND_MESSAGE": {
-      const { chatGroupId, userId, time, content, deleted } = action.payload;
-      const message = {
-        userId,
-        time,
-        content,
-        chatGroupId,
-        deleted,
+    case "FETCH_GROUP_DATA_REQUEST":
+      return {
+        ...state,
+        isLoading: true,
       };
-
-      return state.map((group) => {
-        if (group.groupId !== groupId) {
-          return group;
-        }
-
-        return {
-          ...group,
-          messages: [...group.messages, message],
-        };
-      });
-    }
-    case "DELETE_MESSAGE":
-      const { groupId, id } = action.payload;
-      return state.map((group) => {
-        if (group.groupId !== groupId) {
-          return group;
-        }
-
-        return {
-          ...group,
-          messages: group.messages.map((message) => {
-            if (message.id === id) {
-              return {
-                ...message,
-                content: "Message removed",
-                isDeleted: true,
-              };
-            } else {
-              return message;
-            }
-          }),
-        };
-      });
+    case "FETCH_GROUP_DATA_SUCCESS":
+      return {
+        ...state,
+        isLoading: false,
+        users: action.payload,
+      };
+    case "FETCH_GROUP_DATA_FAILURE":
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload,
+      };
+    case "FETCH_GROUPS_DATA_REQUEST":
+      return {
+        ...state,
+        isGroupsLoading: true,
+      };
+    case "FETCH_GROUPS_DATA_SUCCESS":
+      return {
+        ...state,
+        isGroupsLoading: false,
+        users: action.payload,
+      };
+    case "FETCH_GROUPS_DATA_FAILURE":
+      return {
+        ...state,
+        isGroupsLoading: false,
+        error: action.payload,
+      };
 
     default:
       return state;

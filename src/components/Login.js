@@ -14,8 +14,8 @@ import { Button } from "@mui/material";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import { useEffect } from "react";
-import { fetchDataSuccess } from "../actions/userActions/fetchUserDataActions";
-import { fetchDataFailure } from "../actions/userActions/fetchUserDataActions";
+import { fetchUserDataSuccess } from "../actions/userActions/fetchUserDataActions";
+import { fetchUserDataFailure } from "../actions/userActions/fetchUserDataActions";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -84,13 +84,13 @@ const Login = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:8082/users"); // Zastąp '/api/data' odpowiednim adresem URL do endpointu Springa
+        const response = await axios.get("http://localhost:8082/users");
         console.log(response);
-        dispatch(fetchDataSuccess(response.data));
+        dispatch(fetchUserDataSuccess(response.data));
         console.log(users);
       } catch (error) {
         console.log("Błąd połączenia");
-        dispatch(fetchDataFailure(error.message));
+        dispatch(fetchUserDataFailure(error.message));
       }
     };
 

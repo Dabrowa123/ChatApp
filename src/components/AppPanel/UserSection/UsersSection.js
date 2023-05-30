@@ -6,9 +6,16 @@ import UserList from "./UserList";
 import UserSearch from "./UserSearch";
 import LoggedInUser from "./LoggedInUser";
 import useChatState from "../../../customHooks/useChatState";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchGroupsDataSuccess,
+  fetchGroupsDataFailure,
+} from "../../../actions/groupActions/fetchGroupsDataActions";
+import axios from "axios";
 
-const UsersSection = () => {
-  const { groups, users, loggedUserId, searchUserItem } = useChatState();
+const UsersSection = ({ groups }) => {
+  const { users, loggedUserId, searchUserItem } = useChatState();
 
   return (
     <Box

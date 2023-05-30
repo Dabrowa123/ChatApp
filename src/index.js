@@ -29,12 +29,10 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <Provider store={store}>
-    <React.StrictMode>
-      <ThemeProvider theme={MainTheme}>
-        <CssBaseline />
-        <App />
-      </ThemeProvider>
-    </React.StrictMode>
+    <ThemeProvider theme={MainTheme}>
+      <CssBaseline />
+      <App />
+    </ThemeProvider>
   </Provider>
 );
 

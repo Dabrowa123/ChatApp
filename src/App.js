@@ -7,8 +7,8 @@ import { useSelector } from "react-redux";
 import AppPanel from "./components/AppPanel/AppPanel";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { fetchDataSuccess } from "./actions/userActions/fetchUserDataActions";
-import { fetchDataFailure } from "./actions/userActions/fetchUserDataActions";
+import { fetchUserDataSuccess } from "./actions/userActions/fetchUserDataActions";
+import { fetchUserDataFailure } from "./actions/userActions/fetchUserDataActions";
 
 function App() {
   return (

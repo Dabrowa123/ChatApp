@@ -8,7 +8,7 @@ import { sendMessage } from "../../../actions/messageAction/sendMessage";
 import { wulgaryzmy } from "../../../wulgaryzmy";
 import Filter from "bad-words";
 
-const MessageSender = ({ currentGroupId, loggedUserId, users }) => {
+const MessageSender = ({ currentGroupId, loggedUserId, group, users }) => {
   const dispatch = useDispatch();
   const [messageContent, setMessageContent] = useState("");
 
@@ -19,6 +19,7 @@ const MessageSender = ({ currentGroupId, loggedUserId, users }) => {
 
   let today = new Date();
 
+  console.log(group.queueId);
   const currentTime = () => {
     let hours = () => {
       if (today.getHours() > 9) {
@@ -95,6 +96,7 @@ const MessageSender = ({ currentGroupId, loggedUserId, users }) => {
           userId: loggedUserId,
           time: currentTime(),
           content: toSend,
+          queueId: group.queueId,
         };
 
         dispatch(sendMessage(messageObject));

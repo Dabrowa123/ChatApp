@@ -5,9 +5,16 @@ import ChatWithDisplayer from "./ChatWithDisplayer";
 import MessageList from "./MessageList";
 import useChatState from "../../../customHooks/useChatState";
 import { useState, useEffect } from "react";
+import socketIOClient from "socket.io-client";
 import axios from "axios";
+import { Client } from "@stomp/stompjs";
 
-const ChatSection = ({ groups }) => {
+import SockJsClient from "react-stomp";
+import AppStomp from "./AppStomp";
+
+const SOCKET_URL = "ws://localhost:8082/ws-message";
+
+const ChatSection = () => {
   const { currentGroupId, currentPickedUser, users, loggedUserId } =
     useChatState();
 
@@ -27,6 +34,58 @@ const ChatSection = ({ groups }) => {
       }
     };
     fetchGroup();
+  }, [currentGroupId]);
+
+  // useEffect(() => {
+  //   console.log("Podłączanie...");
+  //   const socket = socketIOClient("http://localhost:8082/socket.io");
+  //   console.log(socket);
+  //   socket.on("/topic/new-message", (message) => {
+  //     console.log("Podłączono do socketa");
+  //     // Otrzymano nową wiadomość z serwera WebSocket
+
+  //     console.log(message);
+
+  //   });
+
+  //   return () => {
+  //     socket.disconnect(); // Rozłączenie z serwerem WebSocket po zakończeniu komponentu
+  //   };
+  // }, [currentGroupId]);
+
+  useEffect(() => {
+    let client = null;
+
+    const onConnected = () => {
+      console.log("Connected!!");
+      client.subscribe("/topic/message", function (msg) {
+        if (msg.body) {
+          const jsonBody = JSON.parse(msg.body);
+          if (jsonBody) {
+            setMessages((prevMessages) => [...prevMessages, jsonBody]);
+          }
+        }
+      });
+    };
+
+    const onDisconnected = () => {
+      console.log("Disconnected!!");
+    };
+
+    client = new Client({
+      brokerURL: SOCKET_URL,
+      reconnectDelay: 5000,
+      heartbeatIncoming: 4000,
+      heartbeatOutgoing: 4000,
+      onConnect: onConnected,
+      onDisconnect: onDisconnected,
+    });
+
+    client.activate();
+
+    return () => {
+      client.deactivate();
+    };
   }, [currentGroupId]);
 
   return (
@@ -58,6 +117,7 @@ const ChatSection = ({ groups }) => {
         currentGroupId={currentGroupId}
         loggedUserId={loggedUserId}
         users={users}
+        group={group}
       />
     </Box>
   );

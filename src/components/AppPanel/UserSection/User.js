@@ -21,6 +21,8 @@ import { unBanUser } from "../../../actions/userActions/unBanUser";
 import PersonRemoveIcon from "@mui/icons-material/PersonRemove";
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 import { displaySettings } from "../../../actions/displaySettingsActions/displaySettings";
+import axios from "axios";
+import { fetchGroupsDataRequest } from "../../../actions/groupActions/fetchGroupsDataActions";
 
 const style = {
   position: "absolute",
@@ -47,8 +49,8 @@ const User = ({
   const filteredLoggedUser = users.find((user) => user.userId === loggedUserId);
   const filteredGroup = groups.filter(
     (group) =>
-      group.userIdList.includes(loggedUserId) &&
-      group.userIdList.includes(currentPickedUserId)
+      group.users.includes(loggedUserId) &&
+      group.users.includes(currentPickedUserId)
   );
 
   const currentPickedUserFilter = users.find(
@@ -59,21 +61,28 @@ const User = ({
     (user) => user.userId === loggedUserId
   );
 
-  const createOrSelectPrivChat = () => {
+  const createOrSelectPrivChat = (e) => {
+    e.preventDefault();
     if (filteredGroup.length === 0) {
       const userIdList = [loggedUserId, currentPickedUserId];
-      const id = Math.floor(Math.random() * 1234);
-      dispatch(
-        createPrivGroup(
-          id,
-          userIdList,
-          currentLoggedUserFilter.userName,
-          currentPickedUserFilter.userName
-        )
-      );
-      dispatch(pickGroup(id));
-      dispatch(pickUser(userId));
-      dispatch(displaySettings(false));
+      axios
+        .post("http://localhost:8082/groups", {
+          groupName: `Priv group of ${currentPickedUserFilter.userName} and ${currentLoggedUserFilter.userName}`,
+          users: userIdList,
+          messages: [],
+          priv: true,
+        })
+        .then((response) => {
+          dispatch(fetchGroupsDataRequest());
+          console.log("groups in USER: " + groups);
+          dispatch(pickGroup(response.data.groupId));
+          dispatch(pickUser(userId));
+          dispatch(displaySettings(false));
+          console.log("Groups " + groups);
+        })
+        .catch((error) => {
+          console.log("Błąd podczas tworzenia grupy");
+        });
     } else {
       dispatch(pickGroup(filteredGroup[0].groupId));
       dispatch(pickUser(userId));
