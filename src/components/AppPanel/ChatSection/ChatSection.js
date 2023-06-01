@@ -5,12 +5,8 @@ import ChatWithDisplayer from "./ChatWithDisplayer";
 import MessageList from "./MessageList";
 import useChatState from "../../../customHooks/useChatState";
 import { useState, useEffect } from "react";
-import socketIOClient from "socket.io-client";
 import axios from "axios";
 import { Client } from "@stomp/stompjs";
-
-import SockJsClient from "react-stomp";
-import AppStomp from "./AppStomp";
 
 const SOCKET_URL = "ws://localhost:8082/ws-message";
 
@@ -35,23 +31,6 @@ const ChatSection = () => {
     };
     fetchGroup();
   }, [currentGroupId]);
-
-  // useEffect(() => {
-  //   console.log("Podłączanie...");
-  //   const socket = socketIOClient("http://localhost:8082/socket.io");
-  //   console.log(socket);
-  //   socket.on("/topic/new-message", (message) => {
-  //     console.log("Podłączono do socketa");
-  //     // Otrzymano nową wiadomość z serwera WebSocket
-
-  //     console.log(message);
-
-  //   });
-
-  //   return () => {
-  //     socket.disconnect(); // Rozłączenie z serwerem WebSocket po zakończeniu komponentu
-  //   };
-  // }, [currentGroupId]);
 
   useEffect(() => {
     let client = null;

@@ -36,6 +36,20 @@ const AppPanel = () => {
     }
   }, [isGroupsLoading]);
 
+  useEffect(() => {
+    const connectToUserQueues = async () => {
+      try {
+        axios.get("http://localhost:8082/groups/queuesConnect");
+        console.log("Podłączono do kolejek!");
+      } catch (error) {
+        console.log("Bląd połączenia...");
+        console.log(error);
+      }
+    };
+
+    connectToUserQueues();
+  }, []);
+
   return (
     <Stack direction="row">
       <ChatGroupSection groups={groups}></ChatGroupSection>
