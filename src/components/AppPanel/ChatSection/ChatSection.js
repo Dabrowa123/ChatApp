@@ -7,6 +7,8 @@ import useChatState from "../../../customHooks/useChatState";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Client } from "@stomp/stompjs";
+import { useDispatch } from "react-redux";
+import { pickGroup } from "../../../actions/groupActions/pickGroup";
 
 const SOCKET_URL = "ws://localhost:8082/ws-message";
 
@@ -20,16 +22,21 @@ const ChatSection = () => {
   useEffect(() => {
     const fetchGroup = async () => {
       try {
+        console.log("ID before pulling group" + currentGroupId);
         const response = await axios.get(
           `http://localhost:8082/groups/${currentGroupId}`
         );
         setGroup(response.data);
         setMessages(response.data.messages);
+
+        console.log(response.data);
       } catch (error) {
         console.log("Błąd połączenia");
       }
     };
+
     fetchGroup();
+    console.log("ID after pulling group" + currentGroupId);
   }, [currentGroupId]);
 
   useEffect(() => {
@@ -41,7 +48,9 @@ const ChatSection = () => {
         if (msg.body) {
           const jsonBody = JSON.parse(msg.body);
           if (jsonBody) {
-            setMessages((prevMessages) => [...prevMessages, jsonBody]);
+            if (jsonBody.chatGroupId === currentGroupId) {
+              setMessages((prevMessages) => [...prevMessages, jsonBody]);
+            }
           }
         }
       });
@@ -67,6 +76,7 @@ const ChatSection = () => {
     };
   }, [currentGroupId]);
 
+  console.log(currentGroupId);
   return (
     <Box
       sx={{
