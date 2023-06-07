@@ -13,8 +13,10 @@ const ChatGroupList = ({
     group.groupName.toLowerCase().includes(searchGroupItem.toLowerCase())
   );
 
+  console.log(filteredLoggedUser.admin);
+
   const toDisplayGroups = filteredGroups.map((group) => {
-    if (filteredLoggedUser.isAdmin) {
+    if (filteredLoggedUser.admin) {
       return (
         <ChatGroup
           key={group.groupId}
@@ -24,7 +26,7 @@ const ChatGroupList = ({
           loggedUserId={loggedUserId}
         />
       );
-    } else if (!filteredLoggedUser.isAdmin && !group.isPriv) {
+    } else if (!filteredLoggedUser.admin && !group.priv) {
       return (
         <ChatGroup
           key={group.groupId}

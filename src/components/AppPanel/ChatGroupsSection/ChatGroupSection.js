@@ -16,7 +16,6 @@ import {
 } from "../../../actions/groupActions/fetchGroupsDataActions";
 
 const ChatGroupSection = ({ groups }) => {
-  const dispatch = useDispatch();
   const { currentGroupId, users, loggedUserId, searchGroupItem } =
     useChatState();
 
@@ -67,7 +66,7 @@ const ChatGroupSection = ({ groups }) => {
       <Divider sx={{ bgcolor: "white" }} />
       <Box pb={3} pl={4}>
         <ChatGroupSearch />
-        {filteredLoggedUser.isAdmin && <ChatGroupCreator />}
+        {filteredLoggedUser.admin && <ChatGroupCreator />}
       </Box>
     </Box>
   );

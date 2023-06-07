@@ -9,18 +9,18 @@ export const chatGroupsReducer = (
     case "FETCH_GROUP_DATA_REQUEST":
       return {
         ...state,
-        isLoading: true,
+        isGroupLoading: true,
       };
     case "FETCH_GROUP_DATA_SUCCESS":
       return {
         ...state,
-        isLoading: false,
+        isGroupLoading: false,
         users: action.payload,
       };
     case "FETCH_GROUP_DATA_FAILURE":
       return {
         ...state,
-        isLoading: false,
+        isGroupLoading: false,
         error: action.payload,
       };
     case "FETCH_GROUPS_DATA_REQUEST":

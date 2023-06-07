@@ -105,7 +105,7 @@ const MessageSender = ({ currentGroupId, loggedUserId, group, users }) => {
     }
   };
 
-  return !filteredLoggedUser.isBanned ? (
+  return !filteredLoggedUser.banned ? (
     <Grid container style={{ padding: "20px" }}>
       <Grid item xs={10.8} sx={{ bgcolor: "white" }}>
         <TextField

@@ -74,11 +74,10 @@ const User = ({
         })
         .then((response) => {
           dispatch(fetchGroupsDataRequest());
-          console.log("groups in USER: " + groups);
+
           dispatch(pickGroup(response.data.groupId));
           dispatch(pickUser(userId));
           dispatch(displaySettings(false));
-          console.log("Groups " + groups);
         })
         .catch((error) => {
           console.log("Błąd podczas tworzenia grupy");
@@ -137,7 +136,7 @@ const User = ({
               }
             />
           </Stack>
-          {filteredLoggedUser.isAdmin && (
+          {filteredLoggedUser.admin && (
             <IconButton
               type="submit"
               color="primary"
@@ -145,7 +144,7 @@ const User = ({
               aria-label="directions"
               onClick={handleOpen}
             >
-              {currentPickedUserFilter.isBanned ? (
+              {currentPickedUserFilter.banned ? (
                 <PersonAddAlt1Icon
                   sx={{
                     color: "#263238",
@@ -194,7 +193,7 @@ const User = ({
               component="h2"
               textAlign={"center"}
             >
-              {currentPickedUserFilter.isBanned ? (
+              {currentPickedUserFilter.banned ? (
                 <p>Are you sure you want to unban this user?</p>
               ) : (
                 <p>Are you sure you want to ban this user?</p>
@@ -208,7 +207,7 @@ const User = ({
               <Button
                 sx={{ mt: 2 }}
                 onClick={() => {
-                  if (currentPickedUserFilter.isBanned) {
+                  if (currentPickedUserFilter.banned) {
                     dispatch(unBanUser(userId));
                   } else {
                     dispatch(banUser(userId));

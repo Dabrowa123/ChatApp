@@ -73,7 +73,7 @@ const ChatGroup = ({
             </ListItemIcon>
             <ListItemText primary={groupName} />
           </Stack>
-          {filteredUser.isAdmin && !(groupId === 1) && (
+          {filteredUser.admin && !(groupId === 1) && (
             <IconButton
               type="submit"
               color="primary"

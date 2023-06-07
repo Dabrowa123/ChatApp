@@ -24,7 +24,6 @@ const Message = ({
   const filteredLoggedUser = users.find((user) => user.userId === loggedUserId);
   const filteredMessageAuthor = users.find((user) => user.userId === userId);
 
-  console.log("filtered message author: " + filteredMessageAuthor);
   // Clicking the message to show 'remove'
   const handleClickMessage = () => {
     setIsmesageClicked(!isMessageClicked);
@@ -45,7 +44,7 @@ const Message = ({
     } else {
       setShowRemoveIcon("none");
     }
-    if (filteredLoggedUser.isAdmin) {
+    if (filteredLoggedUser.admin) {
       setLetUserClickMessage("initial");
     } else {
       setLetUserClickMessage("none");
@@ -65,7 +64,7 @@ const Message = ({
               justifyContent: "right",
             }}
           >
-            {!deleted && (
+            {!deleted && filteredLoggedUser.admin && (
               <IconButton
                 color="primary"
                 aria-label="upload picture"

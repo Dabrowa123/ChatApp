@@ -10,6 +10,7 @@ import {
   fetchGroupsDataSuccess,
   fetchGroupsDataFailure,
 } from "../../actions/groupActions/fetchGroupsDataActions";
+import { fetchGroupsDataRequest } from "../../actions/groupActions/fetchGroupsDataActions";
 
 const AppPanel = () => {
   const dispatch = useDispatch();

@@ -7,7 +7,7 @@ import useChatState from "../../../customHooks/useChatState";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Client } from "@stomp/stompjs";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { pickGroup } from "../../../actions/groupActions/pickGroup";
 
 const SOCKET_URL = "ws://localhost:8082/ws-message";
@@ -19,10 +19,12 @@ const ChatSection = () => {
   const [messages, setMessages] = useState([]);
   const [group, setGroup] = useState([]);
 
+  const isGroupLoading = useSelector(
+    (state) => state.chatGroups.isGroupLoading
+  );
   useEffect(() => {
     const fetchGroup = async () => {
       try {
-        console.log("ID before pulling group" + currentGroupId);
         const response = await axios.get(
           `http://localhost:8082/groups/${currentGroupId}`
         );
@@ -36,8 +38,7 @@ const ChatSection = () => {
     };
 
     fetchGroup();
-    console.log("ID after pulling group" + currentGroupId);
-  }, [currentGroupId]);
+  }, [currentGroupId, isGroupLoading]);
 
   useEffect(() => {
     let client = null;

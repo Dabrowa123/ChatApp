@@ -16,6 +16,8 @@ import axios from "axios";
 import { useEffect } from "react";
 import { fetchUserDataSuccess } from "../actions/userActions/fetchUserDataActions";
 import { fetchUserDataFailure } from "../actions/userActions/fetchUserDataActions";
+import { fetchGroupsDataRequest } from "../actions/groupActions/fetchGroupsDataActions";
+import { pickGroup } from "../actions/groupActions/pickGroup";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -46,6 +48,8 @@ const Login = () => {
         passwordValue === filteredUser[0].password &&
         !filteredUser[0].isAdmin
       ) {
+        dispatch(fetchGroupsDataRequest());
+        dispatch(pickGroup("8b8dd1e7-394d-4757-9e42-018e6f8ad7f4"));
         navigate("/appPanel");
       } else {
         setLoginDataCheck({
