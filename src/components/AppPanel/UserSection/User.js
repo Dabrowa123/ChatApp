@@ -100,6 +100,28 @@ const User = ({
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  //Ban/Unban User
+
+  // const [isBanned, setIsBanned] = React.useState(
+  //   currentPickedUserFilter.banned
+  // );
+
+  const banOrUnbanUser = (e) => {
+    e.preventDefault();
+    if (currentPickedUserFilter.banned) {
+      dispatch(unBanUser(userId));
+    } else {
+      dispatch(banUser(userId));
+    }
+    // setIsBanned(!isBanned);
+    axios
+      .put(`http://localhost:8082/users/ban/${userId}`)
+      .then(() => {})
+      .catch((error) => {
+        console.log("Błąd podczas banowania");
+      });
+  };
+
   return (
     <>
       <Typography variant="h1" fontSize="large" pl={1}>
@@ -206,7 +228,9 @@ const User = ({
             >
               <Button
                 sx={{ mt: 2 }}
-                onClick={() => {
+                onClick={(e) => {
+                  banOrUnbanUser(e);
+                  handleClose();
                   if (currentPickedUserFilter.banned) {
                     dispatch(unBanUser(userId));
                   } else {

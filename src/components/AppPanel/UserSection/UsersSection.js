@@ -14,8 +14,47 @@ import {
 } from "../../../actions/groupActions/fetchGroupsDataActions";
 import axios from "axios";
 
+const SOCKET_URL = "ws://localhost:8082/ws-user";
+
 const UsersSection = ({ groups }) => {
   const { users, loggedUserId, searchUserItem } = useChatState();
+
+  useEffect(() => {
+    let client = null;
+
+    const onConnected = () => {
+      console.log("Connected!!");
+      client.subscribe("/topic/user", function (msg) {
+        if (msg.body) {
+          const jsonBody = JSON.parse(msg.body);
+          if (jsonBody) {
+            // if (jsonBody.chatGroupId === currentGroupId) {
+            //   setMessages((prevMessages) => [...prevMessages, jsonBody]);
+            // }
+          }
+        }
+      });
+    };
+
+    const onDisconnected = () => {
+      console.log("Disconnected!!");
+    };
+
+    client = new Client({
+      brokerURL: SOCKET_URL,
+      reconnectDelay: 5000,
+      heartbeatIncoming: 4000,
+      heartbeatOutgoing: 4000,
+      onConnect: onConnected,
+      onDisconnect: onDisconnected,
+    });
+
+    client.activate();
+
+    return () => {
+      client.deactivate();
+    };
+  });
 
   return (
     <Box
