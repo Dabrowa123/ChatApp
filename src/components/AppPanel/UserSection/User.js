@@ -108,11 +108,11 @@ const User = ({
 
   const banOrUnbanUser = (e) => {
     e.preventDefault();
-    if (currentPickedUserFilter.banned) {
-      dispatch(unBanUser(userId));
-    } else {
-      dispatch(banUser(userId));
-    }
+    // if (currentPickedUserFilter.banned) {
+    //   dispatch(unBanUser(userId));
+    // } else {
+    //   dispatch(banUser(userId));
+    // }
     // setIsBanned(!isBanned);
     axios
       .put(`http://localhost:8082/users/ban/${userId}`)
@@ -231,11 +231,11 @@ const User = ({
                 onClick={(e) => {
                   banOrUnbanUser(e);
                   handleClose();
-                  if (currentPickedUserFilter.banned) {
-                    dispatch(unBanUser(userId));
-                  } else {
-                    dispatch(banUser(userId));
-                  }
+                  // if (currentPickedUserFilter.banned) {
+                  //   dispatch(unBanUser(userId));
+                  // } else {
+                  //   dispatch(banUser(userId));
+                  // }
                 }}
               >
                 Yes

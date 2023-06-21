@@ -11,6 +11,20 @@ export const fetchUserDataSuccess = (data) => {
   };
 };
 
+export const fetchUserWebsocket = (data) => {
+  return {
+    type: "FETCH_USER_WEBSOCKET",
+    payload: data,
+  };
+};
+
+export const fetchUserWebsocketRegister = (data) => {
+  return {
+    type: "FETCH_USER_WEBSOCKET_REGISTER",
+    payload: data,
+  };
+};
+
 export const fetchUserDataFailure = (error) => {
   return {
     type: "FETCH_USER_DATA_FAILURE",

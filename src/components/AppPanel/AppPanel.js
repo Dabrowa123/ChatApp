@@ -11,6 +11,13 @@ import {
   fetchGroupsDataFailure,
 } from "../../actions/groupActions/fetchGroupsDataActions";
 import { fetchGroupsDataRequest } from "../../actions/groupActions/fetchGroupsDataActions";
+import { Client } from "@stomp/stompjs";
+import {
+  fetchUserWebsocket,
+  fetchUserWebsocketRegister,
+} from "../../actions/userActions/fetchUserDataActions";
+
+const SOCKET_URL = "ws://localhost:8082/ws-user";
 
 const AppPanel = () => {
   const dispatch = useDispatch();
@@ -55,11 +62,14 @@ const AppPanel = () => {
     let client = null;
 
     const onConnected = () => {
-      console.log("Connected!!");
+      console.log("Connected to user websocket!!");
       client.subscribe("/topic/user", function (msg) {
         if (msg.body) {
           const jsonBody = JSON.parse(msg.body);
           if (jsonBody) {
+            console.log(jsonBody);
+            dispatch(fetchUserWebsocket(jsonBody));
+            dispatch(fetchUserWebsocketRegister(jsonBody));
             // if (jsonBody.chatGroupId === currentGroupId) {
             //   setMessages((prevMessages) => [...prevMessages, jsonBody]);
             // }

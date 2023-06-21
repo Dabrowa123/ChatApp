@@ -12,6 +12,7 @@ import { useNavigate } from "react-router";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
+import axios from "axios";
 
 const Register = () => {
   const existingUsers = useSelector((state) => state.users.users);
@@ -81,7 +82,22 @@ const Register = () => {
         email: values.email,
         password: values.password,
       };
-      dispatch(registerUser(userObject));
+      // dispatch(registerUser(userObject));
+      try {
+        const response = axios.post("http://localhost:8082/users", {
+          ...userObject,
+          avatarColor: "orange",
+          isAdmin: false,
+          isBanned: false,
+        });
+        console.log(response);
+
+        // dispatch({
+        //   type: "FETCH_DATA_REQUEST",
+        // });
+      } catch (error) {
+        console.log("Błąd dodawania użytkownika", error);
+      }
 
       setIsSubmited(true);
       setTimeout(() => navigate("/"), 2000);
